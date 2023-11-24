@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import com.emotionmusicnote.note.controller.request.NoteSaveRequest;
 import com.emotionmusicnote.note.controller.response.NoteSingleReadResponse;
 import com.emotionmusicnote.note.domain.NoteRepository;
+import java.time.LocalDateTime;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,5 +59,7 @@ class NoteServiceTest {
     // then
     assertThat(response.getEmotion()).isEqualTo(emotion);
     assertThat(response.getContent()).isEqualTo(content);
+    assertThat(response.getCreateAt()).isBefore(LocalDateTime.now());
+    assertThat(response.getModifiedAt()).isBefore(LocalDateTime.now());
   }
 }
