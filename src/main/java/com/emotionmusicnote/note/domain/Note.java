@@ -1,5 +1,6 @@
 package com.emotionmusicnote.note.domain;
 
+import com.emotionmusicnote.common.BaseTime;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -13,7 +14,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-public class Note {
+public class Note extends BaseTime {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
