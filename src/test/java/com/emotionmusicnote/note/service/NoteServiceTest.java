@@ -3,8 +3,9 @@ package com.emotionmusicnote.note.service;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.emotionmusicnote.note.controller.request.NoteSaveRequest;
-import com.emotionmusicnote.note.domain.Note;
+import com.emotionmusicnote.note.controller.response.NoteSingleReadResponse;
 import com.emotionmusicnote.note.domain.NoteRepository;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -17,6 +18,11 @@ class NoteServiceTest {
 
   @Autowired
   private NoteRepository noteRepository;
+
+  @BeforeEach
+  public void db_init() {
+    noteRepository.deleteAll();
+  }
 
   @Test
   void saveTest() {
@@ -31,12 +37,26 @@ class NoteServiceTest {
 
     // when
     noteService.save(request);
+  }
+
+  @Test
+  void read() {
+    // given
+    String emotion = "슬픔";
+    String content = "내용 테스트";
+
+    NoteSaveRequest request = NoteSaveRequest.builder()
+        .emotion(emotion)
+        .content(content)
+        .build();
+
+    Long saveNoteId = noteService.save(request);
+
+    // when
+    NoteSingleReadResponse response = noteService.read(saveNoteId);
 
     // then
-    Note findNote = noteRepository.findById(1L).get();
-    System.out.println("emotion = " + findNote.getEmotion());
-    System.out.println("content = " + findNote.getContent());
-
-    assertThat(findNote.getId()).isEqualTo(1L);
+    assertThat(response.getEmotion()).isEqualTo(emotion);
+    assertThat(response.getContent()).isEqualTo(content);
   }
 }
