@@ -35,6 +35,8 @@ public class NoteService {
         .id(findNote.getId())
         .emotion(findNote.getEmotion())
         .content(findNote.getContent())
+        .createAt(findNote.getCreatedDate())
+        .modifiedAt(findNote.getModifiedDate())
         .build();
   }
 }
