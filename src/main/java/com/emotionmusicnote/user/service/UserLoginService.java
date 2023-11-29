@@ -3,6 +3,7 @@ package com.emotionmusicnote.user.service;
 import com.emotionmusicnote.user.domain.UserRepository;
 import com.emotionmusicnote.user.oauth.KakaoTokens;
 import com.emotionmusicnote.user.oauth.KakaoUserInfo;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -12,10 +13,12 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
+@RequiredArgsConstructor
 @Service
 public class UserLoginService {
 
-  private UserRepository userRepository;
+  private final UserRepository userRepository;
+  private final RestTemplate restTemplate;
 
   /**
    * GET/POST https://kapi.kakao.com/v2/user/me 으로 설정한 Headers 정보를 담아 요청
@@ -36,9 +39,6 @@ public class UserLoginService {
     body.add("code", code);
 
     HttpEntity<MultiValueMap<String, String>> requestToken = new HttpEntity<>(body, headers);
-
-    // @Bean 으로 뺴면 좋을 듯
-    RestTemplate restTemplate = new RestTemplate();
 
     KakaoTokens responseKakaoTokens = restTemplate.postForEntity(
             "https://kauth.kakao.com/oauth/token",
@@ -65,7 +65,6 @@ public class UserLoginService {
 
     HttpEntity<MultiValueMap<String, String>> requestUserProfile = new HttpEntity<>(userInfoHeaders);
 
-    RestTemplate restTemplate = new RestTemplate();
     return restTemplate.exchange(
             "https://kapi.kakao.com/v2/user/me",
             HttpMethod.GET,
