@@ -2,11 +2,14 @@ package com.emotionmusicnote.user.domain;
 
 import com.emotionmusicnote.user.oauth.OAuthProvider;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -22,10 +25,15 @@ public class User {
 
   private String nickname;
 
+  private String providerId;
+
+  @Enumerated(value = EnumType.STRING)
   private OAuthProvider oAuthProvider;
 
-  public User(String nickname, OAuthProvider oAuthProvider) {
+  @Builder
+  public User(String nickname, String providerId, OAuthProvider oAuthProvider) {
     this.nickname = nickname;
+    this.providerId = providerId;
     this.oAuthProvider = oAuthProvider;
   }
 }
