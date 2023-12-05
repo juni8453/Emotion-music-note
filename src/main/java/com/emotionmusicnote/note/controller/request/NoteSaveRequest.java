@@ -3,7 +3,9 @@ package com.emotionmusicnote.note.controller.request;
 import com.emotionmusicnote.note.domain.Note;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor
 @Getter
 public class NoteSaveRequest {
 
