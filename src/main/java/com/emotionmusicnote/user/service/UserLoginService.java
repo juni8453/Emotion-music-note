@@ -73,6 +73,7 @@ public class UserLoginService {
     User user = User.builder()
         .nickname(kakaoUserInfo.getNickname())
         .providerId(String.valueOf(kakaoUserInfo.getId()))
+        .profileImageUrl(kakaoUserInfo.getKakaoAccount().getKakaoProfile().getProfileImageUrl())
         .oAuthProvider(OAuthProvider.KAKAO)
         .build();
 
