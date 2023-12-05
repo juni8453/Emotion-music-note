@@ -1,5 +1,6 @@
 package com.emotionmusicnote.note.service;
 
+import com.emotionmusicnote.common.exception.NotFoundNoteException;
 import com.emotionmusicnote.note.controller.request.NoteSaveRequest;
 import com.emotionmusicnote.note.controller.response.NoteSingleReadResponse;
 import com.emotionmusicnote.note.controller.response.NoteWriterResponse;
@@ -37,7 +38,7 @@ public class NoteService {
     Long loginUserId = loginUser.getId();
 
     Note findNote = noteRepository.findById(noteId, loginUserId)
-        .orElseThrow(() -> new IllegalArgumentException("찾을 수 없는 노트 입니다."));
+        .orElseThrow(NotFoundNoteException::new);
 
     User findUser = findNote.getUser();
 
