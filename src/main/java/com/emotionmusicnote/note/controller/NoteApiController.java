@@ -4,6 +4,7 @@ import com.emotionmusicnote.note.controller.request.NoteSaveRequest;
 import com.emotionmusicnote.note.controller.response.NoteSingleReadResponse;
 import com.emotionmusicnote.note.service.NoteService;
 import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 import java.net.URI;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +22,7 @@ public class NoteApiController {
 
   @PostMapping("/api/notes")
   public ResponseEntity<Long> save(
-      @RequestBody NoteSaveRequest request, HttpSession session) {
+      @RequestBody @Valid NoteSaveRequest request, HttpSession session) {
 
     Long saveNoteId = noteService.save(request, session);
 
