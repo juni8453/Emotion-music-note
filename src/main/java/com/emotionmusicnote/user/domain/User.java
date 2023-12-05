@@ -27,13 +27,16 @@ public class User {
 
   private String providerId;
 
+  private String profileImageUrl;
+
   @Enumerated(value = EnumType.STRING)
   private OAuthProvider oAuthProvider;
 
   @Builder
-  public User(String nickname, String providerId, OAuthProvider oAuthProvider) {
+  public User(String nickname, String providerId, String profileImageUrl, OAuthProvider oAuthProvider) {
     this.nickname = nickname;
     this.providerId = providerId;
+    this.profileImageUrl = profileImageUrl;
     this.oAuthProvider = oAuthProvider;
   }
 }
