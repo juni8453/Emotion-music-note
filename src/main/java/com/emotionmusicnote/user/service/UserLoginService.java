@@ -29,14 +29,35 @@ public class UserLoginService {
     User user = findOrCreateUser(kakaoUserInfo);
 
     // 사용자의 고유 정보를 포함해 세션 저장
-    // TODO : JSESSIONID 를 쿠키로 넘길 때 최소한 HttpOnly 정도는 필요할 듯
-    //  JSESSIONID 는 어떻게 검증 되는지 알아봐야한다. (톰캣 세션 매니저 ?)
-    //  id, nickname 이 저장되는 의미가 있는건지 ? (세션을 가지고 올 때 사용할 것 같기도 한데)
-    //  로그아웃 구현하면서 좀 알아보자.
-    session.setAttribute("id", user.getId());
-    session.setAttribute("nickname", user.getNickname());
+    session.setAttribute("user", user);
 
     return kakaoTokens;
+  }
+
+  /**
+   * GET/POST https://kapi.kakao.com/v2/user/me 으로 설정한 Headers 정보를 담아 요청
+   * 사용자 정보를 가져오기 위한 Required
+   * Parameter Header
+   * Authorization : Bearer ${ACCESS_TOKEN}
+   * Content-type : application/x-www-form-urlencoded;charset=utf-8
+   */
+  private KakaoTokens getToken(String code) {
+    HttpHeaders headers = new HttpHeaders();
+    headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+
+    MultiValueMap<String, String> body = new LinkedMultiValueMap<>();
+    body.add("grant_type", "authorization_code");
+    body.add("client_id", "fe5038ec11bee454a846309f8fb8d1ad");
+    body.add("redirect_uri", "http://localhost:8080/oauth/kakao");
+    body.add("code", code);
+
+    HttpEntity<MultiValueMap<String, String>> requestToken = new HttpEntity<>(body, headers);
+
+    return restTemplate.postForEntity(
+            "https://kauth.kakao.com/oauth/token",
+            requestToken,
+            KakaoTokens.class)
+        .getBody();
   }
 
   private User findOrCreateUser(KakaoUserInfo kakaoUserInfo) {
@@ -61,36 +82,8 @@ public class UserLoginService {
   /**
    * GET/POST https://kapi.kakao.com/v2/user/me 으로 설정한 Headers 정보를 담아 요청
    * 사용자 정보를 가져오기 위한 Required
-   * Parameter Header
-   * Authorization : Bearer ${ACCESS_TOKEN}
-   * Content-type : application/x-www-form-urlencoded;charset=utf-8
-   */
-  private KakaoTokens getToken(String code) {
-    HttpHeaders headers = new HttpHeaders();
-    headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
-
-    MultiValueMap<String, String> body = new LinkedMultiValueMap<>();
-    body.add("grant_type", "authorization_code");
-    body.add("client_id", "fe5038ec11bee454a846309f8fb8d1ad");
-    body.add("redirect_uri", "http://localhost:8080/oauth/kakao");
-    body.add("code", code);
-
-    HttpEntity<MultiValueMap<String, String>> requestToken = new HttpEntity<>(body, headers);
-
-    KakaoTokens responseKakaoTokens = restTemplate.postForEntity(
-            "https://kauth.kakao.com/oauth/token",
-            requestToken,
-            KakaoTokens.class)
-        .getBody();
-
-    assert responseKakaoTokens != null;
-
-    return responseKakaoTokens;
-  }
-
-  /**
-   * GET/POST https://kapi.kakao.com/v2/user/me 으로 설정한 Headers 정보를 담아 요청 사용자 정보를 가져오기 위한 Required
-   * Parameter Header Authorization : Bearer ${ACCESS_TOKEN} Content-type :
+   * Parameter Header Authorization : Bearer ${ACCESS_TOKEN}
+   * Content-type :
    * application/x-www-form-urlencoded;charset=utf-8
    */
   private KakaoUserInfo getUserInfo(KakaoTokens kakaoTokens) {
