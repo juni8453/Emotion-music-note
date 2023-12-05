@@ -3,6 +3,7 @@ package com.emotionmusicnote.note.controller;
 import com.emotionmusicnote.note.controller.request.NoteSaveRequest;
 import com.emotionmusicnote.note.controller.response.NoteSingleReadResponse;
 import com.emotionmusicnote.note.service.NoteService;
+import jakarta.servlet.http.HttpSession;
 import java.net.URI;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -20,9 +21,9 @@ public class NoteApiController {
 
   @PostMapping("/api/notes")
   public ResponseEntity<Long> save(
-      @RequestBody NoteSaveRequest request) {
+      @RequestBody NoteSaveRequest request, HttpSession session) {
 
-    Long saveNoteId = noteService.save(request);
+    Long saveNoteId = noteService.save(request, session);
 
     URI location = URI.create("api/notes/" + saveNoteId);
 
@@ -31,9 +32,9 @@ public class NoteApiController {
 
   @GetMapping("/api/notes/{id}")
   public ResponseEntity<NoteSingleReadResponse> read(
-      @PathVariable Long id) {
+      @PathVariable Long id, HttpSession session) {
 
-    NoteSingleReadResponse response = noteService.read(id);
+    NoteSingleReadResponse response = noteService.read(id, session);
 
     return ResponseEntity.ok(response);
   }
