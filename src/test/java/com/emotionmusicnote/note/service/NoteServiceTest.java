@@ -13,6 +13,7 @@ import com.emotionmusicnote.user.domain.User;
 import com.emotionmusicnote.user.domain.UserRepository;
 import com.emotionmusicnote.user.oauth.OAuthProvider;
 import java.time.LocalDateTime;
+import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Order;
@@ -148,5 +149,29 @@ class NoteServiceTest {
     Note findNote = noteRepository.findById(saveNoteId, loginUserId).get();
     assertThat(findNote.getEmotion()).isEqualTo(updateEmotion);
     assertThat(findNote.getContent()).isEqualTo(updateContent);
+  }
+
+  @Test
+  @DisplayName("자신이 작성한 노트를 삭제할 수 있습니다.")
+  void 내_노트_삭제() {
+    // given
+    User loginUser = (User) session.getAttribute("user");
+
+    String emotion = "슬픔";
+    String content = "내용 테스트";
+
+    NoteSaveRequest saveRequest = NoteSaveRequest.builder()
+        .emotion(emotion)
+        .content(content)
+        .build();
+
+    Long saveNoteId = noteService.save(saveRequest, session);
+
+    // when
+    noteService.delete(saveNoteId, session);
+
+    // then
+    List<Note> notes = noteRepository.findAll();
+    assertThat(notes.size()).isEqualTo(0);
   }
 }
