@@ -4,8 +4,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import com.emotionmusicnote.common.exception.NotFoundNoteException;
+import com.emotionmusicnote.note.controller.request.NotePageRequest;
 import com.emotionmusicnote.note.controller.request.NoteSaveRequest;
 import com.emotionmusicnote.note.controller.request.NoteUpdateRequest;
+import com.emotionmusicnote.note.controller.response.NoteMultiReadResponse;
 import com.emotionmusicnote.note.controller.response.NoteSingleReadResponse;
 import com.emotionmusicnote.note.domain.Note;
 import com.emotionmusicnote.note.domain.NoteRepository;
@@ -14,6 +16,8 @@ import com.emotionmusicnote.user.domain.UserRepository;
 import com.emotionmusicnote.user.oauth.OAuthProvider;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Order;
@@ -173,5 +177,49 @@ class NoteServiceTest {
     // then
     List<Note> notes = noteRepository.findAll();
     assertThat(notes.size()).isEqualTo(0);
+  }
+
+  @Test
+  @DisplayName("내가 작성한 노트를 기본 5개, 기본 1 페이지로 내림차순 조회할 수 있습니다.")
+  void 내_노트_5개씩_조회() {
+    // given
+    List<NoteSaveRequest> requests = IntStream.range(0, 10)
+        .mapToObj(i -> NoteSaveRequest.builder()
+            .emotion("emotion - " + (i + 1))
+            .content("content - " + (i + 1))
+            .build()).toList();
+
+    for (NoteSaveRequest request : requests) {
+      noteService.save(request, session);
+    }
+
+    NotePageRequest notePageRequest = new NotePageRequest(null, null);
+
+    // when
+    NoteMultiReadResponse noteMultiReadResponse = noteService.readAll(notePageRequest, session);
+
+    // then
+    assertThat(noteMultiReadResponse.getNotes().size()).isEqualTo(5);
+  }
+
+  @Test
+  @DisplayName("내가 작성한 노트를 페이지를 조정해 조회할 수 있습니다.")
+  void 내_노트_2페이지_조회() {
+    // given
+    List<NoteSaveRequest> requests = IntStream.range(0, 10)
+        .mapToObj(i -> NoteSaveRequest.builder()
+            .emotion("emotion - " + (i + 1))
+            .content("content - " + (i + 1))
+            .build()).toList();
+
+    for (NoteSaveRequest request : requests) {
+      noteService.save(request, session);
+    }
+
+    NotePageRequest notePageRequest = new NotePageRequest(2, null);
+
+    // when
+    NoteMultiReadResponse noteMultiReadResponse = noteService.readAll(notePageRequest, session);
+    assertThat(noteMultiReadResponse.getNotes().get(0).getEmotion()).isEqualTo("emotion - 5");
   }
 }
