@@ -5,7 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import com.emotionmusicnote.common.exception.NotFoundNoteException;
 import com.emotionmusicnote.note.controller.request.NoteSaveRequest;
+import com.emotionmusicnote.note.controller.request.NoteUpdateRequest;
 import com.emotionmusicnote.note.controller.response.NoteSingleReadResponse;
+import com.emotionmusicnote.note.domain.Note;
 import com.emotionmusicnote.note.domain.NoteRepository;
 import com.emotionmusicnote.user.domain.User;
 import com.emotionmusicnote.user.domain.UserRepository;
@@ -114,4 +116,37 @@ class NoteServiceTest {
         () -> noteService.read(saveNoteId + 1L, session));
   }
 
+  @Test
+  @DisplayName("자신이 작성한 노트를 수정할 수 있습니다.")
+  void 내_노트_수정() {
+    // given
+    User loginUser = (User) session.getAttribute("user");
+    Long loginUserId = loginUser.getId();
+
+    String emotion = "슬픔";
+    String content = "내용";
+
+    NoteSaveRequest saveRequest = NoteSaveRequest.builder()
+        .emotion(emotion)
+        .content(content)
+        .build();
+
+    Long saveNoteId = noteService.save(saveRequest, session);
+
+    String updateEmotion = "기쁨";
+    String updateContent = "수정 내용";
+
+    NoteUpdateRequest updateRequest = NoteUpdateRequest.builder()
+        .emotion(updateEmotion)
+        .content(updateContent)
+        .build();
+
+    // when
+    noteService.update(saveNoteId, updateRequest, session);
+
+    // then
+    Note findNote = noteRepository.findById(saveNoteId, loginUserId).get();
+    assertThat(findNote.getEmotion()).isEqualTo(updateEmotion);
+    assertThat(findNote.getContent()).isEqualTo(updateContent);
+  }
 }
