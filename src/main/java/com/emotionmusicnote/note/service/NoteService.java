@@ -72,4 +72,15 @@ public class NoteService {
 
     findNote.updateNote(emotion, content);
   }
+
+  @Transactional
+  public void delete(Long noteId, HttpSession session) {
+    User loginUser = (User) session.getAttribute("user");
+    Long loginUserId = loginUser.getId();
+
+    Note findNote = noteRepository.findById(noteId, loginUserId)
+        .orElseThrow(NotFoundNoteException::new);
+
+    noteRepository.delete(findNote);
+  }
 }
