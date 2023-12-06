@@ -1,7 +1,9 @@
 package com.emotionmusicnote.note.controller;
 
+import com.emotionmusicnote.note.controller.request.NotePageRequest;
 import com.emotionmusicnote.note.controller.request.NoteSaveRequest;
 import com.emotionmusicnote.note.controller.request.NoteUpdateRequest;
+import com.emotionmusicnote.note.controller.response.NoteMultiReadResponse;
 import com.emotionmusicnote.note.controller.response.NoteSingleReadResponse;
 import com.emotionmusicnote.note.service.NoteService;
 import jakarta.servlet.http.HttpSession;
@@ -11,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -34,15 +37,6 @@ public class NoteApiController {
     return ResponseEntity.created(location).body(saveNoteId);
   }
 
-  @GetMapping("/api/notes/{id}")
-  public ResponseEntity<NoteSingleReadResponse> read(
-      @PathVariable Long id, HttpSession session) {
-
-    NoteSingleReadResponse response = noteService.read(id, session);
-
-    return ResponseEntity.ok(response);
-  }
-
   @PutMapping("/api/notes/{id}")
   public void update(
       @PathVariable Long id,
@@ -56,6 +50,24 @@ public class NoteApiController {
       @PathVariable Long id, HttpSession session) {
 
     noteService.delete(id, session);
+  }
+
+  @GetMapping("/api/notes/{id}")
+  public ResponseEntity<NoteSingleReadResponse> read(
+      @PathVariable Long id, HttpSession session) {
+
+    NoteSingleReadResponse response = noteService.read(id, session);
+
+    return ResponseEntity.ok(response);
+  }
+
+  @GetMapping("/api/notes")
+  public ResponseEntity<NoteMultiReadResponse> readAll(
+      @ModelAttribute NotePageRequest notePageRequest, HttpSession session) {
+
+    NoteMultiReadResponse response = noteService.readAll(notePageRequest, session);
+
+    return ResponseEntity.ok(response);
   }
 
 }

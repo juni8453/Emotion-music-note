@@ -1,14 +1,18 @@
 package com.emotionmusicnote.note.service;
 
 import com.emotionmusicnote.common.exception.NotFoundNoteException;
+import com.emotionmusicnote.note.controller.request.NotePageRequest;
 import com.emotionmusicnote.note.controller.request.NoteSaveRequest;
 import com.emotionmusicnote.note.controller.request.NoteUpdateRequest;
+import com.emotionmusicnote.note.controller.response.NoteMultiReadResponse;
 import com.emotionmusicnote.note.controller.response.NoteSingleReadResponse;
 import com.emotionmusicnote.note.controller.response.NoteWriterResponse;
 import com.emotionmusicnote.note.domain.Note;
 import com.emotionmusicnote.note.domain.NoteRepository;
 import com.emotionmusicnote.user.domain.User;
 import jakarta.servlet.http.HttpSession;
+import java.util.List;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,6 +35,31 @@ public class NoteService {
     saveNote.addUser(loginUser);
 
     return saveNote.getId();
+  }
+
+  @Transactional
+  public void update(Long noteId, NoteUpdateRequest request, HttpSession session) {
+    User loginUser = (User) session.getAttribute("user");
+    Long loginUserId = loginUser.getId();
+
+    Note findNote = noteRepository.findById(noteId, loginUserId)
+        .orElseThrow(NotFoundNoteException::new);
+
+    String emotion = request.getEmotion();
+    String content = request.getContent();
+
+    findNote.updateNote(emotion, content);
+  }
+
+  @Transactional
+  public void delete(Long noteId, HttpSession session) {
+    User loginUser = (User) session.getAttribute("user");
+    Long loginUserId = loginUser.getId();
+
+    Note findNote = noteRepository.findById(noteId, loginUserId)
+        .orElseThrow(NotFoundNoteException::new);
+
+    noteRepository.delete(findNote);
   }
 
   @Transactional(readOnly = true)
@@ -59,28 +88,29 @@ public class NoteService {
         .build();
   }
 
-  @Transactional
-  public void update(Long noteId, NoteUpdateRequest request, HttpSession session) {
+  @Transactional(readOnly = true)
+  public NoteMultiReadResponse readAll(NotePageRequest notePageRequest, HttpSession session) {
     User loginUser = (User) session.getAttribute("user");
     Long loginUserId = loginUser.getId();
 
-    Note findNote = noteRepository.findById(noteId, loginUserId)
-        .orElseThrow(NotFoundNoteException::new);
+    List<Note> notes = noteRepository.findAll(loginUserId, notePageRequest);
 
-    String emotion = request.getEmotion();
-    String content = request.getContent();
+    List<NoteSingleReadResponse> response = notes.stream()
+        .map(note -> NoteSingleReadResponse.builder()
+            .id(note.getId())
+            .emotion(note.getEmotion())
+            .content(note.getContent())
+            .createAt(note.getCreatedDate())
+            .modifiedAt(note.getModifiedDate())
+            .noteWriterResponse(
+                NoteWriterResponse.builder()
+                    .nickname(note.getUser().getNickname())
+                    .provider(note.getUser().getOAuthProvider())
+                    .profileImageUrl(note.getUser().getProfileImageUrl())
+                    .build())
+            .build()).collect(Collectors.toList());
 
-    findNote.updateNote(emotion, content);
+    return NoteMultiReadResponse.builder().notes(response).build();
   }
 
-  @Transactional
-  public void delete(Long noteId, HttpSession session) {
-    User loginUser = (User) session.getAttribute("user");
-    Long loginUserId = loginUser.getId();
-
-    Note findNote = noteRepository.findById(noteId, loginUserId)
-        .orElseThrow(NotFoundNoteException::new);
-
-    noteRepository.delete(findNote);
-  }
 }
