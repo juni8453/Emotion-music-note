@@ -45,4 +45,9 @@ public class Note extends BaseTime {
   public void addUser(User createUser) {
     this.user = createUser;
   }
+
+  public void updateNote(String emotion, String content) {
+    this.emotion = emotion;
+    this.content = content;
+  }
 }

@@ -2,6 +2,7 @@ package com.emotionmusicnote.note.service;
 
 import com.emotionmusicnote.common.exception.NotFoundNoteException;
 import com.emotionmusicnote.note.controller.request.NoteSaveRequest;
+import com.emotionmusicnote.note.controller.request.NoteUpdateRequest;
 import com.emotionmusicnote.note.controller.response.NoteSingleReadResponse;
 import com.emotionmusicnote.note.controller.response.NoteWriterResponse;
 import com.emotionmusicnote.note.domain.Note;
@@ -20,7 +21,7 @@ public class NoteService {
 
   @Transactional
   public Long save(NoteSaveRequest request, HttpSession session) {
-    User loginUser = (User)session.getAttribute("user");
+    User loginUser = (User) session.getAttribute("user");
     String emotion = request.getEmotion();
     String content = request.getContent();
 
@@ -56,5 +57,19 @@ public class NoteService {
         .modifiedAt(findNote.getModifiedDate())
         .noteWriterResponse(noteWriterResponse)
         .build();
+  }
+
+  @Transactional
+  public void update(Long noteId, NoteUpdateRequest request, HttpSession session) {
+    User loginUser = (User) session.getAttribute("user");
+    Long loginUserId = loginUser.getId();
+
+    Note findNote = noteRepository.findById(noteId, loginUserId)
+        .orElseThrow(NotFoundNoteException::new);
+
+    String emotion = request.getEmotion();
+    String content = request.getContent();
+
+    findNote.updateNote(emotion, content);
   }
 }

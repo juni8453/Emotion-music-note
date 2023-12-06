@@ -1,6 +1,7 @@
 package com.emotionmusicnote.note.controller;
 
 import com.emotionmusicnote.note.controller.request.NoteSaveRequest;
+import com.emotionmusicnote.note.controller.request.NoteUpdateRequest;
 import com.emotionmusicnote.note.controller.response.NoteSingleReadResponse;
 import com.emotionmusicnote.note.service.NoteService;
 import jakarta.servlet.http.HttpSession;
@@ -11,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -38,5 +40,13 @@ public class NoteApiController {
     NoteSingleReadResponse response = noteService.read(id, session);
 
     return ResponseEntity.ok(response);
+  }
+
+  @PutMapping("/api/notes/{id}")
+  public void update(
+      @PathVariable Long id,
+      @RequestBody @Valid NoteUpdateRequest request, HttpSession session) {
+
+    noteService.update(id, request, session);
   }
 }
