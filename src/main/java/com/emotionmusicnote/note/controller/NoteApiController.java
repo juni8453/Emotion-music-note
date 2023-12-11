@@ -1,6 +1,6 @@
 package com.emotionmusicnote.note.controller;
 
-import com.emotionmusicnote.note.controller.request.NotePageRequest;
+import com.emotionmusicnote.common.PageRequest;
 import com.emotionmusicnote.note.controller.request.NoteSaveRequest;
 import com.emotionmusicnote.note.controller.request.NoteUpdateRequest;
 import com.emotionmusicnote.note.controller.response.NoteMultiReadResponse;
@@ -63,9 +63,9 @@ public class NoteApiController {
 
   @GetMapping("/api/notes")
   public ResponseEntity<NoteMultiReadResponse> readAll(
-      @ModelAttribute NotePageRequest notePageRequest, HttpSession session) {
+      @ModelAttribute PageRequest pageRequest, HttpSession session) {
 
-    NoteMultiReadResponse response = noteService.readAll(notePageRequest, session);
+    NoteMultiReadResponse response = noteService.readAll(pageRequest, session);
 
     return ResponseEntity.ok(response);
   }

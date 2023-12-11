@@ -1,16 +1,16 @@
-package com.emotionmusicnote.note.controller.request;
+package com.emotionmusicnote.common;
 
 import lombok.Getter;
 
 @Getter
-public class NotePageRequest {
+public class PageRequest {
 
   private static final int MAX_SIZE = 2000;
 
   private final Integer page;
   private final Integer size;
 
-  public NotePageRequest(Integer page, Integer size) {
+  public PageRequest(Integer page, Integer size) {
     this.page = (page != null) ? page : 1;
     this.size = (size != null) ? size : 5;
   }

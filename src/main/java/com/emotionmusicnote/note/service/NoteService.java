@@ -1,7 +1,7 @@
 package com.emotionmusicnote.note.service;
 
 import com.emotionmusicnote.common.exception.NotFoundNoteException;
-import com.emotionmusicnote.note.controller.request.NotePageRequest;
+import com.emotionmusicnote.common.PageRequest;
 import com.emotionmusicnote.note.controller.request.NoteSaveRequest;
 import com.emotionmusicnote.note.controller.request.NoteUpdateRequest;
 import com.emotionmusicnote.note.controller.response.NoteMultiReadResponse;
@@ -89,11 +89,11 @@ public class NoteService {
   }
 
   @Transactional(readOnly = true)
-  public NoteMultiReadResponse readAll(NotePageRequest notePageRequest, HttpSession session) {
+  public NoteMultiReadResponse readAll(PageRequest pageRequest, HttpSession session) {
     User loginUser = (User) session.getAttribute("user");
     Long loginUserId = loginUser.getId();
 
-    List<Note> notes = noteRepository.findAll(loginUserId, notePageRequest);
+    List<Note> notes = noteRepository.findAll(loginUserId, pageRequest);
 
     List<NoteSingleReadResponse> response = notes.stream()
         .map(note -> NoteSingleReadResponse.builder()

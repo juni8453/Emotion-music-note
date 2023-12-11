@@ -4,7 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import com.emotionmusicnote.common.exception.NotFoundNoteException;
-import com.emotionmusicnote.note.controller.request.NotePageRequest;
+import com.emotionmusicnote.common.PageRequest;
 import com.emotionmusicnote.note.controller.request.NoteSaveRequest;
 import com.emotionmusicnote.note.controller.request.NoteUpdateRequest;
 import com.emotionmusicnote.note.controller.response.NoteMultiReadResponse;
@@ -16,7 +16,6 @@ import com.emotionmusicnote.user.domain.UserRepository;
 import com.emotionmusicnote.user.oauth.OAuthProvider;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -193,10 +192,10 @@ class NoteServiceTest {
       noteService.save(request, session);
     }
 
-    NotePageRequest notePageRequest = new NotePageRequest(null, null);
+    PageRequest pageRequest = new PageRequest(null, null);
 
     // when
-    NoteMultiReadResponse noteMultiReadResponse = noteService.readAll(notePageRequest, session);
+    NoteMultiReadResponse noteMultiReadResponse = noteService.readAll(pageRequest, session);
 
     // then
     assertThat(noteMultiReadResponse.getNotes().size()).isEqualTo(5);
@@ -216,10 +215,10 @@ class NoteServiceTest {
       noteService.save(request, session);
     }
 
-    NotePageRequest notePageRequest = new NotePageRequest(2, null);
+    PageRequest pageRequest = new PageRequest(2, null);
 
     // when
-    NoteMultiReadResponse noteMultiReadResponse = noteService.readAll(notePageRequest, session);
+    NoteMultiReadResponse noteMultiReadResponse = noteService.readAll(pageRequest, session);
     assertThat(noteMultiReadResponse.getNotes().get(0).getEmotion()).isEqualTo("emotion - 5");
   }
 }
