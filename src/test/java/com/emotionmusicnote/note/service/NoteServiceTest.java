@@ -4,13 +4,19 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import com.emotionmusicnote.common.exception.NotFoundNoteException;
+import com.emotionmusicnote.common.PageRequest;
 import com.emotionmusicnote.note.controller.request.NoteSaveRequest;
+import com.emotionmusicnote.note.controller.request.NoteUpdateRequest;
+import com.emotionmusicnote.note.controller.response.NoteMultiReadResponse;
 import com.emotionmusicnote.note.controller.response.NoteSingleReadResponse;
+import com.emotionmusicnote.note.domain.Note;
 import com.emotionmusicnote.note.domain.NoteRepository;
 import com.emotionmusicnote.user.domain.User;
 import com.emotionmusicnote.user.domain.UserRepository;
 import com.emotionmusicnote.user.oauth.OAuthProvider;
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.IntStream;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Order;
@@ -114,4 +120,105 @@ class NoteServiceTest {
         () -> noteService.read(saveNoteId + 1L, session));
   }
 
+  @Test
+  @DisplayName("자신이 작성한 노트를 수정할 수 있습니다.")
+  void 내_노트_수정() {
+    // given
+    User loginUser = (User) session.getAttribute("user");
+    Long loginUserId = loginUser.getId();
+
+    String emotion = "슬픔";
+    String content = "내용";
+
+    NoteSaveRequest saveRequest = NoteSaveRequest.builder()
+        .emotion(emotion)
+        .content(content)
+        .build();
+
+    Long saveNoteId = noteService.save(saveRequest, session);
+
+    String updateEmotion = "기쁨";
+    String updateContent = "수정 내용";
+
+    NoteUpdateRequest updateRequest = NoteUpdateRequest.builder()
+        .emotion(updateEmotion)
+        .content(updateContent)
+        .build();
+
+    // when
+    noteService.update(saveNoteId, updateRequest, session);
+
+    // then
+    Note findNote = noteRepository.findById(saveNoteId, loginUserId).get();
+    assertThat(findNote.getEmotion()).isEqualTo(updateEmotion);
+    assertThat(findNote.getContent()).isEqualTo(updateContent);
+  }
+
+  @Test
+  @DisplayName("자신이 작성한 노트를 삭제할 수 있습니다.")
+  void 내_노트_삭제() {
+    // given
+    User loginUser = (User) session.getAttribute("user");
+
+    String emotion = "슬픔";
+    String content = "내용 테스트";
+
+    NoteSaveRequest saveRequest = NoteSaveRequest.builder()
+        .emotion(emotion)
+        .content(content)
+        .build();
+
+    Long saveNoteId = noteService.save(saveRequest, session);
+
+    // when
+    noteService.delete(saveNoteId, session);
+
+    // then
+    List<Note> notes = noteRepository.findAll();
+    assertThat(notes.size()).isEqualTo(0);
+  }
+
+  @Test
+  @DisplayName("내가 작성한 노트를 기본 5개, 기본 1 페이지로 내림차순 조회할 수 있습니다.")
+  void 내_노트_5개씩_조회() {
+    // given
+    List<NoteSaveRequest> requests = IntStream.range(0, 10)
+        .mapToObj(i -> NoteSaveRequest.builder()
+            .emotion("emotion - " + (i + 1))
+            .content("content - " + (i + 1))
+            .build()).toList();
+
+    for (NoteSaveRequest request : requests) {
+      noteService.save(request, session);
+    }
+
+    PageRequest pageRequest = new PageRequest(null, null);
+
+    // when
+    NoteMultiReadResponse noteMultiReadResponse = noteService.readAll(pageRequest, session);
+
+    // then
+    assertThat(noteMultiReadResponse.getNotes().size()).isEqualTo(5);
+  }
+
+  @Test
+  @DisplayName("내가 작성한 노트를 페이지를 조정해 조회할 수 있습니다.")
+  void 내_노트_2페이지_조회() {
+    // given
+    List<NoteSaveRequest> requests = IntStream.range(0, 10)
+        .mapToObj(i -> NoteSaveRequest.builder()
+            .emotion("emotion - " + (i + 1))
+            .content("content - " + (i + 1))
+            .build()).toList();
+
+    for (NoteSaveRequest request : requests) {
+      noteService.save(request, session);
+    }
+
+    PageRequest pageRequest = new PageRequest(2, null);
+
+    // when
+    NoteMultiReadResponse noteMultiReadResponse = noteService.readAll(pageRequest, session);
+    assertThat(noteMultiReadResponse.getNotes().get(0).getEmotion()).isEqualTo("emotion - 5");
+  }
 }
