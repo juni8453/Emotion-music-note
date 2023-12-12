@@ -1,24 +1,20 @@
 package com.emotionmusicnote.spotify.service;
 
 import java.io.IOException;
+import lombok.RequiredArgsConstructor;
 import org.apache.hc.core5.http.ParseException;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import se.michaelthelin.spotify.SpotifyApi;
 import se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
 import se.michaelthelin.spotify.model_objects.credentials.ClientCredentials;
 import se.michaelthelin.spotify.requests.authorization.client_credentials.ClientCredentialsRequest;
 
+@RequiredArgsConstructor
 @Component
 public class CreateSpotifyToken {
 
-  private final String clientId = "clientId";
-
-  private final String clientSecret = "clientSecret";
-
-  private final SpotifyApi spotifyApi = new SpotifyApi.Builder()
-      .setClientId(clientId)
-      .setClientSecret(clientSecret)
-      .build();
+  private final SpotifyApi spotifyApi;
 
   public void setAccessToken() {
     ClientCredentialsRequest clientCredentialsRequest = spotifyApi.clientCredentials().build();
