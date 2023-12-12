@@ -7,6 +7,7 @@ import com.emotionmusicnote.user.oauth.KakaoUserInfo;
 import com.emotionmusicnote.user.oauth.OAuthProvider;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -22,6 +23,21 @@ public class UserLoginService {
 
   private final UserRepository userRepository;
   private final RestTemplate restTemplate;
+
+  @Value("${oauth.kakao.grantType}")
+  private String grantType;
+
+  @Value("${oauth.kakao.clientId}")
+  private String clientId;
+
+  @Value("${oauth.kakao.redirectUri}")
+  private String redirectUri;
+
+  @Value("${oauth.kakao.tokenUri}")
+  private String tokenUri;
+
+  @Value("${oauth.kakao.userInfoUri}")
+  private String userInfoUri;
 
   public KakaoTokens login(String code, HttpSession session) {
     KakaoTokens kakaoTokens = getToken(code);
@@ -46,15 +62,15 @@ public class UserLoginService {
     headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
 
     MultiValueMap<String, String> body = new LinkedMultiValueMap<>();
-    body.add("grant_type", "authorization_code");
-    body.add("client_id", "fe5038ec11bee454a846309f8fb8d1ad");
-    body.add("redirect_uri", "http://localhost:8080/oauth/kakao");
+    body.add("grant_type", grantType);
+    body.add("client_id", clientId);
+    body.add("redirect_uri", redirectUri);
     body.add("code", code);
 
     HttpEntity<MultiValueMap<String, String>> requestToken = new HttpEntity<>(body, headers);
 
     return restTemplate.postForEntity(
-            "https://kauth.kakao.com/oauth/token",
+            tokenUri,
             requestToken,
             KakaoTokens.class)
         .getBody();
@@ -96,7 +112,7 @@ public class UserLoginService {
         userInfoHeaders);
 
     return restTemplate.exchange(
-            "https://kapi.kakao.com/v2/user/me",
+            userInfoUri,
             HttpMethod.GET,
             requestUserProfile,
             KakaoUserInfo.class)
