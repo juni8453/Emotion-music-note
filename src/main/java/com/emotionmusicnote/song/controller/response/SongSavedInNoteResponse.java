@@ -1,4 +1,4 @@
-package com.emotionmusicnote.spotify.controller.response;
+package com.emotionmusicnote.song.controller.response;
 
 import lombok.Builder;
 import lombok.Getter;

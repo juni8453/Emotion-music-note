@@ -1,6 +1,6 @@
 package com.emotionmusicnote.note.controller.response;
 
-import com.emotionmusicnote.spotify.controller.response.SongSavedInNoteResponse;
+import com.emotionmusicnote.song.controller.response.SongSavedInNoteResponse;
 import java.time.LocalDateTime;
 import lombok.Builder;
 import lombok.Getter;

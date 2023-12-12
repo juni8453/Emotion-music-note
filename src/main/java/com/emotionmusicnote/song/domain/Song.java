@@ -1,4 +1,4 @@
-package com.emotionmusicnote.spotify.domain;
+package com.emotionmusicnote.song.domain;
 
 import com.emotionmusicnote.note.domain.Note;
 import jakarta.persistence.Entity;

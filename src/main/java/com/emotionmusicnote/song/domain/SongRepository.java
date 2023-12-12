@@ -1,4 +1,4 @@
-package com.emotionmusicnote.spotify.domain;
+package com.emotionmusicnote.song.domain;
 
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
