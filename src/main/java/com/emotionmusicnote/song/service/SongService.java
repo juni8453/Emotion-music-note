@@ -1,14 +1,14 @@
-package com.emotionmusicnote.spotify.service;
+package com.emotionmusicnote.song.service;
 
 import com.emotionmusicnote.common.PageRequest;
 import com.emotionmusicnote.common.exception.NotFoundNoteException;
 import com.emotionmusicnote.note.domain.Note;
 import com.emotionmusicnote.note.domain.NoteRepository;
-import com.emotionmusicnote.spotify.controller.request.SpotifySaveRequest;
-import com.emotionmusicnote.spotify.controller.response.SpotifyMultiSearchResponse;
-import com.emotionmusicnote.spotify.controller.response.SpotifySingleSearchResponse;
-import com.emotionmusicnote.spotify.domain.Song;
-import com.emotionmusicnote.spotify.domain.SongRepository;
+import com.emotionmusicnote.song.controller.request.SongSaveRequest;
+import com.emotionmusicnote.song.controller.response.SongMultiSearchResponse;
+import com.emotionmusicnote.song.domain.Song;
+import com.emotionmusicnote.song.domain.SongRepository;
+import com.emotionmusicnote.song.controller.response.SongSingleSearchResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,18 +27,18 @@ import se.michaelthelin.spotify.requests.data.search.simplified.SearchTracksRequ
 
 @RequiredArgsConstructor
 @Service
-public class SpotifyService {
+public class SongService {
 
   private final CreateSpotifyToken createSpotifyToken;
   private final NoteRepository noteRepository;
   private final SongRepository songRepository;
 
   @Transactional(readOnly = true)
-  public SpotifyMultiSearchResponse searchTracks(String keyword, PageRequest pageRequest) {
+  public SongMultiSearchResponse searchTracks(String keyword, PageRequest pageRequest) {
     createSpotifyToken.setAccessToken();
     SpotifyApi spotifyApi = createSpotifyToken.getSpotifyApi();
 
-    List<SpotifySingleSearchResponse> response = new ArrayList<>();
+    List<SongSingleSearchResponse> response = new ArrayList<>();
 
     try {
       SearchTracksRequest searchTracksRequest = spotifyApi.searchTracks(keyword)
@@ -59,7 +59,7 @@ public class SpotifyService {
         Image[] images = album.getImages();
         String imageUrl = (images.length > 0) ? images[0].getUrl() : "NO_IMAGE";
 
-        response.add(SpotifySingleSearchResponse.builder()
+        response.add(SongSingleSearchResponse.builder()
             .artistName(artistName)
             .title(title)
             .albumName(albumName)
@@ -71,13 +71,13 @@ public class SpotifyService {
       exception.printStackTrace();
     }
 
-    return SpotifyMultiSearchResponse.builder()
+    return SongMultiSearchResponse.builder()
         .responses(response)
         .build();
   }
 
   @Transactional
-  public Long saveSongMyNote(Long noteId, SpotifySaveRequest request) {
+  public Long saveSongMyNote(Long noteId, SongSaveRequest request) {
     Note findNote = noteRepository.findById(noteId)
         .orElseThrow(NotFoundNoteException::new);
 

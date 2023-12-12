@@ -1,10 +1,10 @@
-package com.emotionmusicnote.spotify.controller.response;
+package com.emotionmusicnote.song.controller.response;
 
 import lombok.Builder;
 import lombok.Getter;
 
 @Getter
-public class SpotifySingleSearchResponse {
+public class SongSingleSearchResponse {
 
   private final String artistName;
   private final String title;
@@ -12,7 +12,7 @@ public class SpotifySingleSearchResponse {
   private final String imageUrl;
 
   @Builder
-  public SpotifySingleSearchResponse(String artistName, String title, String albumName,
+  public SongSingleSearchResponse(String artistName, String title, String albumName,
       String imageUrl) {
     this.artistName = artistName;
     this.title = title;

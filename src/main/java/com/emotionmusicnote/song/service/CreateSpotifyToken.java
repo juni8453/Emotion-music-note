@@ -1,9 +1,8 @@
-package com.emotionmusicnote.spotify.service;
+package com.emotionmusicnote.song.service;
 
 import java.io.IOException;
 import lombok.RequiredArgsConstructor;
 import org.apache.hc.core5.http.ParseException;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import se.michaelthelin.spotify.SpotifyApi;
 import se.michaelthelin.spotify.exceptions.SpotifyWebApiException;

@@ -1,13 +1,13 @@
-package com.emotionmusicnote.spotify.controller.request;
+package com.emotionmusicnote.song.controller.request;
 
-import com.emotionmusicnote.spotify.domain.Song;
+import com.emotionmusicnote.song.domain.Song;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 @Getter
-public class SpotifySaveRequest {
+public class SongSaveRequest {
 
   private String artistName;
   private String title;
@@ -15,7 +15,7 @@ public class SpotifySaveRequest {
   private String imageUrl;
 
   @Builder
-  public SpotifySaveRequest(String artistName, String title, String albumName,
+  public SongSaveRequest(String artistName, String title, String albumName,
       String imageUrl) {
     this.artistName = artistName;
     this.title = title;
