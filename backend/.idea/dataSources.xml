@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="localhost@emotion_music_note" uuid="1990362b-23d1-477a-ba53-24b2f1b1d038">
+    <data-source source="LOCAL" name="emotion_music_note@localhost" uuid="9a8f806d-381d-43c1-8b61-f8e67bf62d81">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
-      <remarks>Local DB</remarks>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://localhost:3307/emotion_music_note</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>

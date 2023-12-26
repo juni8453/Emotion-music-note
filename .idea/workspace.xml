@@ -1,0 +1,746 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="be10a5b6-0aba-4b9d-b7a5-8517bca1cb8e" name="Changes" comment=":recycle: OAuth 로그인에 필요한 필드 값 @Value 적용&#10;&#10;- 하드코딩 된 필드 값에 @Value 를 적용하여 YMAL 파일에서 값을 가져올 수 있도록 수정">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/backend/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jpa-buddy.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HELP.md" beforeDir="false" afterPath="$PROJECT_DIR$/backend/HELP.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/backend/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" afterPath="$PROJECT_DIR$/backend/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/backend/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradlew" beforeDir="false" afterPath="$PROJECT_DIR$/backend/gradlew" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradlew.bat" beforeDir="false" afterPath="$PROJECT_DIR$/backend/gradlew.bat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/backend/settings.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/emotionmusicnote/EmotionmusicnoteApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/emotionmusicnote/EmotionmusicnoteApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/emotionmusicnote/common/BaseTime.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/emotionmusicnote/common/BaseTime.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/emotionmusicnote/common/LoginInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/emotionmusicnote/common/LoginInterceptor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/emotionmusicnote/common/PageRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/emotionmusicnote/common/PageRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/emotionmusicnote/common/exception/ExceptionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/emotionmusicnote/common/exception/ExceptionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/emotionmusicnote/common/exception/ExceptionResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/emotionmusicnote/common/exception/ExceptionResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/emotionmusicnote/common/exception/GlobalException.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/emotionmusicnote/common/exception/GlobalException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/emotionmusicnote/common/exception/NotFoundNoteException.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/emotionmusicnote/common/exception/NotFoundNoteException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/emotionmusicnote/config/BeanConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/emotionmusicnote/config/BeanConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/emotionmusicnote/config/WebConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/emotionmusicnote/config/WebConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/emotionmusicnote/note/controller/NoteApiController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/emotionmusicnote/note/controller/NoteApiController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/emotionmusicnote/note/controller/request/NoteSaveRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/emotionmusicnote/note/controller/request/NoteSaveRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/emotionmusicnote/note/controller/request/NoteUpdateRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/emotionmusicnote/note/controller/request/NoteUpdateRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/emotionmusicnote/note/controller/response/NoteMultiReadResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/emotionmusicnote/note/controller/response/NoteMultiReadResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/emotionmusicnote/note/controller/response/NoteSingleReadResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/emotionmusicnote/note/controller/response/NoteSingleReadResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/emotionmusicnote/note/controller/response/NoteWriterResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/emotionmusicnote/note/controller/response/NoteWriterResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/emotionmusicnote/note/domain/Note.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/emotionmusicnote/note/domain/Note.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/emotionmusicnote/note/domain/NoteCustomRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/emotionmusicnote/note/domain/NoteCustomRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/emotionmusicnote/note/domain/NoteRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/emotionmusicnote/note/domain/NoteRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/emotionmusicnote/note/domain/NoteRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/emotionmusicnote/note/domain/NoteRepositoryImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/emotionmusicnote/note/service/NoteService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/emotionmusicnote/note/service/NoteService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/emotionmusicnote/song/controller/SongApiController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/emotionmusicnote/song/controller/SongApiController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/emotionmusicnote/song/controller/request/SongSaveRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/emotionmusicnote/song/controller/request/SongSaveRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/emotionmusicnote/song/controller/response/SongMultiSearchResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/emotionmusicnote/song/controller/response/SongMultiSearchResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/emotionmusicnote/song/controller/response/SongSavedInNoteResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/emotionmusicnote/song/controller/response/SongSavedInNoteResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/emotionmusicnote/song/controller/response/SongSingleSearchResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/emotionmusicnote/song/controller/response/SongSingleSearchResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/emotionmusicnote/song/domain/Song.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/emotionmusicnote/song/domain/Song.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/emotionmusicnote/song/domain/SongRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/emotionmusicnote/song/domain/SongRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/emotionmusicnote/song/service/CreateSpotifyToken.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/emotionmusicnote/song/service/CreateSpotifyToken.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/emotionmusicnote/song/service/SongService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/emotionmusicnote/song/service/SongService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/emotionmusicnote/user/controller/UserLoginApiController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/emotionmusicnote/user/controller/UserLoginApiController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/emotionmusicnote/user/controller/UserLoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/emotionmusicnote/user/controller/UserLoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/emotionmusicnote/user/domain/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/emotionmusicnote/user/domain/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/emotionmusicnote/user/domain/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/emotionmusicnote/user/domain/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/emotionmusicnote/user/oauth/KakaoAccount.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/emotionmusicnote/user/oauth/KakaoAccount.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/emotionmusicnote/user/oauth/KakaoProfile.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/emotionmusicnote/user/oauth/KakaoProfile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/emotionmusicnote/user/oauth/KakaoTokens.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/emotionmusicnote/user/oauth/KakaoTokens.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/emotionmusicnote/user/oauth/KakaoUserInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/emotionmusicnote/user/oauth/KakaoUserInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/emotionmusicnote/user/oauth/OAuthProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/emotionmusicnote/user/oauth/OAuthProvider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/emotionmusicnote/user/service/UserLoginService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/emotionmusicnote/user/service/UserLoginService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/templates/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/emotionmusicnote/EmotionmusicnoteApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/test/java/com/emotionmusicnote/EmotionmusicnoteApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/emotionmusicnote/note/service/NoteServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/test/java/com/emotionmusicnote/note/service/NoteServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/emotionmusicnote/song/service/SongServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/test/java/com/emotionmusicnote/song/service/SongServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/test/resources/application.yml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="emotionmusicnote" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="emotionmusicnote" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="emotionmusicnote" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="build" type="c8890929:TasksNode$1" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="Enum" />
+        <option value="Interface" />
+        <option value="JUnit5 Test Class" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/backend/src/main/java/com/emotionmusicnote/user/service/UserLoginService.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/backend/src/main/java/com/emotionmusicnote/note/controller/request/NoteSaveRequest.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/backend/src/main/java/com/emotionmusicnote/song/service/SongService.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/backend/src/main/java/com/emotionmusicnote/song/service/CreateSpotifyToken.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/backend/src/main/java/com/emotionmusicnote/note/controller/response/NoteMultiReadResponse.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/backend/src/main/java/com/emotionmusicnote/song/controller/SongApiController.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/backend/src/main/java/com/emotionmusicnote/note/controller/response/NoteSingleReadResponse.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/backend/src/main/java/com/emotionmusicnote/note/controller/response/NoteWriterResponse.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/backend/src/main/java/com/emotionmusicnote/note/service/NoteService.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/backend/src/main/java/com/emotionmusicnote/note/controller/NoteApiController.java" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="JpbToolWindowState">
+    <option name="myId2FirstActivated">
+      <map>
+        <entry key="com.haulmont.jpb.jpaInspector" value="true" />
+        <entry key="com.haulmont.jpb.jpaPalette" value="true" />
+        <entry key="com.haulmont.jpb.jpaStructure" value="true" />
+      </map>
+    </option>
+    <option name="myId2Visible">
+      <map>
+        <entry key="com.haulmont.jpb.jpaInspector" value="false" />
+        <entry key="com.haulmont.jpb.jpaPalette" value="false" />
+        <entry key="com.haulmont.jpb.jpaStructure" value="false" />
+      </map>
+    </option>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2YbWIrBdulzGZbGrd03NYp9q9aB" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="mysql" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="TODO_SCOPE" value="All Places" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_interpreter_path" value="node" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.project.gradle" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.emotionmusicnote.config" />
+      <recent name="com.emotionmusicnote.note.controller.request" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/test" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/backend" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.emotionmusicnote.common" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="com.emotionmusicnote.song.service" />
+      <recent name="com.emotionmusicnote.note.service" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Spring Boot.EmotionmusicnoteApplication">
+    <configuration name="NoteServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="emotionmusicnote.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.emotionmusicnote.note.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.emotionmusicnote.note.service" />
+      <option name="MAIN_CLASS_NAME" value="com.emotionmusicnote.note.service.NoteServiceTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="NoteServiceTest.내_노트_2페이지_조회" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="emotionmusicnote.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.emotionmusicnote.note.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.emotionmusicnote.note.service" />
+      <option name="MAIN_CLASS_NAME" value="com.emotionmusicnote.note.service.NoteServiceTest" />
+      <option name="METHOD_NAME" value="내_노트_2페이지_조회" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SongServiceTest.노래_저장" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="emotionmusicnote.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.emotionmusicnote.song.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.emotionmusicnote.song.service" />
+      <option name="MAIN_CLASS_NAME" value="com.emotionmusicnote.song.service.SongServiceTest" />
+      <option name="METHOD_NAME" value="노래_저장" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SongServiceTest.노래_검색" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="emotionmusicnote.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.emotionmusicnote.song.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.emotionmusicnote.song.service" />
+      <option name="MAIN_CLASS_NAME" value="com.emotionmusicnote.song.service.SongServiceTest" />
+      <option name="METHOD_NAME" value="노래_검색" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SpotifyTest.Spotify_Search_API" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="emotionmusicnote.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.emotionmusicnote.song.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.emotionmusicnote.song.service" />
+      <option name="MAIN_CLASS_NAME" value="com.emotionmusicnote.song.service.SpotifyTest" />
+      <option name="METHOD_NAME" value="Spotify_Search_API" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Debug Application" type="JavascriptDebugType" uri="http://localhost:8080">
+      <method v="2" />
+    </configuration>
+    <configuration name="EmotionmusicnoteApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="emotionmusicnote.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.emotionmusicnote.EmotionmusicnoteApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.SpotifyTest.Spotify_Search_API" />
+        <item itemvalue="JUnit.NoteServiceTest" />
+        <item itemvalue="JUnit.SongServiceTest.노래_저장" />
+        <item itemvalue="JUnit.NoteServiceTest.내_노트_2페이지_조회" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="be10a5b6-0aba-4b9d-b7a5-8517bca1cb8e" name="Changes" comment="" />
+      <created>1700794683424</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1700794683424</updated>
+      <workItem from="1700794684574" duration="183000" />
+      <workItem from="1700794884522" duration="107000" />
+      <workItem from="1700795004426" duration="18885000" />
+      <workItem from="1701156056777" duration="133326000" />
+      <workItem from="1703588848562" duration="1442000" />
+      <workItem from="1703590315810" duration="132000" />
+    </task>
+    <task id="LOCAL-00005" summary=":sparkles: Note API Controller save() 로직 추가 및 read() 구현&#10;&#10;- Note 저장 로직 추가 &#10;  - Controller 반환 값 Void -&gt; Long 으로 수정&#10;  - Note 저장 Controller ok() -&gt; created(location) 으로 수정&#10;&#10;- Note 단건 조회 구현 및 Service 테스트 코드 추 &#10;  - 클라이언트에 JSON 으로 반환될 Response DTO 추가">
+      <created>1700807150444</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1700807150444</updated>
+    </task>
+    <task id="LOCAL-00006" summary=":sparkles: Note API Controller save() 로직 추가 및 read() 구현&#10;&#10;- Note 저장 로직 추가 &#10;  - Controller 반환 값 Void -&gt; Long 으로 수정&#10;  - Note 저장 Controller ok() -&gt; created(location) 으로 수정&#10;&#10;- Note 단건 조회 구현 및 Service 테스트 코드 추 &#10;  - 클라이언트에 JSON 으로 반환될 Response DTO 추가">
+      <created>1700807160219</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1700807160219</updated>
+    </task>
+    <task id="LOCAL-00007" summary=":sparkles: 생성일, 수정일 자동 Auditing 기능 추가&#10;&#10;- 추상 클래스 BaseTime 생성&#10;- @MappedSuperclass, @EntityListeners 활용&#10;- Auditing 사용을 위해 main(0 에 @EnableJpaAuditing 추가">
+      <created>1700809213611</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1700809213611</updated>
+    </task>
+    <task id="LOCAL-00008" summary=":sparkles: Note Entity 생성일, 수정일 자동 Auditing 기능 추가&#10;&#10;- BaseTime 을 상속받아 Entity 생성 시 자동으로 생성일, 수정일 추가">
+      <created>1700809262839</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1700809262839</updated>
+    </task>
+    <task id="LOCAL-00009" summary=":sparkles: NoteService, ReadResponse 로직 추가&#10;&#10;- 생성일, 수정일 코드 추가">
+      <created>1700809317802</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1700809317802</updated>
+    </task>
+    <task id="LOCAL-00010" summary=":white_check_mark: NoteService read() 테스트 로직 추가&#10;&#10;- 생성일, 수정일 검증 코드 추가">
+      <created>1700809341192</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1700809341192</updated>
+    </task>
+    <task id="LOCAL-00011" summary=":heavy_plus_sign: Spring Security 의존 추가&#10;&#10;- OAuth2.0 로그인을 위한 Spring Security 의존 추가">
+      <created>1701148749753</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1701148749753</updated>
+    </task>
+    <task id="LOCAL-00012" summary=":heavy_plus_sign: Spring Security 의존 추가&#10;&#10;- OAuth2.0 로그인을 위한 Spring Security 의존 추가">
+      <created>1701148777632</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1701148777632</updated>
+    </task>
+    <task id="LOCAL-00013" summary=":heavy_plus_sign: Spring Security 의존 추가&#10;&#10;- OAuth2.0 로그인을 위한 Spring Security 의존 추가">
+      <created>1701148846732</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1701148846732</updated>
+    </task>
+    <task id="LOCAL-00014" summary=":heavy_plus_sign: thymeleaf 의존 추가&#10;&#10;- OAuth2.0 로그인 테스트 템플릿을 위한 thymeleaf 의존 추가">
+      <created>1701181796299</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1701181796299</updated>
+    </task>
+    <task id="LOCAL-00015" summary=":sparkles: User Entity, OAuthProvider Enum 클래스 추가&#10;&#10;- User Entity, OAuthProvider Enum 클래스 추가">
+      <created>1701181895523</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1701181895523</updated>
+    </task>
+    <task id="LOCAL-00016" summary=":sparkles: Kakao OAuth 구현 &#10;&#10;- 사용자 조회까지 구현&#10;- 리팩토링 예정">
+      <created>1701181954503</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1701181954503</updated>
+    </task>
+    <task id="LOCAL-00017" summary=":sparkles: 수동 Bean 설정 클래스 생성 &#10;&#10;- 외부 API 호출을 위한 RestTemplate 클래스를 Bean 으로 등록">
+      <created>1701255352359</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1701255352359</updated>
+    </task>
+    <task id="LOCAL-00018" summary=":sparkles: User Entity 수정&#10;- oAuthProvider 에 @Enumerated 추가&#10;- 식별 가능한 각 OAuth 에서 제공하는 providerId 를 받을 수 있도록 변수 추가">
+      <created>1701326780735</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1701326780735</updated>
+    </task>
+    <task id="LOCAL-00019" summary=":sparkles: 카카오 로그인 API 로직 수정&#10;- UserLoginApiController&#10;  - oauthLogin() 메서드 수정&#10;  - 회원가입을 추가함에 따라 userinfo 가 아닌 회원가입 후 token 을 쿠키에 담아 반환하도록 수정&#10;  &#10;- UserLoginService&#10;  - login(), findOrCreateUser(), saveUser() 메서드로 분리해 회원가입 진행, 회원가입 시 HttpSession 으로 Session 저장하도록 로직 추가&#10;  - 하드코딩 된 것들 YMAL 파일에서 가져오도록 리팩토링 예정&#10;&#10;- UserRepository&#10;  - 유일한 유저를 식별하기 위한 Optional 타입의 findByProviderId() 메서드 추가">
+      <created>1701329500807</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1701329500807</updated>
+    </task>
+    <task id="LOCAL-00020" summary=":sparkles: 카카오 로그인 API 로직 수정&#10;&#10;- UserLoginApiController&#10;  - oauthLogin() 메서드 수정&#10;  - 회원가입을 추가함에 따라 userinfo 가 아닌 회원가입 후 token 을 쿠키에 담아 반환하도록 수정&#10;  &#10;- UserLoginService&#10;  - login(), findOrCreateUser(), saveUser() 메서드로 분리해 회원가입 진행, 회원가입 시 HttpSession 으로 Session 저장하도록 로직 추가&#10;  - 하드코딩 된 것들 YMAL 파일에서 가져오도록 리팩토링 예정&#10;&#10;- UserRepository&#10;  - 유일한 유저를 식별하기 위한 Optional 타입의 findByProviderId() 메서드 추가">
+      <created>1701329568528</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1701329568528</updated>
+    </task>
+    <task id="LOCAL-00021" summary=":recycle: 로그인 Service 코드 위치 변경&#10;&#10;- getToken() 을 위로 위치 변경">
+      <created>1701755465669</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1701755465669</updated>
+    </task>
+    <task id="LOCAL-00022" summary=":heavy_plus_sign: 테스트 H2 DB 추가&#10;&#10;- 테스트 용 Inmemory H2 DB 의존 추가&#10;- 테스트 용 H2 DB 설정 파일 추가">
+      <created>1701761521372</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1701761521372</updated>
+    </task>
+    <task id="LOCAL-00023" summary=":recycle: KakaoUserInfo 클래스 분리&#10;&#10;- KakaoUserInfo 클래스의 static class 였던 KakaoAccount, KakaoProfile 클래스 분리">
+      <created>1701761595936</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1701761595936</updated>
+    </task>
+    <task id="LOCAL-00024" summary=":sparkles: User 프로필 사진 필드 추가&#10;&#10;- 프로필 사진 필드 추가">
+      <created>1701761885046</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1701761885046</updated>
+    </task>
+    <task id="LOCAL-00025" summary=":sparkles: User 프로필 사진 필드 추가&#10;&#10;- 프로필 사진 필드 추가 후 로그인 findOrCreateUser() 메서드 수정">
+      <created>1701761932831</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1701761932831</updated>
+    </task>
+    <task id="LOCAL-00026" summary=":sparkles: Note, User 연관관계 추가&#10;&#10;- 여러 노트는 하나의 유저를 가지므로 ManyToOne 관계 추가&#10;- 연관관계 메서드 addUser() 추가">
+      <created>1701762005617</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1701762005617</updated>
+    </task>
+    <task id="LOCAL-00027" summary=":sparkles: 인가 로직 구현에 의한 Note API 로직 수정&#10;&#10;1. NoteApiController&#10;  - 파라미터에 HttpSession 추가&#10;  &#10;2. NoteService&#10;  - 노트 작성&#10;    - Session 에서 현재 로그인 된 유저를 찾아 노트 저장시 함께 저장하도록 수정&#10;  - 단일 노트 조회&#10;    - Session 에서 현재 로그인 된 유저를 찾아 해당 유저가 작성한 노트 + 요청으로 들어온 노트 아이디 의 조건에 맞는 노트를 찾아 반환하도록 수정&#10;    - 노트 작성자도 함께 반환하도록 수정&#10;    &#10;3. NoteSingleReadResponse&#10;  - 노트 작성자도 함께 반환하도록 필드 추가&#10;  &#10;4. NoteWriterResponse&#10;  - 노트 작성자 반환을 위한 Response DTO&#10;  &#10;5. NoteRepository&#10;  - 현재 로그인 한 유저 + 노트 아이디의 조건식을 만족하는 노트를 조회하는 메서드 생성">
+      <created>1701762398427</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1701762398427</updated>
+    </task>
+    <task id="LOCAL-00028" summary=":sparkles: 인가 로직 구현에 의한 Note API 로직 수정&#10;&#10;1. NoteApiController&#10;  - 파라미터에 HttpSession 추가&#10;  &#10;2. NoteService&#10;  - 노트 작성&#10;    - Session 에서 현재 로그인 된 유저를 찾아 노트 저장시 함께 저장하도록 수정&#10;  - 단일 노트 조회&#10;    - Session 에서 현재 로그인 된 유저를 찾아 해당 유저가 작성한 노트 + 요청으로 들어온 노트 아이디 의 조건에 맞는 노트를 찾아 반환하도록 수정&#10;    - 노트 작성자도 함께 반환하도록 수정&#10;    &#10;3. NoteSingleReadResponse&#10;  - 노트 작성자도 함께 반환하도록 필드 추가&#10;  &#10;4. NoteWriterResponse&#10;  - 노트 작성자 반환을 위한 Response DTO&#10;  &#10;5. NoteRepository&#10;  - 현재 로그인 한 유저 + 노트 아이디의 조건식을 만족하는 노트를 조회하는 메서드 생성">
+      <created>1701762402529</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1701762402529</updated>
+    </task>
+    <task id="LOCAL-00029" summary=":bug: 노트 작성 시 데이터 바인딩 예외 해결&#10;&#10;- NoteSaveRequest 에 기본 생성자를 붙여주지 않아 생기던 데이터 바인딩 예외 해결">
+      <created>1701762454561</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1701762454561</updated>
+    </task>
+    <task id="LOCAL-00030" summary=":sparkles: Interceptor 추가&#10;&#10;- 로그인 인터셉터 추가">
+      <created>1701762531455</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1701762531455</updated>
+    </task>
+    <task id="LOCAL-00031" summary=":white_check_mark: NoteServiceTest 수정&#10;&#10;- 더미 데이터로 User 를 만들고, Session 에 저장해 테스트 전 로그인 상태를 만들어주도록 수정&#10;- session 데이터를 적용한 테스트 코드 수정">
+      <created>1701762624585</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1701762624585</updated>
+    </task>
+    <task id="LOCAL-00032" summary=":sparkles: NoteSaveRequest 검증 로직 추가&#10;&#10;- NoteSaveRequest DTO 사용 Controller 로직에 @Valid 추가&#10;- MethodArgumentNotValidException 예외 발생 시 ExceptionController 에서 예외를 다듬어 클라이언트로 반환하도록 예외 처리 (4XX)">
+      <created>1701765594586</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1701765594586</updated>
+    </task>
+    <task id="LOCAL-00033" summary=":sparkles: GlobalException 추가&#10;&#10;- RunTimeException 을 상속받는 추상 예외 클래스 GlobalException 추가&#10;- 노트를 찾지 못했을 때 발생하는 예외인NotFoundNoteException 추가&#10;- read() 내부 IllegalArgumentException 에서 NotFoundNoteException 으로 예외 클래스 교체">
+      <created>1701766768305</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1701766768305</updated>
+    </task>
+    <task id="LOCAL-00034" summary=":white_check_mark: NoteServiceTest 수정 및 단일 조회 실패 테스트 추가&#10;&#10;- 단일 조회 실패 시 NotFoundNoteException 이 호출되는지 확인&#10;- 각 테스트에 @DisplayName 추가">
+      <created>1701766838113</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1701766838113</updated>
+    </task>
+    <task id="LOCAL-00035" summary=":sparkles: 노트 수정 기능 구현&#10;&#10;- 노트 수정 시 emotion, content 모두 수정하는 걸로 클라이언트 구현 예정이라 Petch 대신 PUT 사용&#10;- JPA Dirty Checking 으로 수정 되도록 구현">
+      <created>1701835554868</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1701835554868</updated>
+    </task>
+    <task id="LOCAL-00036" summary=":white_check_mark: NoteServiceTest 노트 수정 테스트 추가&#10;&#10;- 노트 수정 기능 구현으로 인해 테스트 코드 추가">
+      <created>1701835604394</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1701835604394</updated>
+    </task>
+    <task id="LOCAL-00037" summary=":sparkles: 노트 삭제 기능 구현&#10;&#10;- 노트 삭제 기능 구현">
+      <created>1701836460573</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1701836460573</updated>
+    </task>
+    <task id="LOCAL-00038" summary=":white_check_mark: NoteServiceTest 노트 삭제 기능 테스트 &#10;&#10;- 노트 삭제 기능 구현으로 인한 테스트 추가">
+      <created>1701836490173</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1701836490173</updated>
+    </task>
+    <task id="LOCAL-00039" summary=":heavy_plus_sign: Pagination 을 위한 Querydsl 의존 추가&#10;&#10;- Springboot 2.x 와 설정 방법 다름 (참고)">
+      <created>1701848344897</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1701848344897</updated>
+    </task>
+    <task id="LOCAL-00040" summary=":sparkles: 노트 전체 조회 Pagination 적용&#10;&#10;1. BeanConfig&#10;  - JPAQueryFactory 에 EntityManager 의존 추가 후 CustomRepository 구현체에서 사용&#10;  &#10;2. NoteCustomRepository&#10;  - Custom Repository 생성&#10;  &#10;3. NoteRepository&#10;  - 구현한 Custom Repository 상속&#10;  &#10;4. NoteRepositoryImpl&#10;  - 구현한 Custom Repository 상속&#10;  - Querydsl 로 실제 노트 전체 조회 구현&#10;  &#10;5. NotePageRequest&#10;  - Pageable 의 PageRequest 구현체 대신 사용하는 Paging Request DTO&#10;  - 검색 조건이 추가될 수도 있기 때문에 Pageable 대신 사용할 예&#10;&#10;6. NoteApiController, Service, NoteMultiReadResponse&#10;  - 특이사항 없음">
+      <created>1701848683989</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1701848683989</updated>
+    </task>
+    <task id="LOCAL-00041" summary=":white_check_mark: 노트 전체 조회 페이징 테스트&#10;&#10;- NotePageRequest 인자 값으로 아무 값도 안 왔을 때 기본 값으로 잘 적용되는지 확인&#10;- 인자 값에 맞게 노트 객체들을 잘 조회하는지 확인">
+      <created>1701848764135</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1701848764135</updated>
+    </task>
+    <task id="LOCAL-00042" summary=":heavy_plus_sign: Spotify 의존 추가&#10;&#10;- 노래 검색을 위한 Spotify 의존 추가">
+      <created>1702277106618</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1702277106618</updated>
+    </task>
+    <task id="LOCAL-00043" summary=":truck: NotePageRequest -&gt; PageRequest 클래스 명 변경 및 패키지 변경&#10;&#10;- NotePageRequest 에서 PageRequest 로 클래스 명을 변경하고 패키지를 Common 으로 옮김">
+      <created>1702277207481</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1702277207481</updated>
+    </task>
+    <task id="LOCAL-00044" summary=":sparkles: Song Entity 및 Repository 생성&#10;&#10;- 노래 저장을 위한 로직 추가">
+      <created>1702352924084</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1702352924084</updated>
+    </task>
+    <task id="LOCAL-00045" summary=":sparkles: Spotify Search API 연동&#10;&#10;1. SpotifyApiController&#10;  - searchSongs() : 노래 검색 담당&#10;  - saveSong() : 노트에 노래 저장 담당&#10;  &#10;2. SpotifyService&#10;&#10;3. CreateSpotifyToken&#10;&#10;4. Request, Response DTO&#10;  - SpotifySaveRequest&#10;  - SpotifySingleSearchResponse&#10;  - SpotifyMultiSearchResponse">
+      <created>1702353147349</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1702353147349</updated>
+    </task>
+    <task id="LOCAL-00046" summary=":recycle: SpotifyApi Bean 객체 등록&#10;&#10;- BeanConfig 에 SpotifyApi 의 ClientId, ClientSecret 을 @Value 를 통해 가지고 온 값으로 SpotifyApi 를 생성 후 Bean 객체로 등록하여 사용하도록 변경">
+      <created>1702353600762</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1702353600762</updated>
+    </task>
+    <task id="LOCAL-00047" summary=":sparkles: 노트 단일 조회 로직 수정&#10;&#10;- Spotify Serach API 연동으로 검색한 노래를 노트에 저장할 수 있는 기능의 추가로 인해 노트 조회 시 함께 저장한 노래를 조회할 수 있도록 로직 수정&#10;&#10;- 노래 저장은 필수가 아니므로 노래를 저장하지 않은 노트를 조회 시 SongSavedInNoteResponse 의 필드는 기본 값으로 응답할 수 있도록 작성">
+      <created>1702356457199</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1702356457199</updated>
+    </task>
+    <task id="LOCAL-00048" summary=":sparkles: 노트 단일 조회 로직 수정&#10;&#10;- Spotify Serach API 연동으로 검색한 노래를 노트에 저장할 수 있는 기능의 추가로 인해 노트 조회 시 함께 저장한 노래를 조회할 수 있도록 로직 수정&#10;&#10;- 노래 저장은 필수가 아니므로 노래를 저장하지 않은 노트를 조회 시 SongSavedInNoteResponse 의 필드는 기본 값으로 응답할 수 있도록 작성">
+      <created>1702356528479</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1702356528479</updated>
+    </task>
+    <task id="LOCAL-00049" summary=":truck: spotify 패키지 명 Song 으로 변경">
+      <created>1702357374253</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1702357374253</updated>
+    </task>
+    <task id="LOCAL-00050" summary=":recycle: @EnableJpaAuditing Main 에서 제거&#10;&#10;- Slice Test 시 JPA Auditing 를 찾지 못하는 예외가 발생하기 때문에 BeanConfig 클래스로 @EnableJpaAuditing 어노테이션 이동">
+      <created>1702362913111</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1702362913113</updated>
+    </task>
+    <task id="LOCAL-00051" summary=":white_check_mark: SongServiceTest 생성&#10;&#10;- Song 관련 API 생성으로 SongServiceTest 생성&#10;- saveSongMyNote() 테스트">
+      <created>1702362989670</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1702362989670</updated>
+    </task>
+    <task id="LOCAL-00052" summary=":white_check_mark: SongServiceTest 생성&#10;&#10;- Song 관련 API 생성으로 SongServiceTest 생성&#10;- saveSongMyNote() 테스트">
+      <created>1702363011591</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1702363011591</updated>
+    </task>
+    <task id="LOCAL-00053" summary=":recycle: OAuth 로그인에 필요한 필드 값 @Value 적용&#10;&#10;- 하드코딩 된 필드 값에 @Value 를 적용하여 YMAL 파일에서 값을 가져올 수 있도록 수정">
+      <created>1702364004427</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1702364004427</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value=":bug: 노트 작성 시 데이터 바인딩 예외 해결&#10;&#10;- NoteSaveRequest 에 기본 생성자를 붙여주지 않아 생기던 데이터 바인딩 예외 해결" />
+    <MESSAGE value=":sparkles: Interceptor 추가&#10;&#10;- 로그인 인터셉터 추가" />
+    <MESSAGE value=":white_check_mark: NoteServiceTest 수정&#10;&#10;- 더미 데이터로 User 를 만들고, Session 에 저장해 테스트 전 로그인 상태를 만들어주도록 수정&#10;- session 데이터를 적용한 테스트 코드 수정" />
+    <MESSAGE value=":sparkles: NoteSaveRequest 검증 로직 추가&#10;&#10;- NoteSaveRequest DTO 사용 Controller 로직에 @Valid 추가&#10;- MethodArgumentNotValidException 예외 발생 시 ExceptionController 에서 예외를 다듬어 클라이언트로 반환하도록 예외 처리 (4XX)" />
+    <MESSAGE value=":sparkles: GlobalException 추가&#10;&#10;- RunTimeException 을 상속받는 추상 예외 클래스 GlobalException 추가&#10;- 노트를 찾지 못했을 때 발생하는 예외인NotFoundNoteException 추가&#10;- read() 내부 IllegalArgumentException 에서 NotFoundNoteException 으로 예외 클래스 교체" />
+    <MESSAGE value=":white_check_mark: NoteServiceTest 수정 및 단일 조회 실패 테스트 추가&#10;&#10;- 단일 조회 실패 시 NotFoundNoteException 이 호출되는지 확인&#10;- 각 테스트에 @DisplayName 추가" />
+    <MESSAGE value=":sparkles: 노트 수정 기능 구현&#10;&#10;- 노트 수정 시 emotion, content 모두 수정하는 걸로 클라이언트 구현 예정이라 Petch 대신 PUT 사용&#10;- JPA Dirty Checking 으로 수정 되도록 구현" />
+    <MESSAGE value=":white_check_mark: NoteServiceTest 노트 수정 테스트 추가&#10;&#10;- 노트 수정 기능 구현으로 인해 테스트 코드 추가" />
+    <MESSAGE value=":sparkles: 노트 삭제 기능 구현&#10;&#10;- 노트 삭제 기능 구현" />
+    <MESSAGE value=":white_check_mark: NoteServiceTest 노트 삭제 기능 테스트 &#10;&#10;- 노트 삭제 기능 구현으로 인한 테스트 추가" />
+    <MESSAGE value=":heavy_plus_sign: Pagination 을 위한 Querydsl 의존 추가&#10;&#10;- Springboot 2.x 와 설정 방법 다름 (참고)" />
+    <MESSAGE value=":sparkles: 노트 전체 조회 Pagination 적용&#10;&#10;1. BeanConfig&#10;  - JPAQueryFactory 에 EntityManager 의존 추가 후 CustomRepository 구현체에서 사용&#10;  &#10;2. NoteCustomRepository&#10;  - Custom Repository 생성&#10;  &#10;3. NoteRepository&#10;  - 구현한 Custom Repository 상속&#10;  &#10;4. NoteRepositoryImpl&#10;  - 구현한 Custom Repository 상속&#10;  - Querydsl 로 실제 노트 전체 조회 구현&#10;  &#10;5. NotePageRequest&#10;  - Pageable 의 PageRequest 구현체 대신 사용하는 Paging Request DTO&#10;  - 검색 조건이 추가될 수도 있기 때문에 Pageable 대신 사용할 예&#10;&#10;6. NoteApiController, Service, NoteMultiReadResponse&#10;  - 특이사항 없음" />
+    <MESSAGE value=":white_check_mark: 노트 전체 조회 페이징 테스트&#10;&#10;- NotePageRequest 인자 값으로 아무 값도 안 왔을 때 기본 값으로 잘 적용되는지 확인&#10;- 인자 값에 맞게 노트 객체들을 잘 조회하는지 확인" />
+    <MESSAGE value=":heavy_plus_sign: Spotify 의존 추가&#10;&#10;- 노래 검색을 위한 Spotify 의존 추가" />
+    <MESSAGE value=":truck: NotePageRequest -&gt; PageRequest 클래스 명 변경 및 패키지 변경&#10;&#10;- NotePageRequest 에서 PageRequest 로 클래스 명을 변경하고 패키지를 Common 으로 옮김" />
+    <MESSAGE value=":sparkles: Song Entity 및 Repository 생성&#10;&#10;- 노래 저장을 위한 로직 추가" />
+    <MESSAGE value=":sparkles: Spotify Search API 연동&#10;&#10;1. SpotifyApiController&#10;  - searchSongs() : 노래 검색 담당&#10;  - saveSong() : 노트에 노래 저장 담당&#10;  &#10;2. SpotifyService&#10;&#10;3. CreateSpotifyToken&#10;&#10;4. Request, Response DTO&#10;  - SpotifySaveRequest&#10;  - SpotifySingleSearchResponse&#10;  - SpotifyMultiSearchResponse" />
+    <MESSAGE value=":recycle: SpotifyApi Bean 객체 등록&#10;&#10;- BeanConfig 에 SpotifyApi 의 ClientId, ClientSecret 을 @Value 를 통해 가지고 온 값으로 SpotifyApi 를 생성 후 Bean 객체로 등록하여 사용하도록 변경" />
+    <MESSAGE value=":sparkles: 노트 단일 조회 로직 수정&#10;&#10;- Spotify Serach API 연동으로 검색한 노래를 노트에 저장할 수 있는 기능의 추가로 인해 노트 조회 시 함께 저장한 노래를 조회할 수 있도록 로직 수정" />
+    <MESSAGE value=":sparkles: 노트 단일 조회 로직 수정&#10;&#10;- Spotify Serach API 연동으로 검색한 노래를 노트에 저장할 수 있는 기능의 추가로 인해 노트 조회 시 함께 저장한 노래를 조회할 수 있도록 로직 수정&#10;&#10;- 노래 저장은 필수가 아니므로 노래를 저장하지 않은 노트를 조회 시 SongSavedInNoteResponse 의 필드는 기본 값으로 응답할 수 있도록 작성" />
+    <MESSAGE value=":truck: spotify 패키지 명 Song 으로 변경" />
+    <MESSAGE value=":recycle: @EnableJpaAuditing Main 에서 제거&#10;&#10;- Slice Test 시 JPA Auditing 를 찾지 못하는 예외가 발생하기 때문에 BeanConfig 클래스로 @EnableJpaAuditing 어노테이션 이동" />
+    <MESSAGE value=":white_check_mark: SongServiceTest 생성&#10;&#10;- Song 관련 API 생성으로 SongServiceTest 생성&#10;- saveSongMyNote() 테스트 작성" />
+    <MESSAGE value=":white_check_mark: SongServiceTest 생성&#10;&#10;- Song 관련 API 생성으로 SongServiceTest 생성&#10;- saveSongMyNote() 테스트" />
+    <MESSAGE value=":recycle: OAuth 로그인에 필요한 필드 값 @Value 적용&#10;&#10;- 하드코딩 된 필드 값에 @Value 를 적용하여 YMAL 파일에서 값을 가져올 수 있도록 수정" />
+    <option name="LAST_COMMIT_MESSAGE" value=":recycle: OAuth 로그인에 필요한 필드 값 @Value 적용&#10;&#10;- 하드코딩 된 필드 값에 @Value 를 적용하여 YMAL 파일에서 값을 가져올 수 있도록 수정" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/backend/src/main/java/com/emotionmusicnote/song/service/CreateSpotifyToken.java</url>
+          <line>18</line>
+          <option name="timeStamp" value="61" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/backend/src/main/java/com/emotionmusicnote/user/service/UserLoginService.java</url>
+          <line>60</line>
+          <option name="timeStamp" value="63" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/backend/src/main/java/com/emotionmusicnote/user/service/UserLoginService.java</url>
+          <line>106</line>
+          <option name="timeStamp" value="64" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/emotionmusicnote$EmotionmusicnoteApplication.ic" NAME="EmotionmusicnoteApplication Coverage Results" MODIFIED="1701750937133" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+  </component>
+</project>
