@@ -93,7 +93,7 @@ class SongServiceTest {
   void 노래_검색() {
 
     // given
-    String keyword = "";
+    String keyword = " ";
     PageRequest pageRequest = new PageRequest(1, 5);
 
     // when
