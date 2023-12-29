@@ -2,6 +2,7 @@ package com.emotionmusicnote.user.service;
 
 import com.emotionmusicnote.user.domain.User;
 import com.emotionmusicnote.user.domain.UserRepository;
+import com.emotionmusicnote.user.oauth.JSession;
 import com.emotionmusicnote.user.oauth.KakaoTokens;
 import com.emotionmusicnote.user.oauth.KakaoUserInfo;
 import com.emotionmusicnote.user.oauth.OAuthProvider;
@@ -39,7 +40,7 @@ public class UserLoginService {
   @Value("${oauth.kakao.userInfoUri}")
   private String userInfoUri;
 
-  public KakaoTokens login(String code, HttpSession session) {
+  public JSession login(String code, HttpSession session) {
     KakaoTokens kakaoTokens = getToken(code);
     KakaoUserInfo kakaoUserInfo = getUserInfo(kakaoTokens);
     User user = findOrCreateUser(kakaoUserInfo);
@@ -47,7 +48,7 @@ public class UserLoginService {
     // 사용자의 고유 정보를 포함해 세션 저장
     session.setAttribute("user", user);
 
-    return kakaoTokens;
+    return new JSession(session.getId());
   }
 
   /**
