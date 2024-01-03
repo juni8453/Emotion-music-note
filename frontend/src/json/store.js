@@ -4,9 +4,9 @@ import createPersistedState from 'vuex-persistedstate';
 const store = createStore({
   state() {
     return {
-      sessionId: '',
-      nickname: '',
-      profileImageUrl: '',
+      sessionId: null,
+      nickname: null,
+      profileImageUrl: null,
     }
   },
 

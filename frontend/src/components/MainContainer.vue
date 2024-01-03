@@ -1,12 +1,26 @@
 <template>
   <header>
     <div class="home-name">
-      <font-awesome-icon :icon="['fas', 'quote-left']" /> Emotion Note <font-awesome-icon :icon="['fas', 'quote-right']" />
+      <router-link to="/">
+        <font-awesome-icon :icon="['fas', 'quote-left']" /> Emotion Note <font-awesome-icon :icon="['fas', 'quote-right']" />
+      </router-link>
     </div>
-    <button class="nav-button">
-      <font-awesome-icon :icon="['fas', 'user-tie']" /> Login
-    </button>
 
+    <div>
+      <div v-if="$store.state.sessionId === null">
+        <button class="nav-button">
+          <router-link to="/login">
+            <font-awesome-icon :icon="['fas', 'user-tie']" /> Login
+          </router-link>
+        </button>
+      </div>
+      <div v-else-if="$store.state.sessionId !== null">
+        <button class="nav-button">
+          <img class="profile-img" :src="$store.state.profileImageUrl" alt="profile Url">
+          {{ $store.state.nickname }} 님 반갑습니다 !
+        </button>
+      </div>
+    </div>
   </header>
 
   <main>
@@ -43,6 +57,11 @@ header {
   margin-bottom: 10px;
 }
 
+a {
+  text-decoration: none;
+  color: white;
+}
+
 .home-name {
   color: white;
 }
@@ -58,6 +77,15 @@ header {
   color: white;
   border-radius: 6px;
   background-color: #ef4a4a;
+}
+
+.profile-img {
+  width: 50px;
+  height: 50px;
+  border-radius: 60%;
+  object-fit: cover;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  margin-right: 7px;
 }
 
 main {
