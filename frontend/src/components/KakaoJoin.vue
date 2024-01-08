@@ -21,6 +21,7 @@ export default {
   methods: {
     // code 를 backend 로 넘긴다.
     sendCode() {
+      axios.defaults.withCredentials = true;
       axios.get('http://localhost:8080/login/' + this.code)
         .then(response => {
           console.log(response.data);
