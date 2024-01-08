@@ -1,22 +1,30 @@
 import {createStore} from 'vuex'
+import createPersistedState from 'vuex-persistedstate';
 
 const store = createStore({
   state() {
     return {
-      sessionId: '',
+      sessionId: null,
+      nickname: null,
+      profileImageUrl: null,
     }
   },
 
   mutations: {
-    saveSessionId(state, data) {
-      state.sessionId = data;
+    saveSignInUserInfo(state, data) {
+      state.sessionId = data.jsessionId;
+      state.nickname = data.nickname;
+      state.profileImageUrl = data.profileImageUrl;
     }
   },
 
   actions: {
 
-  }
+  },
 
+  plugins: [
+    createPersistedState()
+  ]
 })
 
 export default store;
