@@ -1,8 +1,8 @@
 package com.emotionmusicnote.user.service;
 
+import com.emotionmusicnote.user.controller.response.SignInUserInfo;
 import com.emotionmusicnote.user.domain.User;
 import com.emotionmusicnote.user.domain.UserRepository;
-import com.emotionmusicnote.user.oauth.JSession;
 import com.emotionmusicnote.user.oauth.KakaoTokens;
 import com.emotionmusicnote.user.oauth.KakaoUserInfo;
 import com.emotionmusicnote.user.oauth.OAuthProvider;
@@ -40,7 +40,7 @@ public class UserLoginService {
   @Value("${oauth.kakao.userInfoUri}")
   private String userInfoUri;
 
-  public JSession login(String code, HttpSession session) {
+  public SignInUserInfo login(String code, HttpSession session) {
     KakaoTokens kakaoTokens = getToken(code);
     KakaoUserInfo kakaoUserInfo = getUserInfo(kakaoTokens);
     User user = findOrCreateUser(kakaoUserInfo);
@@ -48,15 +48,17 @@ public class UserLoginService {
     // 사용자의 고유 정보를 포함해 세션 저장
     session.setAttribute("user", user);
 
-    return new JSession(session.getId());
+    return SignInUserInfo.builder()
+        .nickname(user.getNickname())
+        .profileImageUrl(user.getProfileImageUrl())
+        .jSessionId(session.getId())
+        .build();
   }
 
   /**
-   * GET/POST https://kapi.kakao.com/v2/user/me 으로 설정한 Headers 정보를 담아 요청
-   * 사용자 정보를 가져오기 위한 Required
-   * Parameter Header
-   * Authorization : Bearer ${ACCESS_TOKEN}
-   * Content-type : application/x-www-form-urlencoded;charset=utf-8
+   * GET/POST https://kapi.kakao.com/v2/user/me 으로 설정한 Headers 정보를 담아 요청 사용자 정보를 가져오기 위한 Required
+   * Parameter Header Authorization : Bearer ${ACCESS_TOKEN} Content-type :
+   * application/x-www-form-urlencoded;charset=utf-8
    */
   private KakaoTokens getToken(String code) {
     HttpHeaders headers = new HttpHeaders();
@@ -98,10 +100,8 @@ public class UserLoginService {
   }
 
   /**
-   * GET/POST https://kapi.kakao.com/v2/user/me 으로 설정한 Headers 정보를 담아 요청
-   * 사용자 정보를 가져오기 위한 Required
-   * Parameter Header Authorization : Bearer ${ACCESS_TOKEN}
-   * Content-type :
+   * GET/POST https://kapi.kakao.com/v2/user/me 으로 설정한 Headers 정보를 담아 요청 사용자 정보를 가져오기 위한 Required
+   * Parameter Header Authorization : Bearer ${ACCESS_TOKEN} Content-type :
    * application/x-www-form-urlencoded;charset=utf-8
    */
   private KakaoUserInfo getUserInfo(KakaoTokens kakaoTokens) {
