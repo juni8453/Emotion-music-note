@@ -14,13 +14,15 @@ public class WebConfig implements WebMvcConfigurer {
     registry.addInterceptor(new LoginInterceptor())
         .order(1)
         .addPathPatterns("/api/**")
-        .excludePathPatterns("/", "/login", "/css/**", "/*.ico", "/error");
+        .excludePathPatterns("/", "/css/**", "/*.ico", "/error");
   }
 
   @Override
   public void addCorsMappings(CorsRegistry registry) {
     registry.addMapping("/**")
-        .allowedOrigins("http://localhost:8081/")
-        .allowedMethods("GET", "POST", "DELETE", "PUT");
+        .allowCredentials(true)
+        .allowedOrigins("http://localhost:8081")
+        .allowedMethods("GET", "POST", "DELETE", "PUT", "OPTIONS")
+        .maxAge(3600);
   }
 }

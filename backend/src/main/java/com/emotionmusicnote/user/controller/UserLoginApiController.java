@@ -1,6 +1,6 @@
 package com.emotionmusicnote.user.controller;
 
-import com.emotionmusicnote.user.oauth.JSession;
+import com.emotionmusicnote.user.controller.response.SignInUserInfo;
 import com.emotionmusicnote.user.service.UserLoginService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -17,10 +17,10 @@ public class UserLoginApiController {
 
   // 프론트에서 보낸 인가 코드를 통해 카카오 서버에서 code 를 받아 로그인 처리
   @GetMapping("/login/{code}")
-  public ResponseEntity<JSession> login(
+  public ResponseEntity<SignInUserInfo> login(
       @PathVariable("code") String code, HttpSession session) {
-    JSession jSession = userLoginService.login(code, session);
+    SignInUserInfo signInUserInfo = userLoginService.login(code, session);
 
-    return ResponseEntity.ok(jSession);
+    return ResponseEntity.ok(signInUserInfo);
   }
 }
