@@ -1,7 +1,7 @@
 <template>
   <header>
     <div class="home-name">
-      <router-link to="/">
+      <router-link to="/" class="header-router-link">
         <font-awesome-icon :icon="['fas', 'quote-left']" /> Emotion Note <font-awesome-icon :icon="['fas', 'quote-right']" />
       </router-link>
     </div>
@@ -9,7 +9,7 @@
     <div>
       <div v-if="$store.state.sessionId === null">
         <button class="nav-button">
-          <router-link to="/login">
+          <router-link to="/login" class="header-router-link">
             <font-awesome-icon :icon="['fas', 'user-tie']" /> Login
           </router-link>
         </button>
@@ -30,7 +30,9 @@
         <font-awesome-icon icon="clipboard" /> - 일기 목록
       </button>
       <button class="sidebar-button">
-        <font-awesome-icon icon="pen-to-square" /> - 일기 작성
+        <router-link to="/note/new" class="sidebar-router-link">
+          <font-awesome-icon icon="pen-to-square" /> - 일기 작성
+        </router-link>
       </button>
     </div>
 
@@ -57,7 +59,7 @@ header {
   margin-bottom: 10px;
 }
 
-a {
+.header-router-link {
   text-decoration: none;
   color: white;
 }
@@ -122,6 +124,11 @@ main {
 
 .sidebar-button:hover {
   background-color: #898989;
+}
+
+.sidebar-router-link {
+  text-decoration: none;
+  color: black;
 }
 
 .section {
