@@ -1,5 +1,5 @@
 <template>
-  <div>로그인 중 입니다.</div>
+  <div></div>
 </template>
 
 <script>
@@ -24,8 +24,8 @@ export default {
       axios.defaults.withCredentials = true;
       axios.get('http://localhost:8080/login/' + this.code)
         .then(response => {
-          console.log(response.data);
-          this.$store.commit('saveSignInUserInfo', response.data);
+          const userinfo = response.data;
+          this.$store.commit('saveSignInUserInfo', userinfo);
           this.$router.push('/');
 
         }).catch((e) => {
