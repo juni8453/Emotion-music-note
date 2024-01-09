@@ -26,7 +26,7 @@ const routes = [
     beforeEnter: (to, from, next) => {
       if (store.state.sessionId === null) {
         next('/login');
-        alert('세션이 만료되어 로그인이 필요합니다.');
+        alert('로그인이 필요합니다.');
       } else {
         next();
       }
@@ -38,7 +38,7 @@ const routes = [
     beforeEnter: (to, from, next) => {
       if (store.state.sessionId === null) {
         next('/login');
-        alert('세션이 만료되어 로그인이 필요합니다.');
+        alert('로그인이 필요합니다.');
       } else {
         next();
       }

@@ -44,7 +44,7 @@ export default {
         if (errorStatus === 401) {
           localStorage.removeItem('vuex');
           document.cookie = 'JSESSIONID=; expired=Thu, 01 Jan 1970 00:00:01 UTC; path=/;'
-          alert('세션이 만료되어 로그인이 필요합니다.');
+          alert('로그인이 필요합니다.');
           this.$router.push('/login');
 
         } else if (errorStatus === 400) {
