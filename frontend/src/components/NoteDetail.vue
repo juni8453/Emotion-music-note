@@ -51,6 +51,10 @@ export default {
       .then(response => {
         console.log(response.data);
         this.note = response.data;
+      }).catch(error => {
+        const errorMessage = error.response.data.message;
+        alert(errorMessage);
+        this.$router.push("/")
       });
     }
   }
