@@ -4,6 +4,7 @@ import UserLogin from "@/components/UserLogin";
 import KakaoJoin from "@/components/KakaoJoin";
 import HomePage from "@/components/HomePage";
 import SaveNote from "@/components/SaveNote";
+import NoteDetail from "@/components/NoteDetail";
 
 const routes = [
   {
@@ -18,6 +19,10 @@ const routes = [
     // kakao redirect uri (인가 코드 받는 즉시 컴포넌트 생성)
     path: '/oauth/kakao',
     component: KakaoJoin,
+  },
+  {
+    path: "/note/:noteId",
+    component: NoteDetail,
   },
   {
     path: '/note/new',
