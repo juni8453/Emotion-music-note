@@ -23,6 +23,14 @@ const routes = [
   {
     path: "/note/:noteId",
     component: NoteDetail,
+    beforeEnter: (to, from, next) => {
+      if (store.state.sessionId === null) {
+        next('/login');
+        alert('세션이 만료되어 로그인이 필요합니다.');
+      } else {
+        next();
+      }
+    }
   },
   {
     path: '/note/new',
@@ -30,6 +38,7 @@ const routes = [
     beforeEnter: (to, from, next) => {
       if (store.state.sessionId === null) {
         next('/login');
+        alert('세션이 만료되어 로그인이 필요합니다.');
       } else {
         next();
       }
