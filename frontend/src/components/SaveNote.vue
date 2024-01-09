@@ -35,10 +35,16 @@ export default {
       axios.defaults.withCredentials = true;
       axios.post('http://localhost:8080/api/notes', payload)
       .then(response => {
-        console.log(response.status);
-        console.log(response.data);
+        const noteId = response.data;
+        this.$router.push(`/note/${noteId}`);
+
       }).catch((error) => {
-        console.log(`exception message : ${error}`);
+        if (error.response.status === 401) {
+          localStorage.removeItem('vuex');
+          document.cookie = 'JSESSIONID=; expired=Thu, 01 Jan 1970 00:00:01 UTC; path=/;'
+          alert('세션이 만료되어 로그인이 필요합니다.');
+          this.$router.push('/');
+        }
       })
     },
 
