@@ -45,7 +45,7 @@ export default {
           localStorage.removeItem('vuex');
           document.cookie = 'JSESSIONID=; expired=Thu, 01 Jan 1970 00:00:01 UTC; path=/;'
           alert('로그인이 필요합니다.');
-          this.$router.push('/login');
+          window.location.href = '/';
 
         } else if (errorStatus === 400) {
           const errorMessages = [];
