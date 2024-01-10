@@ -1,10 +1,10 @@
 import {createRouter, createWebHistory} from "vue-router";
-import store from "./store"
 import UserLogin from "@/components/UserLogin";
 import KakaoJoin from "@/components/KakaoJoin";
 import HomePage from "@/components/HomePage";
 import SaveNote from "@/components/SaveNote";
 import NoteDetail from "@/components/NoteDetail";
+import axios from 'axios';
 
 const routes = [
   {
@@ -23,32 +23,39 @@ const routes = [
   {
     path: "/note/:noteId",
     component: NoteDetail,
-    beforeEnter: (to, from, next) => {
-      if (store.state.sessionId === null) {
-        next('/login');
-        alert('로그인이 필요합니다.');
-      } else {
-        next();
-      }
-    }
   },
   {
     path: '/note/new',
     component: SaveNote,
-    beforeEnter: (to, from, next) => {
-      if (store.state.sessionId === null) {
-        next('/login');
-        alert('로그인이 필요합니다.');
-      } else {
-        next();
-      }
-    }
   }
 ];
 
 const router = createRouter({
   history: createWebHistory(),
   routes,
+});
+
+router.beforeEach((to, from, next) => {
+  if (to.path === '/' || to.path === '/login' || to.path === '/oauth/kakao') {
+    next();
+  } else {
+    // 홈, login, 카카오 OAuth 경로 제외 모든 라우터 이동 시 서버 상태 및 vuex 확인
+    axios.get('http://localhost:8080/check-server-state')
+    .then(response => {
+      console.log(response.data);
+      if (localStorage.getItem('vuex') === null) {
+        alert('로그인이 필요합니다.');
+        window.location.href = '/';
+      } else {
+        next();
+      }
+    }).catch(error => {
+      console.log(error);
+      localStorage.removeItem('vuex');
+      alert('로그인이 필요합니다.');
+      window.location.href = '/';
+    });
+  }
 });
 
 export default router;
