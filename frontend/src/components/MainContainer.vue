@@ -19,6 +19,9 @@
           <img class="profile-img" :src="$store.state.profileImageUrl" alt="profile Url">
           {{ $store.state.nickname }} 님 반갑습니다 !
         </button>
+        <button class="nav-button" @click="logout">
+          로그아웃
+        </button>
       </div>
     </div>
   </header>
@@ -45,6 +48,12 @@
 <script>
 export default {
   name: "MainContainer",
+  methods: {
+    logout() {
+      localStorage.removeItem('vuex');
+      window.location.href = '/';
+    }
+  },
 }
 </script>
 
