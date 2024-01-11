@@ -1,6 +1,5 @@
 package com.emotionmusicnote.common;
 
-import com.emotionmusicnote.user.domain.User;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
@@ -18,9 +17,8 @@ public class LoginInterceptor implements HandlerInterceptor {
     }
 
     HttpSession session = request.getSession(false);
-    User user = (User) session.getAttribute("user");
 
-    if (user == null) {
+    if (session == null) {
       response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "만료된 세션입니다.");
 
       return false;

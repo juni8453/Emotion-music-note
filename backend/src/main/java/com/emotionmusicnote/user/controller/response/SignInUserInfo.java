@@ -7,12 +7,12 @@ import lombok.Getter;
 public class SignInUserInfo {
   private final String nickname;
   private final String profileImageUrl;
-  private final String jSessionId;
+  private final String sessionId;
 
   @Builder
-  public SignInUserInfo(String nickname, String profileImageUrl, String jSessionId) {
+  public SignInUserInfo(String nickname, String profileImageUrl, String sessionId) {
     this.nickname = nickname;
     this.profileImageUrl = profileImageUrl;
-    this.jSessionId = jSessionId;
+    this.sessionId = sessionId;
   }
 }
