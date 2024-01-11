@@ -35,10 +35,31 @@ export default {
       axios.defaults.withCredentials = true;
       axios.post('http://localhost:8080/api/notes', payload)
       .then(response => {
-        console.log(response.status);
-        console.log(response.data);
+        const noteId = response.data;
+        this.$router.push(`/note/${noteId}`);
+
       }).catch((error) => {
-        console.log(`exception message : ${error}`);
+        const errorStatus = error.response.status;
+
+        if (errorStatus === 401) {
+          localStorage.removeItem('vuex');
+          alert('로그인이 필요합니다.');
+          window.location.href = '/';
+
+        } else if (errorStatus === 400) {
+          const errorMessages = [];
+          const errors = error.response.data.validation;
+
+          for (const errorKey in errors) {
+            if (errorKey !== undefined) {
+              errorMessages.push(errors[`${errorKey}`]);
+            }
+          }
+
+          for (let i = 0; i < errorMessages.length; i++) {
+            alert(errorMessages[i])
+          }
+        }
       })
     },
 

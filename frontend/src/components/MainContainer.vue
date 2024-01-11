@@ -19,6 +19,9 @@
           <img class="profile-img" :src="$store.state.profileImageUrl" alt="profile Url">
           {{ $store.state.nickname }} 님 반갑습니다 !
         </button>
+        <button class="nav-button" @click="logout">
+          로그아웃
+        </button>
       </div>
     </div>
   </header>
@@ -27,7 +30,9 @@
     <div class="sidebar">
       <h4 class="sidebar-name">메뉴</h4>
       <button class="sidebar-button">
-        <font-awesome-icon icon="clipboard" /> - 일기 목록
+        <router-link to="/notes" class="sidebar-router-link">
+          <font-awesome-icon icon="clipboard" /> - 일기 목록
+        </router-link>
       </button>
       <button class="sidebar-button">
         <router-link to="/note/new" class="sidebar-router-link">
@@ -45,6 +50,12 @@
 <script>
 export default {
   name: "MainContainer",
+  methods: {
+    logout() {
+      localStorage.removeItem('vuex');
+      window.location.href = '/';
+    }
+  },
 }
 </script>
 

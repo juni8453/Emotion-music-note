@@ -11,11 +11,11 @@ const store = createStore({
   },
 
   mutations: {
-    saveSignInUserInfo(state, data) {
-      state.sessionId = data.jsessionId;
-      state.nickname = data.nickname;
-      state.profileImageUrl = data.profileImageUrl;
-    }
+    saveSignInUserInfo(state, userinfo) {
+      state.sessionId = userinfo.sessionId;
+      state.nickname = userinfo.nickname;
+      state.profileImageUrl = userinfo.profileImageUrl;
+    },
   },
 
   actions: {
