@@ -6,6 +6,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 @RestControllerAdvice
 public class ExceptionController {
@@ -23,5 +24,23 @@ public class ExceptionController {
     }
 
     return response;
+  }
+
+  @ResponseStatus(HttpStatus.BAD_REQUEST)
+  @ExceptionHandler(MethodArgumentTypeMismatchException.class)
+  public ExceptionResponse typeMismatch() {
+    return ExceptionResponse.builder()
+        .code(HttpStatus.BAD_REQUEST.value())
+        .message("잘못된 요청입니다.")
+        .build();
+  }
+
+  @ResponseStatus(HttpStatus.BAD_REQUEST)
+  @ExceptionHandler(NotFoundNoteException.class)
+  public ExceptionResponse notFoundNote(NotFoundNoteException exception) {
+    return ExceptionResponse.builder()
+        .code(exception.getStatusCode())
+        .message(exception.getMessage())
+        .build();
   }
 }
