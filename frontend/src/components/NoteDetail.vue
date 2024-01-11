@@ -52,10 +52,19 @@ export default {
         console.log(response.data);
         this.note = response.data;
       }).catch(error => {
-        const errorMessage = error.response.data.message;
-        alert(errorMessage);
-        this.$router.push("/")
-      });
+        const errorStatus = error.response.status;
+
+        if (errorStatus === 401) {
+          localStorage.removeItem('vuex');
+          alert('로그인이 필요합니다.');
+          window.location.href = '/';
+
+        } else if (errorStatus === 400) {
+          const errorMessage = error.response.data.message;
+          alert(errorMessage);
+          this.$router.push('/');
+        }
+      })
     }
   }
 }
@@ -94,7 +103,7 @@ export default {
   justify-content: space-between;
   align-items: center;
   padding: 12px;
-  box-shadow: 0 0 1px rgba(0,0,0,0.15), 0 15px 12px rgba(0,0,0,0.15);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.15), 0 15px 12px rgba(0, 0, 0, 0.15);
 }
 
 .song-image {
