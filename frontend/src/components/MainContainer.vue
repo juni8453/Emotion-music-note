@@ -30,7 +30,9 @@
     <div class="sidebar">
       <h4 class="sidebar-name">메뉴</h4>
       <button class="sidebar-button">
-        <font-awesome-icon icon="clipboard" /> - 일기 목록
+        <router-link to="/notes" class="sidebar-router-link">
+          <font-awesome-icon icon="clipboard" /> - 일기 목록
+        </router-link>
       </button>
       <button class="sidebar-button">
         <router-link to="/note/new" class="sidebar-router-link">
