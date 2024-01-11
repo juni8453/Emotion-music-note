@@ -51,7 +51,7 @@ public class UserLoginService {
     return SignInUserInfo.builder()
         .nickname(user.getNickname())
         .profileImageUrl(user.getProfileImageUrl())
-        .jSessionId(session.getId())
+        .sessionId(session.getId())
         .build();
   }
 
