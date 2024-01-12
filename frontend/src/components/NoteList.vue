@@ -36,7 +36,6 @@ export default {
       notes: [],
       currentPage: 1,
       defaultPageSize: 5,
-      next: false,
     }
   },
 
@@ -45,22 +44,24 @@ export default {
   },
 
   methods: {
-    readNotes(next) {
-      let page = this.currentPage;
-      if (next === true) {
-        page += 1;
-      }
-
+    readNotes() {
       axios.defaults.withCredentials = true;
       axios.get('http://localhost:8080/api/notes', {
         params: {
-          page: page,
+          page: this.currentPage,
           size: this.defaultPageSize,
         }
       })
       .then(response => {
+        if (this.currentPage < 1) {
+          alert('페이지가 존재하지 않습니다.');
+          this.currentPage += 1;
+        }
+
         if (response.data.notes.length === 0) {
           alert('페이지가 존재하지 않습니다.');
+          this.currentPage -= 1;
+
         } else {
           this.notes = response.data.notes;
         }
@@ -77,17 +78,13 @@ export default {
     },
 
     readNextPage() {
-      this.next = true;
-      this.readNotes(this.next);
+      this.currentPage += 1;
+      this.readNotes()
     },
 
     readPrevPage() {
-      let page = this.currentPage;
-      page -= 1;
-
-      if (page >= 0) {
-        this.readNotes();
-      }
+      this.currentPage -= 1;
+      this.readNotes();
     },
 
     truncateNoteContent(noteContent) {
