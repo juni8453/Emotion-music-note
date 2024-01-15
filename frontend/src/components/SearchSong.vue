@@ -5,7 +5,7 @@
     <p class="search-description">원하는 노래가 없거나 결과가 만족스럽지 않다면, 영어로 검색해보세요 🙇‍</p>
     <div style="margin-top: 30px">
       <input v-model="searchKeyword" type="text" class="search-input" placeholder="검색어를 입력하세요.">
-      <button @click="searchSong" class="search-button">Search</button>
+      <button @click="selectSong" class="search-button">Search</button>
     </div>
   </div>
 
@@ -50,7 +50,7 @@ export default {
   },
 
   methods: {
-    searchSong() {
+    selectSong() {
       axios.defaults.withCredentials = true;
       axios.get('http://localhost:8080/api/songs', {
         params: {
@@ -60,7 +60,6 @@ export default {
         }
       })
       .then(response => {
-        console.log(`호출된 페이지: ${this.currentPage}`);
         if (this.currentPage < 1) {
           alert('페이지가 존재하지 않습니다.');
           this.currentPage += 1;
@@ -87,12 +86,12 @@ export default {
 
     readNextPage() {
       this.currentPage += 1;
-      this.searchSong();
+      this.selectSong();
     },
 
     readPrevPage() {
       this.currentPage -= 1;
-      this.searchSong();
+      this.selectSong();
     },
 
     saveSong(payload) {
@@ -103,7 +102,7 @@ export default {
       .then(response => {
         console.log(response.data);
         alert(`해당 노래를 등록하시겠습니까 ?`);
-        this.$router.push(`/note/${saveNoteId}`);
+        this.$router.push(`/note/detail/${saveNoteId}`);
         this.$store.state.saveNoteId = 0;
 
       }).catch(error => {
