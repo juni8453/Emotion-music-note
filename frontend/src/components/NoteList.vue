@@ -5,10 +5,10 @@
         <h5 class="card-header-description">{{ `작성일 ${note.createAt}` }}</h5>
         <h5 class="card-header-description">{{ `수정일 ${note.modifiedAt}` }}</h5>
         <div class="card-button-box">
-          <button class="card-button" style="margin: 5px" @click="updateNote($event)"> <!-- 이벤트 버블링 방지 -->
+          <button class="card-button" style="margin: 5px" @click="clickUpdate($event, note.id)"> <!-- 이벤트 버블링 방지 -->
             <font-awesome-icon icon="pen-to-square" /> 수정
           </button>
-          <button class="card-button" style="margin: 5px" @click="deleteNote($event)">
+          <button class="card-button" style="margin: 5px" @click="clickDelete($event, note.id)">
             <font-awesome-icon icon="trash-can" /> 삭제
           </button>
         </div>
@@ -96,17 +96,15 @@ export default {
     },
 
     readNote(noteId) {
-      this.$router.push(`/note/${noteId}`);
+      this.$router.push(`/note/detail/${noteId}`);
     },
 
-    // 구현 예정
-    updateNote(event) {
+    clickUpdate(event, noteId) {
       event.stopPropagation();
-      console.log('call update note');
+      this.$router.push(`/note/update/${noteId}`);
     },
 
-    // 구현 예정
-    deleteNote(event) {
+    clickDelete(event) {
       event.stopPropagation();
       console.log('call delete note');
     },

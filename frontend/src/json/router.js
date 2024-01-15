@@ -6,6 +6,7 @@ import SearchSong from "@/components/SearchSong";
 import SaveNote from "@/components/SaveNote";
 import NoteDetail from "@/components/NoteDetail";
 import NoteList from "@/components/NoteList";
+import NoteUpdate from "@/components/NoteUpdate";
 import axios from 'axios';
 
 const routes = [
@@ -27,8 +28,12 @@ const routes = [
     component: NoteList,
   },
   {
-    path: "/note/:noteId",
+    path: "/note/detail/:noteId",
     component: NoteDetail,
+  },
+  {
+    path: '/note/update/:noteId',
+    component: NoteUpdate,
   },
   {
     path: '/note/new',
