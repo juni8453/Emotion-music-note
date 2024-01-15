@@ -7,7 +7,12 @@
     <p class="note-content-font"><strong>{{ note.content }}</strong></p>
 
     <div class="body">
-      <p class="note-content">들었던 노래</p>
+성      <div class="note-content-box">
+        <p class="note-content">오늘의 노래</p>
+        <button class="note-content-button" style="margin: 5px" @click="clickUpdateSong(note.id)">
+          <font-awesome-icon icon="pen-to-square" /> 수정
+        </button>
+      </div>
       <div class="song">
         <div class="song-image" :style="{ backgroundImage: `url(${note.songSavedInNoteResponse?.imageUrl})` }"></div>
         <div class="song-description">
@@ -65,6 +70,11 @@ export default {
           this.$router.push('/');
         }
       })
+    },
+
+    clickUpdateSong(noteId) {
+      this.$store.commit('updateNoteId', noteId);
+      this.$router.push('/song/update/search');
     }
   }
 }
@@ -86,11 +96,29 @@ export default {
   margin-bottom: 10px;
 }
 
+.note-content-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: auto;
+  margin-top: 50px;
+  margin-bottom: 10px;
+}
+
 .note-content {
   font-size: 14px;
   color: grey;
-  margin-top: 50px;
-  margin-bottom: 10px;
+}
+
+.note-content-button {
+  background-color: royalblue;
+  color: white;
+  border: black;
+  border-radius: 4px;
+  cursor: pointer;
+  height: 25px;
+  width: 10%;
+  text-align: center;
 }
 
 .note-content-font {
