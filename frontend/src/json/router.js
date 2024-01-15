@@ -2,10 +2,11 @@ import {createRouter, createWebHistory} from "vue-router";
 import UserLogin from "@/components/UserLogin";
 import KakaoJoin from "@/components/KakaoJoin";
 import HomePage from "@/components/HomePage";
+import SearchSong from "@/components/SearchSong";
 import SaveNote from "@/components/SaveNote";
 import NoteDetail from "@/components/NoteDetail";
-import axios from 'axios';
 import NoteList from "@/components/NoteList";
+import axios from 'axios';
 
 const routes = [
   {
@@ -32,7 +33,11 @@ const routes = [
   {
     path: '/note/new',
     component: SaveNote,
-  }
+  },
+  {
+    path: '/song/search',
+    component: SearchSong,
+  },
 ];
 
 const router = createRouter({
