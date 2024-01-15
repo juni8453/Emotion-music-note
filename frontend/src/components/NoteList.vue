@@ -5,11 +5,14 @@
         <h5 class="card-header-description">{{ `작성일 ${note.createAt}` }}</h5>
         <h5 class="card-header-description">{{ `수정일 ${note.modifiedAt}` }}</h5>
         <div class="card-button-box">
-          <button class="card-button" style="margin: 5px" @click="clickUpdate($event, note.id)"> <!-- 이벤트 버블링 방지 -->
-            <font-awesome-icon icon="pen-to-square" /> 수정
+          <button class="card-button" style="margin: 5px" @click="clickUpdate($event, note.id)">
+            <!-- 이벤트 버블링 방지 -->
+            <font-awesome-icon icon="pen-to-square"/>
+            수정
           </button>
           <button class="card-button" style="margin: 5px" @click="clickDelete($event, note.id)">
-            <font-awesome-icon icon="trash-can" /> 삭제
+            <font-awesome-icon icon="trash-can"/>
+            삭제
           </button>
         </div>
         <p class="card-text">{{ truncateNoteContent(note.content) }}</p>
@@ -18,10 +21,12 @@
   </div>
   <div class="pagination-body">
     <button class="pagination-button" @click="readPrevPage">
-      <font-awesome-icon icon="fa-solid fa-arrow-left" /> 이전 페이지
+      <font-awesome-icon icon="fa-solid fa-arrow-left"/>
+      이전 페이지
     </button>
     <button class="pagination-button" @click="readNextPage">
-      다음 페이지 <font-awesome-icon icon="fa-solid fa-arrow-right" />
+      다음 페이지
+      <font-awesome-icon icon="fa-solid fa-arrow-right"/>
     </button>
   </div>
 </template>
@@ -104,9 +109,28 @@ export default {
       this.$router.push(`/note/update/${noteId}`);
     },
 
-    clickDelete(event) {
+    clickDelete(event, noteId) {
       event.stopPropagation();
-      console.log('call delete note');
+
+      axios.defaults.withCredentials = true;
+      axios.delete(`http://localhost:8080/api/notes/${noteId}`)
+      .then(() => {
+        alert('정말 삭제하시겠습니까?');
+        window.location.href = '/notes';
+      }).catch(error => {
+        const errorStatus = error.response.status;
+
+        if (errorStatus === 401) {
+          localStorage.removeItem('vuex');
+          alert('로그인이 필요합니다.');
+          window.location.href = '/';
+
+        } else if (errorStatus === 400) {
+          const errorMessage = error.response.data.message;
+          alert(errorMessage);
+          this.$router.push('/');
+        }
+      })
     },
   },
 }
