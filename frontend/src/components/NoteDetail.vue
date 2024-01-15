@@ -7,7 +7,7 @@
     <p class="note-content-font"><strong>{{ note.content }}</strong></p>
 
     <div class="body">
-성      <div class="note-content-box">
+        <div class="note-content-box">
         <p class="note-content">오늘의 노래</p>
         <button class="note-content-button" style="margin: 5px" @click="clickUpdateSong(note.id)">
           <font-awesome-icon icon="pen-to-square" /> 수정

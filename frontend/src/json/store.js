@@ -8,6 +8,7 @@ const store = createStore({
       nickname: null,
       profileImageUrl: null,
       saveNoteId: 0,
+      updateNoteId: 0,
     }
   },
 
@@ -20,6 +21,10 @@ const store = createStore({
 
     saveNoteId(state, saveNoteId) {
       state.saveNoteId = saveNoteId;
+    },
+
+    updateNoteId(state, updateNoteId) {
+      state.updateNoteId = updateNoteId;
     }
 
   },
