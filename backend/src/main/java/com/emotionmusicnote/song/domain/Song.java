@@ -45,4 +45,11 @@ public class Song {
   public void addNote(Note note) {
     this.note = note;
   }
+
+  public void updateSong(String artistName, String albumName, String title, String imageUrl) {
+    this.artistName = artistName;
+    this.albumName = albumName;
+    this.title = title;
+    this.imageUrl = imageUrl;
+  }
 }
