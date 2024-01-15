@@ -1,7 +1,7 @@
 <template>
   <div class="body" v-for="(note, noteId) in notes" :key="noteId">
     <div class="card">
-      <div class="card-body" @click="readNote(noteId + 1)">
+      <div class="card-body" @click="readNote(note.id)">
         <h5 class="card-header-description">{{ `작성일 ${note.createAt}` }}</h5>
         <h5 class="card-header-description">{{ `수정일 ${note.modifiedAt}` }}</h5>
         <div class="card-button-box">
