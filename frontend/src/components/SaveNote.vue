@@ -8,7 +8,7 @@
               placeholder="일기 내용을 적어주세요."></textarea>
   </div>
   <div class="note-save-button-box">
-    <button @click="saveNote({emotion, content})"
+    <button @click="searchSong({emotion, content})"
             class="note-save-button">
       <font-awesome-icon icon="pen-to-square"/> 노래 등록하기
     </button>
@@ -29,13 +29,10 @@ export default {
   },
 
   methods: {
-    saveNote(payload) {
+    searchSong(payload) {
       axios.defaults.withCredentials = true;
       axios.post('http://localhost:8080/api/notes', payload)
       .then(response => {
-        // const noteId = response.data;
-        // `'/note/${noteId}` 경로가 아닌 noteId 를 가지고 노래 검색 폼으로 이동해야한다.
-        // this.$router.push(`/note/${noteId}`);
         const noteId = response.data;
         this.$store.commit('saveNoteId', noteId);
         this.$router.push(`/song/search`);
