@@ -7,6 +7,8 @@ const store = createStore({
       sessionId: null,
       nickname: null,
       profileImageUrl: null,
+      saveNoteId: 0,
+      updateNoteId: 0,
     }
   },
 
@@ -16,6 +18,15 @@ const store = createStore({
       state.nickname = userinfo.nickname;
       state.profileImageUrl = userinfo.profileImageUrl;
     },
+
+    saveNoteId(state, saveNoteId) {
+      state.saveNoteId = saveNoteId;
+    },
+
+    updateNoteId(state, updateNoteId) {
+      state.updateNoteId = updateNoteId;
+    }
+
   },
 
   actions: {

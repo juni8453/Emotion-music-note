@@ -1,43 +1,45 @@
 <template>
-  <div class="note-save-box">
+  <div class="note-update-box">
     <div class="note-input">
-      <input v-model="emotion" type="text" class="form-control" placeholder="오늘의 기분을 적어주세요.">
+      <input v-model="emotion" type="text" class="form-control" placeholder="수정할 기분을 적어주세요.">
       <label class="label-font mt-1 mb-3">예) 행복, 슬픔 ...</label>
     </div>
     <textarea v-model="content" class="form-control mb-4" rows="20"
-              placeholder="일기 내용을 적어주세요."></textarea>
+              placeholder="수정할 내용을 적어주세요."></textarea>
   </div>
-  <div class="note-save-button-box">
-    <button @click="searchSong({emotion, content})"
-            class="note-save-button">
-      <font-awesome-icon icon="pen-to-square"/> 노래 등록하기
+  <div class="note-update-button-box">
+    <button @click="updateNote({emotion, content})"
+            class="note-update-button">
+      <font-awesome-icon icon="pen-to-square"/>
+      일기 수정하기
     </button>
   </div>
-
 </template>
 
 <script>
-import axios from 'axios'
+import axios from 'axios';
 
 export default {
-  name: "SaveNote",
+  name: "NoteUpdate",
   data() {
     return {
+      noteId: 0,
       emotion: '',
       content: '',
     }
   },
 
-  methods: {
-    searchSong(payload) {
-      axios.defaults.withCredentials = true;
-      axios.post('http://localhost:8080/api/notes', payload)
-      .then(response => {
-        const noteId = response.data;
-        this.$store.commit('saveNoteId', noteId);
-        this.$router.push(`/song/save/search`);
+  created() {
+    this.noteId = this.$route.params.noteId;
+  },
 
-      }).catch((error) => {
+  methods: {
+    updateNote(payload) {
+      axios.defaults.withCredentials = true;
+      axios.put(`http://localhost:8080/api/notes/${this.noteId}`, payload)
+      .then(() => {
+        this.$router.push(`/note/detail/${this.noteId}`);
+      }).catch(error => {
         const errorStatus = error.response.status;
 
         if (errorStatus === 401) {
@@ -60,14 +62,13 @@ export default {
           }
         }
       })
-    },
-
-  },
+    }
+  }
 }
 </script>
 
 <style scoped>
-.note-save-box {
+.note-update-box {
   display: flex;
   flex-direction: column;
 }
@@ -81,11 +82,11 @@ export default {
   font-size: 14px;
 }
 
-.note-save-button-box {
+.note-update-button-box {
   text-align: right;
 }
 
-.note-save-button {
+.note-update-button {
   background-color: royalblue;
   color: white;
   border: none;
@@ -98,8 +99,7 @@ export default {
   text-align: center;
 }
 
-.note-save-button:hover {
+.note-update-button:hover {
   background-color: #ef4a4a;
 }
-
 </style>

@@ -2,10 +2,13 @@ import {createRouter, createWebHistory} from "vue-router";
 import UserLogin from "@/components/UserLogin";
 import KakaoJoin from "@/components/KakaoJoin";
 import HomePage from "@/components/HomePage";
+import SearchSaveSong from "@/components/SearchSaveSong";
 import SaveNote from "@/components/SaveNote";
 import NoteDetail from "@/components/NoteDetail";
-import axios from 'axios';
 import NoteList from "@/components/NoteList";
+import NoteUpdate from "@/components/NoteUpdate";
+import axios from 'axios';
+import SearchUpdateSong from "@/components/SearchUpdateSong";
 
 const routes = [
   {
@@ -26,13 +29,25 @@ const routes = [
     component: NoteList,
   },
   {
-    path: "/note/:noteId",
+    path: "/note/detail/:noteId",
     component: NoteDetail,
+  },
+  {
+    path: '/note/update/:noteId',
+    component: NoteUpdate,
   },
   {
     path: '/note/new',
     component: SaveNote,
-  }
+  },
+  {
+    path: '/song/save/search',
+    component: SearchSaveSong,
+  },
+  {
+    path: '/song/update/search',
+    component: SearchUpdateSong,
+  },
 ];
 
 const router = createRouter({
