@@ -2,6 +2,7 @@ package com.emotionmusicnote.song.controller;
 
 import com.emotionmusicnote.common.PageRequest;
 import com.emotionmusicnote.song.controller.request.SongSaveRequest;
+import com.emotionmusicnote.song.controller.request.SongUpdateRequest;
 import com.emotionmusicnote.song.controller.response.SongMultiSearchResponse;
 import com.emotionmusicnote.song.service.SongService;
 import java.net.URI;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -38,5 +40,13 @@ public class SongApiController {
     URI location = URI.create("api/songs/" + saveSongId);
 
     return ResponseEntity.created(location).body(saveSongId);
+  }
+
+  @PutMapping("/api/songs/{noteId}")
+  public void updateSong(
+      @RequestBody SongUpdateRequest request,
+      @PathVariable Long noteId) {
+
+    songService.updateSongMyNote(noteId, request);
   }
 }

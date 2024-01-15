@@ -5,10 +5,12 @@ import com.emotionmusicnote.common.exception.NotFoundNoteException;
 import com.emotionmusicnote.note.domain.Note;
 import com.emotionmusicnote.note.domain.NoteRepository;
 import com.emotionmusicnote.song.controller.request.SongSaveRequest;
+import com.emotionmusicnote.song.controller.request.SongUpdateRequest;
 import com.emotionmusicnote.song.controller.response.SongMultiSearchResponse;
+import com.emotionmusicnote.song.controller.response.SongSingleSearchResponse;
 import com.emotionmusicnote.song.domain.Song;
 import com.emotionmusicnote.song.domain.SongRepository;
-import com.emotionmusicnote.song.controller.response.SongSingleSearchResponse;
+import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -92,5 +94,18 @@ public class SongService {
     saveSong.addNote(findNote);
 
     return saveSong.getId();
+  }
+
+  @Transactional
+  public void updateSongMyNote(Long noteId, SongUpdateRequest request) {
+    Song findSong = songRepository.findByNoteId(noteId)
+        .orElseThrow(NotFoundNoteException::new);
+
+    String artistName = request.getArtistName();
+    String albumName = request.getAlbumName();
+    String title = request.getTitle();
+    String imageUrl = request.getImageUrl();
+
+    findSong.updateSong(artistName, albumName, title, imageUrl);
   }
 }
