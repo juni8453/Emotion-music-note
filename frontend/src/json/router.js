@@ -2,12 +2,13 @@ import {createRouter, createWebHistory} from "vue-router";
 import UserLogin from "@/components/UserLogin";
 import KakaoJoin from "@/components/KakaoJoin";
 import HomePage from "@/components/HomePage";
-import SearchSong from "@/components/SearchSong";
+import SearchSaveSong from "@/components/SearchSaveSong";
 import SaveNote from "@/components/SaveNote";
 import NoteDetail from "@/components/NoteDetail";
 import NoteList from "@/components/NoteList";
 import NoteUpdate from "@/components/NoteUpdate";
 import axios from 'axios';
+import SearchUpdateSong from "@/components/SearchUpdateSong";
 
 const routes = [
   {
@@ -40,8 +41,12 @@ const routes = [
     component: SaveNote,
   },
   {
-    path: '/song/search',
-    component: SearchSong,
+    path: '/song/save/search',
+    component: SearchSaveSong,
+  },
+  {
+    path: '/song/update/search',
+    component: SearchUpdateSong,
   },
 ];
 
