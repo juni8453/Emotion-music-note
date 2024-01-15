@@ -64,7 +64,11 @@ public class NoteService {
     Note findNote = noteRepository.findById(noteId, loginUserId)
         .orElseThrow(NotFoundNoteException::new);
 
+    Song findSong = songRepository.findByNoteId(noteId)
+        .orElseThrow(NotFoundNoteException::new);
+
     noteRepository.delete(findNote);
+    songRepository.delete(findSong);
   }
 
   @Transactional(readOnly = true)
