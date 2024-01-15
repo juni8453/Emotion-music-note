@@ -35,7 +35,7 @@ export default {
       .then(response => {
         const noteId = response.data;
         this.$store.commit('saveNoteId', noteId);
-        this.$router.push(`/song/search`);
+        this.$router.push(`/song/save/search`);
 
       }).catch((error) => {
         const errorStatus = error.response.status;

@@ -39,7 +39,7 @@
 import axios from 'axios';
 
 export default {
-  name: "SearchSong",
+  name: "SearchSaveSong",
   data() {
     return {
       songs: [],
