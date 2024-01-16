@@ -9,6 +9,7 @@ import NoteList from "@/components/NoteList";
 import NoteUpdate from "@/components/NoteUpdate";
 import axios from 'axios';
 import SearchUpdateSong from "@/components/SearchUpdateSong";
+import KakaoOut from "@/components/KakaoOut";
 
 const routes = [
   {
@@ -18,6 +19,10 @@ const routes = [
   {
     path: '/login',
     component: UserLogin,
+  },
+  {
+    path: '/logout',
+    component: KakaoOut,
   },
   {
     // kakao redirect uri (인가 코드 받는 즉시 컴포넌트 생성)

@@ -14,6 +14,7 @@
           </router-link>
         </button>
       </div>
+
       <div v-else-if="$store.state.sessionId !== null">
         <button class="nav-button">
           <img class="profile-img" :src="$store.state.profileImageUrl" alt="profile Url">
@@ -50,12 +51,16 @@
 <script>
 export default {
   name: "MainContainer",
+
   methods: {
     logout() {
-      localStorage.removeItem('vuex');
-      window.location.href = '/';
+      const clientId = this.$store.state.clientId;
+      const logoutRedirectUri = this.$store.state.logoutRedirectUri;
+
+      alert('다른 사용자의 접근을 막기 위해 공공장소에서는 카카오계정과 함께 로그아웃하여 개인정보를 보호하세요.');
+      window.location.href = `https://kauth.kakao.com/oauth/logout?client_id=${clientId}&logout_redirect_uri=${logoutRedirectUri}`;
     }
-  },
+  }
 }
 </script>
 
