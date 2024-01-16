@@ -4,6 +4,9 @@ import createPersistedState from 'vuex-persistedstate';
 const store = createStore({
   state() {
     return {
+      clientId: process.env.VUE_APP_CLIENT_ID,
+      redirectUri: process.env.VUE_APP_REDIRECT_URI,
+      logoutRedirectUri: process.env.VUE_APP_LOGOUT_REDIRECT_URI,
       sessionId: null,
       nickname: null,
       profileImageUrl: null,

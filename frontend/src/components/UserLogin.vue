@@ -12,14 +12,15 @@ export default {
   data() {
     return {
       code: '',
-      client_id: 'fe5038ec11bee454a846309f8fb8d1ad',
-      redirect_uri: 'http://localhost:8081/oauth/kakao',
     }
   },
 
   methods: {
     kakaoLogin() {
-      window.location.href = `https://kauth.kakao.com/oauth/authorize?client_id=${this.client_id}&redirect_uri=${this.redirect_uri}&response_type=code`;
+      const clientId = this.$store.state.clientId;
+      const redirectUri = this.$store.state.redirectUri;
+
+      window.location.href = `https://kauth.kakao.com/oauth/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code`;
     }
   },
 
