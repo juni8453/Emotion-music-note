@@ -51,11 +51,14 @@ export default {
 
   methods: {
     logout() {
-      const clientId = this.$store.state.clientId;
-      const logoutRedirectUri = this.$store.state.logoutRedirectUri;
+      const result = window.confirm('정말 로그아웃 하시겠습니까 ?');
+      if (result) {
+        const clientId = this.$store.state.clientId;
+        const logoutRedirectUri = this.$store.state.logoutRedirectUri;
 
-      alert('다른 사용자의 접근을 막기 위해 공공장소에서는 카카오계정과 함께 로그아웃하여 개인정보를 보호하세요.');
-      window.location.href = `https://kauth.kakao.com/oauth/logout?client_id=${clientId}&logout_redirect_uri=${logoutRedirectUri}`;
+        alert('다른 사용자의 접근을 막기 위해 공공장소에서는 카카오계정과 함께 로그아웃하여 개인정보를 보호하세요.');
+        window.location.href = `https://kauth.kakao.com/oauth/logout?client_id=${clientId}&logout_redirect_uri=${logoutRedirectUri}`;
+      }
     }
   }
 }
