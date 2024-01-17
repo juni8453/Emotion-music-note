@@ -1,26 +1,22 @@
 <template>
-  <div class="note-save-box">
-    <div class="note-input">
-      <input v-model="emotion" type="text" class="form-control" placeholder="오늘의 기분을 적어주세요.">
-      <label class="label-font mt-1 mb-3">예) 행복, 슬픔 ...</label>
-    </div>
-    <textarea v-model="content" class="form-control mb-4" rows="20"
-              placeholder="일기 내용을 적어주세요."></textarea>
-  </div>
-  <div class="note-save-button-box">
-    <button @click="searchSong({emotion, content})"
-            class="note-save-button">
-      <font-awesome-icon icon="pen-to-square"/> 노래 등록하기
+  <!-- form-control, mb-1, mb-4 는 bootstrap -->
+  <div class="save-note-body">
+    <input class="form-control mb-1" v-model="emotion" type="text" placeholder="오늘의 기분을 적어주세요.">
+    <label class="save-note-label">예) 행복, 슬픔 등 자유롭게 감정을 적어주세요.</label>
+    <textarea class="form-control mb-4" rows="20" placeholder="일기 내용을 적어주세요."></textarea>
+    <button class="royalblue-button" @click="searchSong({emotion, content})">
+      <font-awesome-icon icon="pen-to-square" /> 노래 등록
     </button>
   </div>
-
 </template>
 
 <script>
 import axios from 'axios'
+import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 
 export default {
   name: "SaveNote",
+  components: {FontAwesomeIcon},
   data() {
     return {
       emotion: '',
@@ -67,39 +63,18 @@ export default {
 </script>
 
 <style scoped>
-.note-save-box {
+@import '../assets/CommonStyle.css';
+
+.save-note-body {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  align-items: end;
 }
 
-.note-input {
-  text-align: right;
-}
-
-.label-font {
+.save-note-label {
   font-family: 'Jeju Gothic', serif;
   font-size: 14px;
+  margin-bottom: 20px;
 }
-
-.note-save-button-box {
-  text-align: right;
-}
-
-.note-save-button {
-  background-color: royalblue;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  font-weight: bolder;
-  cursor: pointer;
-  height: 45px;
-  width: 20%;
-  margin: 10px;
-  text-align: center;
-}
-
-.note-save-button:hover {
-  background-color: #ef4a4a;
-}
-
 </style>
