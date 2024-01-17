@@ -1,31 +1,27 @@
 <template>
-  <div class="body" v-for="(note, noteId) in notes" :key="noteId">
-    <div class="card">
-      <div class="card-body" @click="readNote(note.id)">
-        <h5 class="card-header-description">{{ `작성일 ${note.createAt}` }}</h5>
-        <h5 class="card-header-description">{{ `수정일 ${note.modifiedAt}` }}</h5>
-        <div class="card-button-box">
-          <button class="card-button" style="margin: 5px" @click="clickUpdate($event, note.id)">
-            <!-- 이벤트 버블링 방지 -->
-            <font-awesome-icon icon="pen-to-square"/>
-            수정
-          </button>
-          <button class="card-button" style="margin: 5px" @click="clickDelete($event, note.id)">
-            <font-awesome-icon icon="trash-can"/>
-            삭제
-          </button>
-        </div>
-        <p class="card-text">{{ truncateNoteContent(note.content) }}</p>
-      </div>
+
+  <div class="note-list-body" v-for="(note, noteId) in notes" :key="noteId" @click="readNote(note.id)">
+    <p class="description-content" style="text-align: right; margin-bottom: 0">{{ `작성일 ${note.createAt}` }}</p>
+    <p class="description-content" style="text-align: right; margin-bottom: 0">{{ `수정일 ${note.modifiedAt}` }}</p>
+
+    <div class="note-list-body-button-box">
+      <button class="royalblue-button" style="width: 12%; margin-right: 10px" @click="clickUpdate($event, note.id)">
+        <font-awesome-icon icon="pen-to-square"/> 수정
+      </button>
+      <button class="royalblue-button" style="width: 12%" @click="clickDelete($event, note.id)">
+        <font-awesome-icon icon="trash-can"/> 삭제
+      </button>
     </div>
+
+    <p class="description-content">{{ truncateNoteContent(note.content) }}</p>
+    <hr />
   </div>
+
   <div class="pagination-body">
     <button class="pagination-button" @click="readPrevPage">
-      <font-awesome-icon icon="fa-solid fa-arrow-left"/>
-      이전 페이지
+      <font-awesome-icon icon="fa-solid fa-arrow-left"/> 이전 페이지
     </button>
-    <button class="pagination-button" @click="readNextPage">
-      다음 페이지
+    <button class="pagination-button" @click="readNextPage"> 다음 페이지
       <font-awesome-icon icon="fa-solid fa-arrow-right"/>
     </button>
   </div>
@@ -33,9 +29,11 @@
 
 <script>
 import axios from 'axios';
+import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 
 export default {
   name: "NoteList",
+  components: {FontAwesomeIcon},
   data() {
     return {
       notes: [],
@@ -137,55 +135,20 @@ export default {
 </script>
 
 <style scoped>
-.body {
-  height: auto;
-  max-width: 100%;
-  background-position: center;
-  background-size: cover;
-  margin: 20px;
-}
+@import '../assets/CommonStyle.css';
 
-.card-header-description {
-  font-size: 14px;
-  color: grey;
-  text-align: right;
-  margin-bottom: 10px;
-}
-
-.card-button-box {
+.note-list-body {
   display: flex;
-  justify-content: flex-end;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 10px;
+  margin-bottom: 20px;
 }
 
-.card-button {
-  background-color: royalblue;
-  color: white;
-  border: black;
-  border-radius: 4px;
-  cursor: pointer;
-  height: 25px;
-  width: 10%;
-  text-align: center;
-}
-
-.card-button:hover {
-  background-color: #ef4a4a;
-}
-
-.pagination-body {
+.note-list-body-button-box {
   display: flex;
-  justify-content: center;
-}
-
-.pagination-button {
-  background-color: royalblue;
-  color: white;
-  border: none;
-  margin: 5px;
-  border-radius: 4px;
-}
-
-.pagination-button:hover {
-  background-color: #ef4a4a;
+  justify-content: end;
+  margin-top: 10px;
+  margin-bottom: 20px;
 }
 </style>
