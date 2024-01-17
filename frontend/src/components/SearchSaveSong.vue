@@ -1,36 +1,35 @@
 <template>
-  <div class="body">
-    <h5 class="search-title">노래를 검색 후 등록하세요.</h5>
-    <p class="search-description">Spotify Search API 를 사용합니다.</p>
-    <p class="search-description">원하는 노래가 없거나 결과가 만족스럽지 않다면, 영어로 검색해보세요 🙇‍</p>
-    <div style="margin-top: 30px">
-      <input v-model="searchKeyword" type="text" class="search-input" placeholder="검색어를 입력하세요.">
-      <button @click="selectSong" class="search-button">Search</button>
+  <div class="search-song-body">
+    <p class="description-content">노래를 검색 후 등록하세요.</p>
+    <p class="description-content">Spotify Search API 를 사용합니다.</p>
+    <p class="description-content">원하는 노래가 없거나 결과가 만족스럽지 않다면, 영어로 검색해보세요 🙇‍</p>
+    <div>
+      <input class="search-song-input" v-model="searchKeyword" type="text" placeholder="검색어를 입력하세요.">
+      <button class="search-song-button" @click="selectSong">Search</button>
     </div>
   </div>
 
-  <div class="body" v-if="this.songs.length !== 0">
-    <div class="search-attributes">
-      <p class="search-description">아티스트</p>
-      <p class="search-description">제목</p>
-      <p class="search-description">앨범명</p>
-      <p class="search-description">앨범 이미지</p>
-    </div>
-    <div @click="saveSong(song)" class="search-result" v-for="(song, i) in songs" :key="i">
-      <p class="search-description">{{ song.artistName }}</p>
-      <p class="search-description">{{ song.title }}</p>
-      <p class="search-description"> {{ song.albumName }}</p>
-      <div class="song-image" :style="{ backgroundImage: `url(${song.imageUrl})` }"></div>
-    </div>
+  <div class="search-song-result-attributes" v-if="this.songs.length !== 0">
+    <p class="description-content">아티스트</p>
+    <p class="description-content">제목</p>
+    <p class="description-content">앨범명</p>
+    <p class="description-content">앨범 이미지</p>
+  </div>
 
-    <div class="pagination-body">
-      <button class="pagination-button" @click="readPrevPage">
-        <font-awesome-icon icon="fa-solid fa-arrow-left"/>
-      </button>
-      <button class="pagination-button" @click="readNextPage">
-        <font-awesome-icon icon="fa-solid fa-arrow-right"/>
-      </button>
-    </div>
+  <div class="search-song-result-body" style="margin-bottom: 10px" v-for="(song, i) in songs" :key="i" @click="saveSong(song)">
+    <p class="description-content">{{ song.artistName }}</p>
+    <p class="description-content">{{ song.title }}</p>
+    <p class="description-content">{{ song.albumName }}</p>
+    <div class="song-image" :style="{ backgroundImage: `url(${song.imageUrl})` }"></div>
+  </div>
+
+  <div class="pagination-body" v-if="this.songs.length !== 0">
+    <button class="pagination-button" @click="readPrevPage">
+      <font-awesome-icon icon="fa-solid fa-arrow-left"/> 이전 페이지
+    </button>
+    <button class="pagination-button" @click="readNextPage">
+      <font-awesome-icon icon="fa-solid fa-arrow-right"/> 다음 페이지
+    </button>
   </div>
 
 </template>
@@ -128,86 +127,57 @@ export default {
 </script>
 
 <style scoped>
-.body {
-  height: auto;
-  max-width: 100%;
-  background-position: center;
-  background-size: cover;
-  margin: 20px;
-}
+@import '../assets/CommonStyle.css';
 
-.search-title {
-  font-size: 15px;
-  color: grey;
+.search-song-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 20px;
 }
 
-.search-description {
-  font-size: 14px;
-  color: grey;
-  text-align: left;
-  margin-bottom: 10px;
-}
-
-.search-input {
-  width: 300px;
-  padding: 12px;
-  font-size: 16px;
-  margin-right: 10px;
+.search-song-input {
   border: 1px solid #ddd;
   border-radius: 20px;
+  font-size: 16px;
+  width: 300px;
+  padding: 12px;
+  margin-right: 10px;
   outline: none;
 }
 
-.search-button {
-  padding: 12px 24px;
-  font-size: 16px;
-  background-color: #4CAF50;
+.search-song-button {
   color: #ffffff;
+  background-color: #4CAF50;
   border: none;
   border-radius: 20px;
+  font-size: 16px;
+  padding: 12px 24px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
-.search-button:hover {
+.search-song-button:hover {
   background-color: #45a049;
 }
 
-.search-attributes {
+.search-song-result-attributes {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px;
 }
 
-.search-result {
+.search-song-result-body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px;
+  padding: 5px;
 }
 
-.search-result:hover {
+.search-song-result-body:hover {
   background-color: #ec9d9d;
   border-radius: 8px;
-}
-
-.pagination-body {
-  display: flex;
-  justify-content: center;
-}
-
-.pagination-button {
-  background-color: royalblue;
-  color: white;
-  border: none;
-  margin: 5px;
-  border-radius: 4px;
-}
-
-.pagination-button:hover {
-  background-color: #ef4a4a;
 }
 
 </style>
