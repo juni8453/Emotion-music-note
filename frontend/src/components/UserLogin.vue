@@ -1,9 +1,11 @@
 <template>
-    <h3 class="login-name">Social Login</h3>
-    <hr class="login-divider">
-    <div class="kakao-login">
-      <img :src="require('../assets/kakao_login_medium_narrow.png' )" @click="kakaoLogin" alt="kakao login"/>
-    </div>
+  <div class="login-body">
+    <p class="description-title">Social Login</p>
+    <p class="description-content">로그인 후 일기를 작성해보세요.</p>
+    <p class="description-content">현재는 카카오 로그인만을 지원합니다.</p>
+    <p class="description-content">곧 다른 플랫폼 로그인을 업데이트 할 예정입니다 🙇‍</p>
+    <img :src="require('../assets/kakao_login_medium_narrow.png' )" @click="kakaoLogin" alt="kakao login"/>
+  </div>
 </template>
 
 <script>
@@ -28,19 +30,13 @@ export default {
 </script>
 
 <style scoped>
-.login-name {
-  margin-bottom: 10px;
-  color: #333;
-  text-align: center;
-}
+@import '../assets/CommonStyle.css';
 
-.login-divider {
-  border: 1px solid #ccc;
-  margin-bottom: 20px; /* 연한 줄 위아래 여백 조절 가능 */
-}
-
-.kakao-login {
-  text-align: center;
+.login-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 }
 
 </style>
