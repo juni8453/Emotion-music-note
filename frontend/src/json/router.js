@@ -3,7 +3,7 @@ import UserLogin from "@/components/UserLogin";
 import KakaoJoin from "@/components/KakaoJoin";
 import HomePage from "@/components/HomePage";
 import SearchSaveSong from "@/components/SearchSaveSong";
-import SaveNote from "@/components/SaveNote";
+import NoteSave from "@/components/NoteSave";
 import NoteDetail from "@/components/NoteDetail";
 import NoteList from "@/components/NoteList";
 import NoteUpdate from "@/components/NoteUpdate";
@@ -43,7 +43,7 @@ const routes = [
   },
   {
     path: '/note/new',
-    component: SaveNote,
+    component: NoteSave,
   },
   {
     path: '/song/save/search',
