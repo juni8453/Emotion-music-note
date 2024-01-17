@@ -35,3 +35,13 @@
   text-decoration: none;
   color: black;
 }
+
+.description-title {
+  font-size: 20px;
+  color: black;
+}
+
+.description-content {
+  font-size: 14px;
+  color: gray;
+}
