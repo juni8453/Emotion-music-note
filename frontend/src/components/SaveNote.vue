@@ -3,7 +3,7 @@
   <div class="save-note-body">
     <input class="form-control mb-1" v-model="emotion" type="text" placeholder="오늘의 기분을 적어주세요.">
     <label class="save-note-label">예) 행복, 슬픔 등 자유롭게 감정을 적어주세요.</label>
-    <textarea class="form-control mb-4" rows="20" placeholder="일기 내용을 적어주세요."></textarea>
+    <textarea class="form-control mb-4" v-model="content" rows="20" placeholder="일기 내용을 적어주세요."></textarea>
     <button class="royalblue-button" @click="searchSong({emotion, content})">
       <font-awesome-icon icon="pen-to-square" /> 노래 등록
     </button>
