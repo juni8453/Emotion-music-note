@@ -98,12 +98,13 @@ export default {
 
       axios.defaults.withCredentials = true;
       axios.post(`http://localhost:8080/api/songs/${saveNoteId}`, payload)
-      .then(response => {
-        console.log(response.data);
-        alert(`해당 노래를 등록하시겠습니까 ?`);
-        this.$router.push(`/note/detail/${saveNoteId}`);
-        this.$store.state.saveNoteId = 0;
-
+      .then(() => {
+        const result = window.confirm('해당 노래로 등록하시겠습니까 ?')
+        if (result) {
+          alert(`해당 노래를 등록하시겠습니까 ?`);
+          this.$router.push(`/note/detail/${saveNoteId}`);
+          this.$store.state.saveNoteId = 0;
+        }
       }).catch(error => {
         const errorStatus = error.response.status;
         if (errorStatus === 400) {
