@@ -1,7 +1,9 @@
 package com.emotionmusicnote.note.domain;
 
 import com.emotionmusicnote.common.BaseTime;
+import com.emotionmusicnote.song.domain.Song;
 import com.emotionmusicnote.user.domain.User;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -11,6 +13,9 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import java.util.ArrayList;
+import java.util.List;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -35,6 +40,9 @@ public class Note extends BaseTime {
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "user_id")
   private User user;
+
+  @OneToMany(mappedBy = "note", cascade = CascadeType.REMOVE)
+  List<Song> songs = new ArrayList<>();
 
   @Builder
   public Note(String emotion, String content) {

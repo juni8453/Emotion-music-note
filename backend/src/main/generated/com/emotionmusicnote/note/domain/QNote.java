@@ -36,6 +36,8 @@ public class QNote extends EntityPathBase<Note> {
     //inherited
     public final DateTimePath<java.time.LocalDateTime> modifiedDate = _super.modifiedDate;
 
+    public final ListPath<com.emotionmusicnote.song.domain.Song, com.emotionmusicnote.song.domain.QSong> songs = this.<com.emotionmusicnote.song.domain.Song, com.emotionmusicnote.song.domain.QSong>createList("songs", com.emotionmusicnote.song.domain.Song.class, com.emotionmusicnote.song.domain.QSong.class, PathInits.DIRECT2);
+
     public final com.emotionmusicnote.user.domain.QUser user;
 
     public QNote(String variable) {
