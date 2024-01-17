@@ -1,17 +1,11 @@
 <template>
-  <div class="note-update-box">
-    <div class="note-input">
-      <input v-model="emotion" type="text" class="form-control" placeholder="수정할 기분을 적어주세요.">
-      <label class="label-font mt-1 mb-3">예) 행복, 슬픔 ...</label>
-    </div>
-    <textarea v-model="content" class="form-control mb-4" rows="20"
-              placeholder="수정할 내용을 적어주세요."></textarea>
-  </div>
-  <div class="note-update-button-box">
-    <button @click="updateNote({emotion, content})"
-            class="note-update-button">
-      <font-awesome-icon icon="pen-to-square"/>
-      일기 수정하기
+  <!-- form-control, mb-1, mb-4 는 bootstrap -->
+  <div class="note-update-body">
+    <input class="form-control mb-1" v-model="emotion" type="text" placeholder="수정할 기분을 적어주세요.">
+    <label class="note-update-label">예) 행복, 슬픔 등 자유롭게 감정을 적어주세요.</label>
+    <textarea class="form-control mb-4" v-model="content" rows="20" placeholder="수정할 내용을 적어주세요."></textarea>
+    <button class="royalblue-button" @click="updateNote({emotion, content})">
+      <font-awesome-icon icon="pen-to-square" /> 수정 완료
     </button>
   </div>
 </template>
@@ -68,38 +62,16 @@ export default {
 </script>
 
 <style scoped>
-.note-update-box {
+.note-update-body {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  align-items: end;
 }
 
-.note-input {
-  text-align: right;
-}
-
-.label-font {
+.note-update-label {
   font-family: 'Jeju Gothic', serif;
   font-size: 14px;
-}
-
-.note-update-button-box {
-  text-align: right;
-}
-
-.note-update-button {
-  background-color: royalblue;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  font-weight: bolder;
-  cursor: pointer;
-  height: 45px;
-  width: 20%;
-  margin: 10px;
-  text-align: center;
-}
-
-.note-update-button:hover {
-  background-color: #ef4a4a;
+  margin-bottom: 20px;
 }
 </style>

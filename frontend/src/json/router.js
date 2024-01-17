@@ -3,12 +3,13 @@ import UserLogin from "@/components/UserLogin";
 import KakaoJoin from "@/components/KakaoJoin";
 import HomePage from "@/components/HomePage";
 import SearchSaveSong from "@/components/SearchSaveSong";
-import SaveNote from "@/components/SaveNote";
+import NoteSave from "@/components/NoteSave";
 import NoteDetail from "@/components/NoteDetail";
 import NoteList from "@/components/NoteList";
 import NoteUpdate from "@/components/NoteUpdate";
 import axios from 'axios';
 import SearchUpdateSong from "@/components/SearchUpdateSong";
+import KakaoOut from "@/components/KakaoOut";
 
 const routes = [
   {
@@ -18,6 +19,10 @@ const routes = [
   {
     path: '/login',
     component: UserLogin,
+  },
+  {
+    path: '/logout',
+    component: KakaoOut,
   },
   {
     // kakao redirect uri (인가 코드 받는 즉시 컴포넌트 생성)
@@ -38,7 +43,7 @@ const routes = [
   },
   {
     path: '/note/new',
-    component: SaveNote,
+    component: NoteSave,
   },
   {
     path: '/song/save/search',
