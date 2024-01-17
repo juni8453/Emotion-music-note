@@ -1,33 +1,27 @@
 <template>
-  <div class="body">
-    <p class="note-description">{{ `작성 일자 [${note.createAt}]` }}</p>
-    <p class="note-description">{{ `수정 일자 [${note.modifiedAt}]` }}</p>
-    <p class="note-description">{{ `이날의 감정 [${note.emotion}]` }}</p>
-    <p class="note-content">일기 내용</p>
-    <p class="note-content-font"><strong>{{ note.content }}</strong></p>
+  <div class="note-detail-body">
+    <p class="description-content" style="text-align: right">{{ `작성 일자 [${note.createAt}]` }}</p>
+    <p class="description-content" style="text-align: right">{{ `수정 일자 [${note.modifiedAt}]` }}</p>
+    <p class="description-content" style="text-align: right">{{ `이날의 감정 [${note.emotion}]` }}</p>
+    <p class="description-content">일기 내용</p>
+    <p class="note-detail-content-font"><strong>{{ note.content }}</strong></p>
+  </div>
 
-    <div class="body">
-        <div class="note-content-box">
-        <p class="note-content">오늘의 노래</p>
-        <button class="note-content-button" style="margin: 5px" @click="clickUpdateSong(note.id)">
-          <font-awesome-icon icon="pen-to-square" /> 수정
-        </button>
-      </div>
-      <div class="song">
-        <div class="song-image" :style="{ backgroundImage: `url(${note.songSavedInNoteResponse?.imageUrl})` }"></div>
-        <div class="song-description">
-          <p>가수</p>
-          <p>{{ note.songSavedInNoteResponse?.artistName }}</p>
-        </div>
-        <div class="song-description">
-          <p>제목</p>
-          <p>{{ note.songSavedInNoteResponse?.title }}</p>
-        </div>
-        <div class="song-description">
-          <p>앨범</p>
-          <p>{{ note.songSavedInNoteResponse?.albumName }}</p>
-        </div>
-      </div>
+  <p class="description-content" style="margin-bottom: 20px">오늘의 노래</p>
+
+  <div class="note-detail-song-body" @click="clickUpdateSong(note.id)">
+    <div class="note-detail-song-image" :style="{ backgroundImage: `url(${note.songSavedInNoteResponse?.imageUrl})` }"></div>
+    <div class="note-detail-song-attributes">
+      <p class="description-content">가수</p>
+      <p class="description-content">{{ note.songSavedInNoteResponse?.artistName }}</p>
+    </div>
+    <div class="note-detail-song-attributes">
+      <p class="description-content">제목</p>
+      <p class="description-content">{{ note.songSavedInNoteResponse?.title }}</p>
+    </div>
+    <div class="note-detail-song-attributes">
+      <p class="description-content">앨범</p>
+      <p class="description-content">{{ note.songSavedInNoteResponse?.albumName }}</p>
     </div>
   </div>
 
@@ -73,68 +67,45 @@ export default {
     },
 
     clickUpdateSong(noteId) {
-      this.$store.commit('updateNoteId', noteId);
-      this.$router.push('/song/update/search');
+      const result = window.confirm('노래를 수정하시겠습니까 ?')
+      if (result) {
+        this.$store.commit('updateNoteId', noteId);
+        this.$router.push('/song/update/search');
+      }
     }
   }
 }
 </script>
 
 <style>
-.body {
-  height: auto;
-  max-width: 100%;
-  background-position: center;
-  background-size: cover;
-  margin: 20px;
-}
-
-.note-description {
-  font-size: 14px;
-  color: grey;
-  text-align: right;
-  margin-bottom: 10px;
-}
-
-.note-content-box {
+.note-detail-body {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  align-items: center;
-  height: auto;
-  margin-top: 50px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
-.note-content {
-  font-size: 14px;
-  color: grey;
-}
-
-.note-content-button {
-  background-color: royalblue;
-  color: white;
-  border: black;
-  border-radius: 4px;
-  cursor: pointer;
-  height: 25px;
-  width: 10%;
-  text-align: center;
-}
-
-.note-content-font {
+.note-detail-content-font {
   font-family: "Shree Devanagari 714", serif;
   font-size: 14px;
 }
 
-.song {
+.note-detail-song-body {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
-  padding: 12px;
+  border-radius: 6px;
   box-shadow: 0 0 1px rgba(0, 0, 0, 0.15), 0 15px 12px rgba(0, 0, 0, 0.15);
 }
 
-.song-image {
+.note-detail-song-attributes {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.note-detail-song-image {
   width: 100px;
   height: 100px;
   margin-bottom: 0;
@@ -142,12 +113,4 @@ export default {
   border-radius: 10%;
   float: left;
 }
-
-.song-description {
-  font-size: 14px;
-  color: grey;
-  text-align: center;
-  margin-bottom: 0;
-}
-
 </style>
