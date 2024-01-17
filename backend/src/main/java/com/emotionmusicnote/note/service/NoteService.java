@@ -10,12 +10,10 @@ import com.emotionmusicnote.note.controller.response.NoteWriterResponse;
 import com.emotionmusicnote.note.domain.Note;
 import com.emotionmusicnote.note.domain.NoteRepository;
 import com.emotionmusicnote.song.controller.response.SongSavedInNoteResponse;
-import com.emotionmusicnote.song.domain.Song;
 import com.emotionmusicnote.song.domain.SongRepository;
 import com.emotionmusicnote.user.domain.User;
 import jakarta.servlet.http.HttpSession;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -76,7 +74,14 @@ public class NoteService {
         .orElseThrow(NotFoundNoteException::new);
 
     NoteWriterResponse noteWriterResponse = createNoteWriterResponse(findNote.getUser());
-    SongSavedInNoteResponse songSavedInNoteResponse = createSongSavedInNoteResponse(noteId);
+    List<SongSavedInNoteResponse> songSavedInNoteResponses = findNote.getSongs().stream()
+        .map(findSong -> SongSavedInNoteResponse.builder()
+            .id(findSong.getId())
+            .artistName(findSong.getArtistName())
+            .title(findSong.getTitle())
+            .albumName(findSong.getAlbumName())
+            .imageUrl(findSong.getImageUrl())
+            .build()).toList();
 
     return NoteSingleReadResponse.builder()
         .id(findNote.getId())
@@ -85,7 +90,7 @@ public class NoteService {
         .createAt(findNote.getCreatedDate())
         .modifiedAt(findNote.getModifiedDate())
         .noteWriterResponse(noteWriterResponse)
-        .songSavedInNoteResponse(songSavedInNoteResponse)
+        .songSavedInNoteResponses(songSavedInNoteResponses)
         .build();
   }
 
@@ -96,25 +101,6 @@ public class NoteService {
         .provider(findUser.getOAuthProvider())
         .build();
   }
-
-  private SongSavedInNoteResponse createSongSavedInNoteResponse(Long noteId) {
-    Optional<Song> findSongByNoteId = songRepository.findByNoteId(noteId);
-
-    if (findSongByNoteId.isPresent()) {
-      Song findSong = findSongByNoteId.get();
-
-      return SongSavedInNoteResponse.builder()
-          .id(findSong.getId())
-          .artistName(findSong.getArtistName())
-          .title(findSong.getTitle())
-          .albumName(findSong.getAlbumName())
-          .imageUrl(findSong.getImageUrl())
-          .build();
-    }
-
-    return SongSavedInNoteResponse.builder().build(); // 노래가 없는 경우에 대한 기본 값 처리
-  }
-
 
   @Transactional(readOnly = true)
   public NoteMultiReadResponse readAll(PageRequest pageRequest, HttpSession session) {
