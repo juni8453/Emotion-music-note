@@ -10,7 +10,7 @@
   <p class="description-content" style="margin-bottom: 20px">오늘의 노래</p>
 
   <div class="note-detail-song-body" @click="clickUpdateSong(note.id)">
-    <div class="note-detail-song-image" :style="{ backgroundImage: `url(${note.songSavedInNoteResponse?.imageUrl})` }"></div>
+    <div class="song-image" :style="{ backgroundImage: `url(${note.songSavedInNoteResponse?.imageUrl})` }"></div>
     <div class="note-detail-song-attributes">
       <p class="description-content">가수</p>
       <p class="description-content">{{ note.songSavedInNoteResponse?.artistName }}</p>
@@ -78,6 +78,8 @@ export default {
 </script>
 
 <style>
+@import '../assets/CommonStyle.css';
+
 .note-detail-body {
   display: flex;
   flex-direction: column;
@@ -103,14 +105,5 @@ export default {
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-}
-
-.note-detail-song-image {
-  width: 100px;
-  height: 100px;
-  margin-bottom: 0;
-  background-size: 100%;
-  border-radius: 10%;
-  float: left;
 }
 </style>
