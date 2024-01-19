@@ -9,19 +9,19 @@
 
   <p class="description-content" style="margin-bottom: 20px">오늘의 노래</p>
 
-  <div class="note-detail-song-body" @click="clickUpdateSong(note.id)">
-    <div class="song-image" :style="{ backgroundImage: `url(${note.songSavedInNoteResponse?.imageUrl})` }"></div>
+  <div class="note-detail-song-body" v-for="(song, songId) in songs" :key="songId" @click="clickUpdateSong(note.id)">
+    <div class="song-image" :style="{ backgroundImage: `url(${song.imageUrl})` }"></div>
     <div class="note-detail-song-attributes">
       <p class="description-content">가수</p>
-      <p class="description-content">{{ note.songSavedInNoteResponse?.artistName }}</p>
+      <p class="description-content">{{ song.artistName }}</p>
     </div>
     <div class="note-detail-song-attributes">
       <p class="description-content">제목</p>
-      <p class="description-content">{{ note.songSavedInNoteResponse?.title }}</p>
+      <p class="description-content">{{ song.title }}</p>
     </div>
     <div class="note-detail-song-attributes">
       <p class="description-content">앨범</p>
-      <p class="description-content">{{ note.songSavedInNoteResponse?.albumName }}</p>
+      <p class="description-content">{{ song.albumName }}</p>
     </div>
   </div>
 
@@ -35,6 +35,7 @@ export default {
   data() {
     return {
       note: {},
+      songs: [],
     }
   },
 
@@ -48,8 +49,9 @@ export default {
       axios.defaults.withCredentials = true;
       axios.get(`http://localhost:8080/api/notes/${noteId}`)
       .then(response => {
-        console.log(response.data);
         this.note = response.data;
+        this.songs = response.data.songSavedInNoteResponses;
+
       }).catch(error => {
         const errorStatus = error.response.status;
 

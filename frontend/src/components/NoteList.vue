@@ -115,7 +115,6 @@ export default {
         axios.defaults.withCredentials = true;
         axios.delete(`http://localhost:8080/api/notes/${noteId}`)
         .then(() => {
-          alert('정말 삭제하시겠습니까?');
           window.location.href = '/notes';
         }).catch(error => {
           const errorStatus = error.response.status;

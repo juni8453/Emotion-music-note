@@ -97,12 +97,13 @@ export default {
 
       axios.defaults.withCredentials = true;
       axios.put(`http://localhost:8080/api/songs/${updateNoteId}`, payload)
-      .then(response => {
-        console.log(response.data);
-        alert(`해당 노래로 수정하시겠습니까 ?`);
-        this.$router.push(`/note/detail/${updateNoteId}`);
-        this.$store.state.updateNoteId = 0;
-
+      .then(() => {
+        const result = window.confirm('해당 노래로 수정하시겠습니까 ?')
+        if (result) {
+          alert(`해당 노래로 수정하시겠습니까 ?`);
+          this.$router.push(`/note/detail/${updateNoteId}`);
+          this.$store.state.updateNoteId = 0;
+        }
       }).catch(error => {
         const errorStatus = error.response.status;
         if (errorStatus === 400) {
