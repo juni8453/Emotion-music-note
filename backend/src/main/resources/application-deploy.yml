@@ -1,0 +1,54 @@
+server:
+  port: 8080
+  servlet:
+    session:
+      timeout: 3600
+      cookie:
+        name: JSESSIONID
+        domain: ${server_servelet_session_cookie_domin}
+        http-only: true
+        path: /
+
+
+spotify:
+  clientId: ${spotify_clientId}
+  clientSecret: ${spotify_clientSecret}
+
+oauth:
+  kakao:
+    grantType: authorization_code
+    clientId: ${oauth_kakao_clientId}
+    redirectUri: ${oauth_kakao_redirectUri}
+    tokenUri: ${oauth_kakao_tokenUri}
+    userInfoUri: ${oauth_kakao_userInfoUri}
+    logoutRedirectUri: ${oauth_kakao_logoutRedirectUri}
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: ${spring_datasource_url}
+    username: ${spring_datasource_username}
+    password: ${spring_datasource_password}
+    initialization-mode: always
+
+  jpa:
+    defer-datasource-initialization: true
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    open-in-view: false
+    hibernate:
+      ddl-auto: none
+
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+        default_batch_fetch_size: 100
+
+    sql:
+      init:
+        mode: always
+
+    logging:
+      level:
+        org.hibernate.sql: debug
+        org.hibernate.type.descriptor.sql: trace
