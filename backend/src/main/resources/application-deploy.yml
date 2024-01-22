@@ -18,10 +18,10 @@ oauth:
   kakao:
     grantType: authorization_code
     clientId: ${oauth_kakao_clientId}
-    redirectUri: ${oauth_kakao_redirectUri}
-    tokenUri: ${oauth_kakao_tokenUri}
-    userInfoUri: ${oauth_kakao_userInfoUri}
-    logoutRedirectUri: ${oauth_kakao_logoutRedirectUri}
+    redirectUri: http://3.38.153.192/oauth/kakao
+    tokenUri: https://kauth.kakao.com/oauth/token
+    userInfoUri: https://kapi.kakao.com/v2/user/me
+    logoutRedirectUri: http://3.38.153.192/logout
 
 spring:
   datasource:
