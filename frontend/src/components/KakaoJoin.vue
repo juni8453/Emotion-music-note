@@ -22,7 +22,7 @@ export default {
     // code 를 backend 로 넘긴다.
     sendCode() {
       axios.defaults.withCredentials = true;
-      axios.get('http://3.38.153.192//login/' + this.code)
+      axios.get('http://3.38.153.192/login/' + this.code)
         .then(response => {
           const userinfo = response.data;
           this.$store.commit('saveSignInUserInfo', userinfo);
@@ -30,6 +30,7 @@ export default {
 
         }).catch((e) => {
           console.log(`exception message : ${e}`)
+          console.log(`로그인 과정 중 오류`);
       })
     }
   }
