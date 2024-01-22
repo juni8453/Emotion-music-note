@@ -5,7 +5,7 @@ server:
       timeout: 3600
       cookie:
         name: JSESSIONID
-        domain: ${server_servelet_session_cookie_domin}
+        domain: 3.38.153.192
         http-only: true
         path: /
 
