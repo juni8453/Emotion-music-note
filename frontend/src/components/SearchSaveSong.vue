@@ -104,7 +104,6 @@ export default {
       .then(() => {
         const result = window.confirm('해당 노래로 등록하시겠습니까 ?')
         if (result) {
-          alert(`해당 노래를 등록하시겠습니까 ?`);
           this.$router.push(`/note/detail/${saveNoteId}`);
           this.$store.state.saveNoteId = 0;
         }

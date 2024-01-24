@@ -103,7 +103,6 @@ export default {
       .then(() => {
         const result = window.confirm('해당 노래로 수정하시겠습니까 ?')
         if (result) {
-          alert(`해당 노래로 수정하시겠습니까 ?`);
           this.$router.push(`/note/detail/${updateNoteId}`);
           this.$store.state.updateNoteId = 0;
         }
