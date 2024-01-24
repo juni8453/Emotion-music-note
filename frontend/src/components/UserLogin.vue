@@ -19,8 +19,8 @@ export default {
 
   methods: {
     kakaoLogin() {
-      const clientId = this.$store.state.clientId;
-      const redirectUri = this.$store.state.redirectUri;
+      const clientId = process.env.VUE_APP_CLIENT_ID;
+      const redirectUri = process.env.VUE_APP_REDIRECT_URI;
 
       window.location.href = `https://kauth.kakao.com/oauth/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code`;
     }

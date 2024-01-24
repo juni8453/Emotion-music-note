@@ -47,7 +47,9 @@ export default {
   methods: {
     readNote(noteId) {
       axios.defaults.withCredentials = true;
-      axios.get(`http://localhost:8080/api/notes/${noteId}`)
+      const apiServer = process.env.VUE_APP_API_SERVER;
+
+      axios.get(`${apiServer}/api/notes/${noteId}`)
       .then(response => {
         this.note = response.data;
         this.songs = response.data.songSavedInNoteResponses;

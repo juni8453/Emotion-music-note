@@ -65,7 +65,8 @@ router.beforeEach((to, from, next) => {
     next();
   } else {
     // 홈, login, 카카오 OAuth 경로 제외 모든 라우터 이동 시 서버 상태 및 vuex 확인
-    axios.get('http://localhost:8080/check-server-state')
+    const apiServer = process.env.VUE_APP_API_SERVER;
+    axios.get(`${apiServer}/check-server-state`)
     .then(response => {
       console.log(response.data);
       if (localStorage.getItem('vuex') === null) {

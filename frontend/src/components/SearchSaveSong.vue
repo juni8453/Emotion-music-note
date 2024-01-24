@@ -51,7 +51,9 @@ export default {
   methods: {
     selectSong() {
       axios.defaults.withCredentials = true;
-      axios.get('http://localhost:8080/api/songs', {
+      const apiServer = process.env.VUE_APP_API_SERVER;
+
+      axios.get(`${apiServer}/api/songs`, {
         params: {
           keyword: this.searchKeyword,
           page: this.currentPage,
@@ -95,9 +97,10 @@ export default {
 
     saveSong(payload) {
       const saveNoteId = this.$store.state.saveNoteId;
+      const apiServer = process.env.VUE_APP_API_SERVER;
 
       axios.defaults.withCredentials = true;
-      axios.post(`http://localhost:8080/api/songs/${saveNoteId}`, payload)
+      axios.post(`${apiServer}/api/songs/${saveNoteId}`, payload)
       .then(() => {
         const result = window.confirm('해당 노래로 등록하시겠습니까 ?')
         if (result) {
