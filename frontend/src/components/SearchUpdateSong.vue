@@ -50,7 +50,9 @@ export default {
   methods: {
     selectSong() {
       axios.defaults.withCredentials = true;
-      axios.get('http://localhost:8080/api/songs', {
+      const apiServer = process.env.VUE_APP_API_SERVER;
+
+      axios.get(`${apiServer}/api/songs`, {
         params: {
           keyword: this.searchKeyword,
           page: this.currentPage,
@@ -94,9 +96,10 @@ export default {
 
     updateSong(payload) {
       const updateNoteId = this.$store.state.updateNoteId;
+      const apiServer = process.env.VUE_APP_API_SERVER;
 
       axios.defaults.withCredentials = true;
-      axios.put(`http://localhost:8080/api/songs/${updateNoteId}`, payload)
+      axios.put(`${apiServer}/api/songs/${updateNoteId}`, payload)
       .then(() => {
         const result = window.confirm('해당 노래로 수정하시겠습니까 ?')
         if (result) {

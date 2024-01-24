@@ -27,7 +27,9 @@ export default {
   methods: {
     searchSong(payload) {
       axios.defaults.withCredentials = true;
-      axios.post('http://localhost:8080/api/notes', payload)
+      const apiServer = process.env.VUE_APP_API_SERVER;
+
+      axios.post(`${apiServer}/api/notes`, payload)
       .then(response => {
         const noteId = response.data;
         this.$store.commit('saveNoteId', noteId);

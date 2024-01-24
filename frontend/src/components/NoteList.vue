@@ -49,7 +49,9 @@ export default {
   methods: {
     readNotes() {
       axios.defaults.withCredentials = true;
-      axios.get('http://localhost:8080/api/notes', {
+      const apiServer = process.env.VUE_APP_API_SERVER;
+
+      axios.get(`${apiServer}/api/notes`, {
         params: {
           page: this.currentPage,
           size: this.defaultPageSize,
@@ -113,7 +115,9 @@ export default {
 
       if (result) {
         axios.defaults.withCredentials = true;
-        axios.delete(`http://localhost:8080/api/notes/${noteId}`)
+        const apiServer = process.env.VUE_APP_API_SERVER;
+
+        axios.delete(`${apiServer}/api/notes/${noteId}`)
         .then(() => {
           window.location.href = '/notes';
         }).catch(error => {

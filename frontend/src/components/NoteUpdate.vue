@@ -30,7 +30,9 @@ export default {
   methods: {
     updateNote(payload) {
       axios.defaults.withCredentials = true;
-      axios.put(`http://localhost:8080/api/notes/${this.noteId}`, payload)
+      const apiServer = process.env.VUE_APP_API_SERVER;
+
+      axios.put(`${apiServer}/api/notes/${this.noteId}`, payload)
       .then(() => {
         this.$router.push(`/note/detail/${this.noteId}`);
       }).catch(error => {
