@@ -1,11 +1,19 @@
 server:
+  ssl:
+    enabled: true
+    key-store-type: PKCS12
+    key-store-password: ${server_ssl_key_store_password}
+    protocol: TLS
+    enabled-protocols: TLSv1.2
+    key-store: ${server_ssl_key_store}
+    ciphers: ECDHE-RSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-GCM-SHA384:ECDHERSA-AES128-SHA:ECDHE-RSA-AES256-SHA:ECDHE-RSA-AES128-SHA256:ECDHE-RSA-AES256-SHA384
   port: 8080
   servlet:
     session:
       timeout: 3600
       cookie:
         name: JSESSIONID
-        domain: 3.38.153.192
+        domain: musicdiary.life
         http-only: true
         path: /
 
