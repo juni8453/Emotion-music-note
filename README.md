@@ -34,7 +34,7 @@
 ## <img height="20px" src="https://user-images.githubusercontent.com/78953393/202724902-5c0e2787-eb17-45e0-9faa-a119d4eeaa5b.png" /> 사용 방법
 > 일기 작성
   <details>
-  <summary>www.music.life 도메인으로 접속하고 로그인합니다.</summary>
+  <summary>https://musicdiary.life/ 도메인으로 접속하고 로그인합니다.</summary>
   <div>
     <img width="1440" alt="스크린샷 2024-01-26 오후 2 26 31" src="https://github.com/juni8453/emotion-music-note/assets/79444040/23dad861-7d8f-49a4-be51-3fcabe611f98">
     <img width="1440" alt="스크린샷 2024-01-26 오후 2 28 13" src="https://github.com/juni8453/emotion-music-note/assets/79444040/d5c71404-6882-401c-8bd4-904c46dfc339">
