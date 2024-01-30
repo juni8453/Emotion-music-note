@@ -15,6 +15,7 @@ public class NoteSaveRequest {
   @NotBlank(message = "오늘의 감정을 적어주세요.")
   private String emotion;
 
+  @Size(max = 800, message = "내용은 2000자를 넘길 수 없습니다.")
   @NotBlank(message = "일기 내용을 적어주세요.")
   private String content;
 

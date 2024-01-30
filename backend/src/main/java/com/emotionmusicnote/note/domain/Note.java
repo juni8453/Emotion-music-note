@@ -34,7 +34,7 @@ public class Note extends BaseTime {
   private String emotion;
 
   @Lob
-  @Column(nullable = false, length = 800)
+  @Column(nullable = false, length = 2000)
   private String content;
 
   @ManyToOne(fetch = FetchType.LAZY)
