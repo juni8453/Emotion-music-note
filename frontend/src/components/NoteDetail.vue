@@ -102,6 +102,7 @@ export default {
   align-items: center;
   border-radius: 6px;
   box-shadow: 0 0 1px rgba(0, 0, 0, 0.15), 0 15px 12px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
 }
 
 .note-detail-song-attributes {

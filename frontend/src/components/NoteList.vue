@@ -147,6 +147,7 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  cursor: pointer;
   padding: 10px;
   margin-bottom: 20px;
 }

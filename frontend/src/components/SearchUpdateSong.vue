@@ -95,25 +95,26 @@ export default {
     },
 
     updateSong(payload) {
-      const updateNoteId = this.$store.state.updateNoteId;
-      const apiServer = process.env.VUE_APP_API_SERVER;
+      const result = window.confirm('해당 노래로 수정하시겠습니까 ?')
 
-      axios.defaults.withCredentials = true;
-      axios.put(`${apiServer}/api/songs/${updateNoteId}`, payload)
-      .then(() => {
-        const result = window.confirm('해당 노래로 수정하시겠습니까 ?')
-        if (result) {
+      if (result) {
+        const updateNoteId = this.$store.state.updateNoteId;
+        const apiServer = process.env.VUE_APP_API_SERVER;
+
+        axios.defaults.withCredentials = true;
+        axios.put(`${apiServer}/api/songs/${updateNoteId}`, payload)
+        .then(() => {
           this.$router.push(`/note/detail/${updateNoteId}`);
           this.$store.state.updateNoteId = 0;
-        }
-      }).catch(error => {
-        const errorStatus = error.response.status;
-        if (errorStatus === 400) {
-          const errorMessage = error.response.data.message;
-          alert(errorMessage);
-          this.$router.push('/');
-        }
-      })
+        }).catch(error => {
+          const errorStatus = error.response.status;
+          if (errorStatus === 400) {
+            const errorMessage = error.response.data.message;
+            alert(errorMessage);
+            this.$router.push('/');
+          }
+        })
+      }
     }
   },
 
@@ -164,15 +165,19 @@ export default {
 }
 
 .search-song-result-attributes {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  display: grid;
+  justify-items: center;
+  grid-template-columns: repeat(4, 1fr); /* 4개의 열, 각 열의 너비는 동일 */
+  gap: 20px; /* 열 간의 간격 */
+  padding: 5px;
 }
 
 .search-song-result-body {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  justify-items: center;
   align-items: center;
+  grid-template-columns: repeat(4, 1fr); /* 4개의 열, 각 열의 너비는 동일 */
+  gap: 20px; /* 열 간의 간격 */
   padding: 5px;
 }
 
