@@ -166,15 +166,19 @@ export default {
 }
 
 .search-song-result-attributes {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  display: grid;
+  justify-items: center;
+  grid-template-columns: repeat(4, 1fr); /* 4개의 열, 각 열의 너비는 동일 */
+  gap: 20px; /* 열 간의 간격 */
+  padding: 5px;
 }
 
 .search-song-result-body {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  justify-items: center;
   align-items: center;
+  grid-template-columns: repeat(4, 1fr); /* 4개의 열, 각 열의 너비는 동일 */
+  gap: 20px; /* 열 간의 간격 */
   padding: 5px;
 }
 
