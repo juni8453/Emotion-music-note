@@ -6,10 +6,10 @@
 
     <div class="note-list-body-button-box">
       <button class="royalblue-button" style="width: 12%; margin-right: 10px" @click="clickUpdate($event, note.id)">
-        <font-awesome-icon icon="pen-to-square"/> 수정
+        <font-awesome-icon icon="pen-to-square"/>
       </button>
       <button class="royalblue-button" style="width: 12%" @click="clickDelete($event, note.id)">
-        <font-awesome-icon icon="trash-can"/> 삭제
+          <font-awesome-icon icon="trash-can"/>
       </button>
     </div>
 
@@ -143,19 +143,28 @@ export default {
 <style scoped>
 @import '../assets/CommonStyle.css';
 
-.note-list-body {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  cursor: pointer;
-  padding: 10px;
-  margin-bottom: 20px;
+/* Desktop UI */
+@media screen and (min-width: 360px) {
+  .note-list-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+    padding: 10px;
+    margin-bottom: 20px;
+  }
+
+  .note-list-body-button-box {
+    display: flex;
+    justify-content: end;
+    margin-top: 10px;
+    margin-bottom: 20px;
+  }
 }
 
-.note-list-body-button-box {
-  display: flex;
-  justify-content: end;
-  margin-top: 10px;
-  margin-bottom: 20px;
+/* Mobile UI */
+@media screen and (max-width: 360px) {
+
 }
+
 </style>

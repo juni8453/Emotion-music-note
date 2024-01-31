@@ -1,9 +1,11 @@
 <template>
     <!-- HEADER -->
     <div class="header-body">
-      <router-link class="royalblue-button-router-link" to="/">
-        <font-awesome-icon :icon="['fas', 'quote-left']" /> Emotion Note <font-awesome-icon :icon="['fas', 'quote-right']" />
-      </router-link>
+      <div class="header-home">
+        <router-link class="royalblue-button-router-link" to="/">
+          <font-awesome-icon :icon="['fas', 'quote-left']" /> Emotion Note <font-awesome-icon :icon="['fas', 'quote-right']" />
+        </router-link>
+      </div>
 
       <div v-if="$store.state.sessionId === null">
         <button class="royalblue-button">
@@ -24,7 +26,7 @@
     <div class="main-body">
       <!-- SIDEBAR -->
       <div class="sidebar-body">
-        <h4>메뉴</h4>
+        <h4 class="sidebar-menu">메뉴</h4>
         <button class="white-button">
           <router-link class="white-button-router-link" to="/notes">
             <font-awesome-icon icon="clipboard" /> - 일기 목록
@@ -67,48 +69,91 @@ export default {
 <style scoped>
 @import '../assets/CommonStyle.css';
 
-.header-body {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: royalblue;
-  border-radius: 8px;
-  padding: 10px;
-  margin-bottom: 15px;
+/* Desktop UI */
+@media screen and (min-width: 360px) {
+  .header-body {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: royalblue;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 15px;
+  }
+
+  .header-login-image {
+    width: 50px;
+    height: 50px;
+    border-radius: 60%;
+    object-fit: cover;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    margin-right: 7px;
+  }
+
+  .main-body {
+    display: flex;
+  }
+
+  .sidebar-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 170px;
+    height: 200px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    border-right: 3px solid royalblue;
+    padding: 10px;
+  }
+
+  .component-body {
+    flex: 1;
+    border-radius: 8px;
+    box-shadow: 0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12);
+    padding: 20px;
+    margin-left: 20px;
+  }
 }
 
-.header-login-image {
-  width: 50px;
-  height: 50px;
-  border-radius: 60%;
-  object-fit: cover;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-  margin-right: 7px;
-}
+/* Mobile UI */
+@media screen and (max-width: 360px) {
+  .header-body {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: royalblue;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 15px;
+  }
 
-.sidebar-body {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  width: 170px;
-  height: 200px;
-  background-color: #ffffff;
-  border-radius: 8px;
-  border-right: 3px solid royalblue;
-  padding: 10px;
-}
+  .header-home {
+    display: none;
+  }
 
-.main-body {
-  display: flex;
-}
+  .main-body {
+    flex-direction: column-reverse; /* sidebar-body 를 component-body 아래로 이동 */
+  }
 
-.component-body {
-  flex: 1;
-  border-radius: 8px;
-  box-shadow: 0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12);
-  padding: 20px;
-  margin-left: 20px;
+  .component-body {
+    margin-left: 0;
+  }
+
+  .sidebar-body {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 80px;
+    box-shadow: 0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12);
+    border-right: 0;
+    margin-top: 10px;
+    padding: 10px;
+  }
+
+  .sidebar-menu {
+    display: none;
+  }
 }
 
 </style>

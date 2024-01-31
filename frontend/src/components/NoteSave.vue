@@ -67,16 +67,28 @@ export default {
 <style scoped>
 @import '../assets/CommonStyle.css';
 
-.save-note-body {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: end;
+/* Desktop UI */
+@media screen and (min-width: 360px) {
+  .save-note-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: end;
+  }
+
+  .save-note-label {
+    font-family: 'Jeju Gothic', serif;
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
 }
 
-.save-note-label {
-  font-family: 'Jeju Gothic', serif;
-  font-size: 14px;
-  margin-bottom: 20px;
+/* Mobile UI */
+@media screen and (max-width: 360px) {
+  .save-note-label {
+    font-size: 12px;
+    margin-bottom: 18px;
+  }
 }
+
 </style>
