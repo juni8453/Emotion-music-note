@@ -3,9 +3,11 @@
   <div class="note-update-body">
     <input class="form-control mb-1" v-model="emotion" type="text" placeholder="수정할 기분을 적어주세요.">
     <label class="note-update-label">예) 행복, 슬픔 등 자유롭게 감정을 적어주세요.</label>
-    <textarea class="form-control mb-4" v-model="content" rows="20" placeholder="수정할 내용을 적어주세요."></textarea>
+    <textarea class="form-control mb-4" v-model="content" rows="20"
+              placeholder="수정할 내용을 적어주세요."></textarea>
     <button class="royalblue-button" @click="updateNote({emotion, content})">
-      <font-awesome-icon icon="pen-to-square" /> 수정 완료
+      <font-awesome-icon icon="pen-to-square"/>
+      수정 완료
     </button>
   </div>
 </template>
@@ -25,6 +27,31 @@ export default {
 
   created() {
     this.noteId = this.$route.params.noteId;
+
+    axios.defaults.withCredentials = true;
+    const apiServer = process.env.VUE_APP_API_SERVER;
+
+    axios.get(`${apiServer}/api/notes/${this.noteId}`)
+    .then(response => {
+      this.emotion = response.data.emotion;
+      this.content = response.data.content;
+
+    }).catch(error => {
+      const errorStatus = error.response.data.code;
+
+      // Interceptor preHandler()
+      if (errorStatus === 401) {
+        localStorage.removeItem('vuex');
+        alert(error.response.data.message);
+        window.location.href = '/';
+
+      // NotFoundNoteException
+      } else if (errorStatus === 404) {
+        const errorMessages = error.response.data.message;
+        alert(errorMessages);
+        this.$router.push('/');
+      }
+    })
   },
 
   methods: {
@@ -36,14 +63,18 @@ export default {
       .then(() => {
         alert('일기 수정 완료!');
         this.$router.push(`/note/detail/${this.noteId}`);
-      }).catch(error => {
-        const errorStatus = error.response.status;
 
+      }).catch(error => {
+        console.log(error.response.data);
+        const errorStatus = error.response.data.code;
+
+        // Interceptor preHandler()
         if (errorStatus === 401) {
           localStorage.removeItem('vuex');
-          alert('로그인이 필요합니다.');
+          alert(error.response.data.code);
           window.location.href = '/';
 
+        // MethodArgumentException
         } else if (errorStatus === 400) {
           const errorMessages = [];
           const errors = error.response.data.validation;

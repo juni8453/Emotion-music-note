@@ -75,8 +75,9 @@ export default {
         }
 
       }).catch(error => {
-        const errorStatus = error.response.status;
+        const errorStatus = error.response.data.code;
 
+        // Interceptor preHandler()
         if (errorStatus === 401) {
           localStorage.removeItem('vuex');
           alert('로그인이 필요합니다.');
@@ -108,13 +109,9 @@ export default {
           this.$router.push(`/note/detail/${saveNoteId}`);
           this.$store.state.saveNoteId = 0;
           alert('일기 작성 완료!');
+
         }).catch(error => {
-          const errorStatus = error.response.status;
-          if (errorStatus === 400) {
-            const errorMessage = error.response.data.message;
-            alert(errorMessage);
-            this.$router.push('/');
-          }
+          console.log(error);
         })
       }
     }

@@ -55,14 +55,16 @@ export default {
         this.songs = response.data.songSavedInNoteResponses;
 
       }).catch(error => {
-        const errorStatus = error.response.status;
+        const errorStatus = error.response.data.code;
 
+        // Interceptor preHandler()
         if (errorStatus === 401) {
           localStorage.removeItem('vuex');
-          alert('로그인이 필요합니다.');
+          alert(error.response.data.message);
           window.location.href = '/';
 
-        } else if (errorStatus === 400) {
+        // NotFoundNoteException
+        } else if (errorStatus === 404) {
           const errorMessage = error.response.data.message;
           alert(errorMessage);
           this.$router.push('/');

@@ -36,13 +36,15 @@ export default {
         this.$router.push(`/song/save/search`);
 
       }).catch((error) => {
-        const errorStatus = error.response.status;
+        const errorStatus = error.response.data.error;
 
+        // Interceptor preHandler()
         if (errorStatus === 401) {
           localStorage.removeItem('vuex');
-          alert('로그인이 필요합니다.');
+          alert(error.response.data.message);
           window.location.href = '/';
 
+        // MethodArgumentException
         } else if (errorStatus === 400) {
           const errorMessages = [];
           const errors = error.response.data.validation;
