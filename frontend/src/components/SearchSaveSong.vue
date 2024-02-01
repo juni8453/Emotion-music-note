@@ -134,65 +134,63 @@ export default {
 @import '../assets/CommonStyle.css';
 
 /* Desktop UI */
-@media screen and (min-width: 360px) {
-  .search-song-body {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-  }
+.search-song-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
 
-  .search-song-input-modal {
-    border: 1px solid #ddd;
-    border-radius: 20px;
-    font-size: 16px;
-    width: 300px;
-    padding: 12px;
-    margin-right: 10px;
-    outline: none;
-  }
+.search-song-input-modal {
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  font-size: 16px;
+  width: 300px;
+  padding: 12px;
+  margin-right: 10px;
+  outline: none;
+}
 
-  .search-song-button {
-    color: #ffffff;
-    background-color: #4CAF50;
-    border: none;
-    border-radius: 20px;
-    font-size: 16px;
-    padding: 12px 24px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
+.search-song-button {
+  color: #ffffff;
+  background-color: #4CAF50;
+  border: none;
+  border-radius: 20px;
+  font-size: 16px;
+  padding: 12px 24px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
 
-  .search-song-button:hover {
-    background-color: #45a049;
-  }
+.search-song-button:hover {
+  background-color: #45a049;
+}
 
-  .search-song-result-attributes {
-    display: grid;
-    justify-items: center;
-    grid-template-columns: repeat(4, 1fr); /* 4개의 열, 각 열의 너비는 동일 */
-    gap: 20px; /* 열 간의 간격 */
-    padding: 5px;
-  }
+.search-song-result-attributes {
+  display: grid;
+  justify-items: center;
+  grid-template-columns: repeat(4, 1fr); /* 4개의 열, 각 열의 너비는 동일 */
+  gap: 20px; /* 열 간의 간격 */
+  padding: 5px;
+}
 
-  .search-song-result-body {
-    display: grid;
-    justify-items: flex-start;
-    align-items: center;
-    grid-template-columns: repeat(4, 1fr); /* 4개의 열, 각 열의 너비는 동일 */
-    gap: 20px; /* 열 간의 간격 */
-    padding: 5px;
-  }
+.search-song-result-body {
+  display: grid;
+  justify-items: flex-start;
+  align-items: center;
+  grid-template-columns: repeat(4, 1fr); /* 4개의 열, 각 열의 너비는 동일 */
+  gap: 20px; /* 열 간의 간격 */
+  padding: 5px;
+}
 
-  .search-song-result-body:hover {
-    background-color: #ec9d9d;
-    border-radius: 8px;
-  }
+.search-song-result-body:hover {
+  background-color: #ec9d9d;
+  border-radius: 8px;
 }
 
 /* Mobile UI */
-@media screen and (max-width: 360px) {
+@media (max-width: 576px) {
   .search-song-input-body {
     display: flex;
   }

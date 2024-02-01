@@ -85,38 +85,36 @@ export default {
 @import '../assets/CommonStyle.css';
 
 /* Desktop UI */
-@media screen and (min-width: 360px) {
-  .note-detail-body {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    margin-bottom: 20px;
-  }
+.note-detail-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
 
-  .note-detail-content-font {
-    font-family: "Shree Devanagari 714", serif;
-    font-size: 14px;
-  }
+.note-detail-content-font {
+  font-family: "Shree Devanagari 714", serif;
+  font-size: 14px;
+}
 
-  .note-detail-song-body {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    border-radius: 6px;
-    box-shadow: 0 0 1px rgba(0, 0, 0, 0.15), 0 15px 12px rgba(0, 0, 0, 0.15);
-    cursor: pointer;
-  }
+.note-detail-song-body {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 6px;
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.15), 0 15px 12px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+}
 
-  .note-detail-song-attributes {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-  }
+.note-detail-song-attributes {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
 }
 
 /* Mobile UI */
-@media screen and (max-width: 360px) {
+@media (max-width: 576px) {
   .note-detail-content-font {
     font-size: 12px;
   }

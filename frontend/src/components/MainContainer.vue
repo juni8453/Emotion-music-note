@@ -69,55 +69,52 @@ export default {
 <style scoped>
 @import '../assets/CommonStyle.css';
 
-/* Desktop UI */
-@media screen and (min-width: 360px) {
-  .header-body {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: royalblue;
-    border-radius: 8px;
-    padding: 10px;
-    margin-bottom: 15px;
-  }
+.header-body {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: royalblue;
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 15px;
+}
 
-  .header-login-image {
-    width: 50px;
-    height: 50px;
-    border-radius: 60%;
-    object-fit: cover;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-    margin-right: 7px;
-  }
+.header-login-image {
+  width: 50px;
+  height: 50px;
+  border-radius: 60%;
+  object-fit: cover;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  margin-right: 7px;
+}
 
-  .main-body {
-    display: flex;
-  }
+.main-body {
+  display: flex;
+}
 
-  .sidebar-body {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    width: 170px;
-    height: 200px;
-    background-color: #ffffff;
-    border-radius: 8px;
-    border-right: 3px solid royalblue;
-    padding: 10px;
-  }
+.sidebar-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 170px;
+  height: 200px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  border-right: 3px solid royalblue;
+  padding: 10px;
+}
 
-  .component-body {
-    flex: 1;
-    border-radius: 8px;
-    box-shadow: 0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12);
-    padding: 20px;
-    margin-left: 20px;
-  }
+.component-body {
+  flex: 1;
+  border-radius: 8px;
+  box-shadow: 0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12);
+  padding: 20px;
+  margin-left: 20px;
 }
 
 /* Mobile UI */
-@media screen and (max-width: 360px) {
+@media (max-width: 576px) {
   .header-body {
     display: flex;
     justify-content: space-evenly;
