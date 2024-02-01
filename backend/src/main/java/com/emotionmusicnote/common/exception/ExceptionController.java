@@ -52,4 +52,13 @@ public class ExceptionController {
         .message(exception.getMessage())
         .build();
   }
+
+  @ResponseStatus(HttpStatus.UNAUTHORIZED)
+  @ExceptionHandler(SessionExpiredException.class)
+  public ExceptionResponse sessionExpired(SessionExpiredException exception) {
+    return ExceptionResponse.builder()
+        .code(exception.getStatusCode())
+        .message(exception.getMessage())
+        .build();
+  }
 }

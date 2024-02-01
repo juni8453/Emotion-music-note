@@ -1,5 +1,6 @@
 package com.emotionmusicnote.common;
 
+import com.emotionmusicnote.common.exception.SessionExpiredException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
@@ -8,8 +9,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 public class LoginInterceptor implements HandlerInterceptor {
 
   @Override
-  public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
-      throws Exception {
+  public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
 
     if (request.getMethod().equals("OPTIONS")) {
       System.out.println("Preflight Request");
@@ -19,9 +19,7 @@ public class LoginInterceptor implements HandlerInterceptor {
     HttpSession session = request.getSession(false);
 
     if (session == null) {
-      response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "만료된 세션입니다.");
-
-      return false;
+      throw new SessionExpiredException();
     }
 
     return true;
