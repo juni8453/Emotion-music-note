@@ -144,27 +144,20 @@ export default {
 @import '../assets/CommonStyle.css';
 
 /* Desktop UI */
-@media screen and (min-width: 360px) {
-  .note-list-body {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    cursor: pointer;
-    padding: 10px;
-    margin-bottom: 20px;
-  }
-
-  .note-list-body-button-box {
-    display: flex;
-    justify-content: end;
-    margin-top: 10px;
-    margin-bottom: 20px;
-  }
+.note-list-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  padding: 10px;
+  margin-bottom: 20px;
 }
 
-/* Mobile UI */
-@media screen and (max-width: 360px) {
-
+.note-list-body-button-box {
+  display: flex;
+  justify-content: end;
+  margin-top: 10px;
+  margin-bottom: 20px;
 }
 
 </style>

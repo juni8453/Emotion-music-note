@@ -65,23 +65,21 @@ export default {
 
 <style scoped>
 /* Desktop UI */
-@media screen and (min-width: 360px) {
-  .note-update-body {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: end;
-  }
+.note-update-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: end;
+}
 
-  .note-update-label {
-    font-family: 'Jeju Gothic', serif;
-    font-size: 14px;
-    margin-bottom: 20px;
-  }
+.note-update-label {
+  font-family: 'Jeju Gothic', serif;
+  font-size: 14px;
+  margin-bottom: 20px;
 }
 
 /* Mobile UI */
-@media screen and (max-width: 360px) {
+@media (max-width: 576px) {
   .note-update-label {
     font-size: 12px;
     margin-bottom: 18px;

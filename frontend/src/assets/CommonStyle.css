@@ -1,83 +1,81 @@
 /* Desktop UI */
-@media screen and (min-width: 360px) {
-  .royalblue-button {
-    color: white;
-    border-radius: 6px;
-    border: none;
-    background-color: royalblue;
-    cursor: pointer;
-  }
+.royalblue-button {
+  color: white;
+  border-radius: 6px;
+  border: none;
+  background-color: royalblue;
+  cursor: pointer;
+}
 
-  .royalblue-button:hover {
-    background-color: #ef4a4a;
-  }
+.royalblue-button:hover {
+  background-color: #ef4a4a;
+}
 
-  .royalblue-button-router-link {
-    text-decoration: none;
-    color: white;
-  }
+.royalblue-button-router-link {
+  text-decoration: none;
+  color: white;
+}
 
-  .white-button {
-    color: black;
-    border-radius: 6px;
-    border: none;
-    font-weight: bold;
-    background-color: white;
-    border-bottom: 3px solid royalblue;
-    width: 100%;
-    height: 45px;
-    cursor: pointer;
-  }
+.white-button {
+  color: black;
+  border-radius: 6px;
+  border: none;
+  font-weight: bold;
+  background-color: white;
+  border-bottom: 3px solid royalblue;
+  width: 100%;
+  height: 45px;
+  cursor: pointer;
+}
 
-  .white-button:hover {
-    background-color: #898989;
-  }
+.white-button:hover {
+  background-color: #898989;
+}
 
-  .white-button-router-link {
-    text-decoration: none;
-    color: black;
-  }
+.white-button-router-link {
+  text-decoration: none;
+  color: black;
+}
 
-  .description-title {
-    font-size: 20px;
-    color: black;
-  }
+.description-title {
+  font-size: 20px;
+  color: black;
+}
 
-  .description-content {
-    font-size: 14px;
-    color: gray;
-  }
+.description-content {
+  font-size: 14px;
+  color: gray;
+}
 
-  .pagination-body {
-    display: flex;
-    justify-content: center;
-  }
+.pagination-body {
+  display: flex;
+  justify-content: center;
+}
 
-  .pagination-button {
-    color: white;
-    background-color: royalblue;
-    border: none;
-    border-radius: 4px;
-    margin: 5px;
+.pagination-button {
+  color: white;
+  background-color: royalblue;
+  border: none;
+  border-radius: 4px;
+  margin: 5px;
 
-  }
+}
 
-  .pagination-button:hover {
-    background-color: #ef4a4a;
-  }
+.pagination-button:hover {
+  background-color: #ef4a4a;
+}
 
-  .song-image {
-    width: 100px;
-    height: 100px;
-    margin-bottom: 0;
-    background-size: 100%;
-    border-radius: 10%;
-    float: left;
-  }
+.song-image {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 0;
+  background-size: 100%;
+  border-radius: 10%;
+  float: left;
 }
 
 /* Mobile UI */
-@media screen and (max-width: 360px) {
+@media (max-width: 576px) {
   .description-title {
     font-size: 18px;
     color: black;
