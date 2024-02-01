@@ -106,6 +106,7 @@ export default {
         .then(() => {
           this.$router.push(`/note/detail/${updateNoteId}`);
           this.$store.state.updateNoteId = 0;
+          alert('노래 수정 완료!');
         }).catch(error => {
           const errorStatus = error.response.status;
           if (errorStatus === 400) {

@@ -34,6 +34,7 @@ export default {
 
       axios.put(`${apiServer}/api/notes/${this.noteId}`, payload)
       .then(() => {
+        alert('일기 수정 완료!');
         this.$router.push(`/note/detail/${this.noteId}`);
       }).catch(error => {
         const errorStatus = error.response.status;

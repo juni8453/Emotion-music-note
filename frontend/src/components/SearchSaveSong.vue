@@ -107,6 +107,7 @@ export default {
         .then(() => {
           this.$router.push(`/note/detail/${saveNoteId}`);
           this.$store.state.saveNoteId = 0;
+          alert('일기 작성 완료!');
         }).catch(error => {
           const errorStatus = error.response.status;
           if (errorStatus === 400) {
