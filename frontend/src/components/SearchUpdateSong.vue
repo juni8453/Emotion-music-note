@@ -74,11 +74,11 @@ export default {
         }
 
       }).catch(error => {
-        const errorStatus = error.response.status;
+        const errorStatus = error.response.data.code;
 
         if (errorStatus === 401) {
           localStorage.removeItem('vuex');
-          alert('로그인이 필요합니다.');
+          alert(error.response.data.message);
           window.location.href = '/';
         }
       })
@@ -106,13 +106,10 @@ export default {
         .then(() => {
           this.$router.push(`/note/detail/${updateNoteId}`);
           this.$store.state.updateNoteId = 0;
+          alert('노래 수정 완료!');
+
         }).catch(error => {
-          const errorStatus = error.response.status;
-          if (errorStatus === 400) {
-            const errorMessage = error.response.data.message;
-            alert(errorMessage);
-            this.$router.push('/');
-          }
+          console.log(error)
         })
       }
     }
