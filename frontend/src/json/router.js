@@ -86,7 +86,7 @@ router.beforeEach((to, from, next) => {
 
     }).catch((error) => {
       // 서버와 통신할 수 없는 경우 (서버 다운 등),
-      if (error.code === 'ERR_NETWORK') {
+      if (error.code === 'ERR_NETWORK' || error.code === 'ERR_BAD_RESPONSE') {
         localStorage.removeItem('vuex');
         router.push('/error');
 
