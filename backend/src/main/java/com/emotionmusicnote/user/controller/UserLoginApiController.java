@@ -24,7 +24,7 @@ public class UserLoginApiController {
     return ResponseEntity.ok(signInUserInfo);
   }
 
-  @GetMapping("/check-server-state")
+  @GetMapping("api/check-server-state")
   public String checkServerState() {
     return "Server is up and running";
   }
