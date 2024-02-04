@@ -1,12 +1,12 @@
 package com.emotionmusicnote.common;
 
-import static com.querydsl.core.types.PathMetadataFactory.*;
+import static com.querydsl.core.types.PathMetadataFactory.forVariable;
 
-import com.querydsl.core.types.dsl.*;
-
-import com.querydsl.core.types.PathMetadata;
-import javax.annotation.processing.Generated;
 import com.querydsl.core.types.Path;
+import com.querydsl.core.types.PathMetadata;
+import com.querydsl.core.types.dsl.DatePath;
+import com.querydsl.core.types.dsl.EntityPathBase;
+import javax.annotation.processing.Generated;
 
 
 /**
@@ -15,25 +15,27 @@ import com.querydsl.core.types.Path;
 @Generated("com.querydsl.codegen.DefaultSupertypeSerializer")
 public class QBaseTime extends EntityPathBase<BaseTime> {
 
-    private static final long serialVersionUID = -2093507460L;
+  private static final long serialVersionUID = -2093507460L;
 
-    public static final QBaseTime baseTime = new QBaseTime("baseTime");
+  public static final QBaseTime baseTime = new QBaseTime("baseTime");
 
-    public final DateTimePath<java.time.LocalDateTime> createdDate = createDateTime("createdDate", java.time.LocalDateTime.class);
+  public final DatePath<java.time.LocalDate> createdDate = createDate("createdDate",
+      java.time.LocalDate.class);
 
-    public final DateTimePath<java.time.LocalDateTime> modifiedDate = createDateTime("modifiedDate", java.time.LocalDateTime.class);
+  public final DatePath<java.time.LocalDate> modifiedDate = createDate("modifiedDate",
+      java.time.LocalDate.class);
 
-    public QBaseTime(String variable) {
-        super(BaseTime.class, forVariable(variable));
-    }
+  public QBaseTime(String variable) {
+    super(BaseTime.class, forVariable(variable));
+  }
 
-    public QBaseTime(Path<? extends BaseTime> path) {
-        super(path.getType(), path.getMetadata());
-    }
+  public QBaseTime(Path<? extends BaseTime> path) {
+    super(path.getType(), path.getMetadata());
+  }
 
-    public QBaseTime(PathMetadata metadata) {
-        super(BaseTime.class, metadata);
-    }
+  public QBaseTime(PathMetadata metadata) {
+    super(BaseTime.class, metadata);
+  }
 
 }
 
