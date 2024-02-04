@@ -9,6 +9,7 @@ import com.emotionmusicnote.note.service.NoteService;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import java.net.URI;
+import java.time.LocalDate;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RequiredArgsConstructor
@@ -66,6 +68,18 @@ public class NoteApiController {
       @ModelAttribute PageRequest pageRequest, HttpSession session) {
 
     NoteMultiReadResponse response = noteService.readAll(pageRequest, session);
+
+    return ResponseEntity.ok(response);
+  }
+
+  @GetMapping("/api/notes/date")
+  public ResponseEntity<NoteMultiReadResponse> readAllByDateFilter(
+      @RequestParam("startDate") LocalDate startDate,
+      @RequestParam("endDate") LocalDate endDate,
+      @ModelAttribute PageRequest pageRequest, HttpSession session) {
+
+    NoteMultiReadResponse response = noteService.readAllByDateFilter(pageRequest,
+        session, startDate, endDate);
 
     return ResponseEntity.ok(response);
   }

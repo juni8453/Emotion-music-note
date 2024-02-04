@@ -13,6 +13,7 @@ import com.emotionmusicnote.song.controller.response.SongSavedInNoteResponse;
 import com.emotionmusicnote.song.domain.SongRepository;
 import com.emotionmusicnote.user.domain.User;
 import jakarta.servlet.http.HttpSession;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
@@ -127,4 +128,29 @@ public class NoteService {
     return NoteMultiReadResponse.builder().notes(response).build();
   }
 
+  @Transactional(readOnly = true)
+  public NoteMultiReadResponse readAllByDateFilter(PageRequest pageRequest, HttpSession session,
+      LocalDate startDate, LocalDate endDate) {
+    User loginUser = (User) session.getAttribute("user");
+    Long loginUserId = loginUser.getId();
+
+    List<Note> notes = noteRepository.findAllByDate(loginUserId, pageRequest, startDate, endDate);
+
+    List<NoteSingleReadResponse> response = notes.stream()
+        .map(note -> NoteSingleReadResponse.builder()
+            .id(note.getId())
+            .emotion(note.getEmotion())
+            .content(note.getContent())
+            .createAt(note.getCreatedDate())
+            .modifiedAt(note.getModifiedDate())
+            .noteWriterResponse(
+                NoteWriterResponse.builder()
+                    .nickname(note.getUser().getNickname())
+                    .provider(note.getUser().getOAuthProvider())
+                    .profileImageUrl(note.getUser().getProfileImageUrl())
+                    .build())
+            .build()).collect(Collectors.toList());
+
+    return NoteMultiReadResponse.builder().notes(response).build();
+  }
 }
