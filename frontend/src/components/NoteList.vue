@@ -1,25 +1,48 @@
 <template>
+  <button class="royalblue-button" style="margin-bottom: 10px;" @click="filterSwitch">
+    <font-awesome-icon icon="calendar-days"/>
+  </button>
+  <div v-if="dateFilterSwitch">
+    <label class="description-content">Start Date</label>
+    <datepicker class="note-list-date-filter-input"
+                style="border-radius: 8px; border: 1px solid #ccc; margin-bottom: 10px;"
+                v-model="startDate">
+    </datepicker>
+    <label class="description-content">End Date</label>
+    <datepicker class="note-list-date-filter-input"
+                style="border-radius: 8px; border: 1px solid #ccc; margin-bottom: 10px;"
+                v-model="endDate">
+    </datepicker>
+  </div>
+  <button class="royalblue-button" v-if="dateFilterSwitch" @click="dateFilterSelect">
+    <font-awesome-icon icon="calendar-check"/>
+  </button>
 
-  <div class="note-list-body" v-for="(note, noteId) in notes" :key="noteId" @click="readNote(note.id)">
-    <p class="description-content" style="text-align: right; margin-bottom: 0">{{ `작성일 ${note.createAt}` }}</p>
-    <p class="description-content" style="text-align: right; margin-bottom: 0">{{ `수정일 ${note.modifiedAt}` }}</p>
+  <div class="note-list-body" v-for="(note, noteId) in notes" :key="noteId"
+       @click="readNote(note.id)">
+    <p class="description-content" style="text-align: right; margin-bottom: 0">
+      {{ `작성일 ${note.createAt}` }}</p>
+    <p class="description-content" style="text-align: right; margin-bottom: 0">
+      {{ `수정일 ${note.modifiedAt}` }}</p>
 
     <div class="note-list-body-button-box">
-      <button class="royalblue-button" style="width: 12%; margin-right: 10px" @click="clickUpdate($event, note.id)">
+      <button class="royalblue-button" style="width: 12%; margin-right: 10px"
+              @click="clickUpdate($event, note.id)">
         <font-awesome-icon icon="pen-to-square"/>
       </button>
       <button class="royalblue-button" style="width: 12%" @click="clickDelete($event, note.id)">
-          <font-awesome-icon icon="trash-can"/>
+        <font-awesome-icon icon="trash-can"/>
       </button>
     </div>
 
     <p class="description-content">{{ truncateNoteContent(note.content) }}</p>
-    <hr />
+    <hr/>
   </div>
 
   <div class="pagination-body">
     <button class="pagination-button" @click="readPrevPage">
-      <font-awesome-icon icon="fa-solid fa-arrow-left"/> 이전 페이지
+      <font-awesome-icon icon="fa-solid fa-arrow-left"/>
+      이전 페이지
     </button>
     <button class="pagination-button" @click="readNextPage"> 다음 페이지
       <font-awesome-icon icon="fa-solid fa-arrow-right"/>
@@ -29,34 +52,38 @@
 
 <script>
 import axios from 'axios';
-import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
+import FontAwesomeIcon from "@fortawesome/vue-fontawesome";
+import Datepicker from 'vue3-datepicker';
 
 export default {
   name: "NoteList",
-  components: {FontAwesomeIcon},
+  components: {
+    FontAwesomeIcon,
+    Datepicker,
+  },
+
   data() {
     return {
       notes: [],
       currentPage: 1,
       defaultPageSize: 5,
+      dateFilterSwitch: false,
+      dataFilterSelecting: false,
+      startDate: null,
+      endDate: null,
     }
   },
 
   created() {
-    this.readNotes();
+    this.readData();
   },
 
   methods: {
-    readNotes() {
-      axios.defaults.withCredentials = true;
-      const apiServer = process.env.VUE_APP_API_SERVER;
+    readData() {
+      const params = this.loadParams();
+      const uri = this.loadUri();
 
-      axios.get(`${apiServer}/api/notes`, {
-        params: {
-          page: this.currentPage,
-          size: this.defaultPageSize,
-        }
-      })
+      this.fetchData(params, uri)
       .then(response => {
         if (this.currentPage < 1) {
           alert('페이지가 존재하지 않습니다.');
@@ -70,8 +97,8 @@ export default {
         } else {
           this.notes = response.data.notes;
         }
-
-      }).catch(error => {
+      })
+      .catch(error => {
         const errorStatus = error.response.data.code;
 
         if (errorStatus === 401) {
@@ -82,26 +109,44 @@ export default {
       })
     },
 
+    loadParams() {
+      return {
+        page: this.currentPage,
+        size: this.defaultPageSize,
+        startDate: this.startDate ? this.startDate.toISOString().split('T')[0] : null,
+        endDate: this.endDate ? this.endDate.toISOString().split('T')[0] : null,
+      };
+    },
+
+    loadUri() {
+      // 날짜 필터링을 적용하고 조회했을때 /api/notes/date 엔드 포인트 사용
+      return this.dataFilterSelecting ? '/api/notes/date' : '/api/notes';
+    },
+
+    fetchData(params, uri) {
+      axios.defaults.withCredentials = true;
+      const apiServer = process.env.VUE_APP_API_SERVER;
+
+      return axios.get(`${apiServer}${uri}`, {params});
+    },
+
+    filterSwitch() {
+      this.dateFilterSwitch = !this.dateFilterSwitch;
+    },
+
+    dateFilterSelect() {
+      this.dataFilterSelecting = true;
+      this.readData();
+    },
+
     readNextPage() {
       this.currentPage += 1;
-      this.readNotes()
+      this.readData();
     },
 
     readPrevPage() {
       this.currentPage -= 1;
-      this.readNotes();
-    },
-
-    truncateNoteContent(noteContent) {
-      if (noteContent.length > 50) {
-        return noteContent.substring(0, 50) + '...';
-      }
-
-      return noteContent;
-    },
-
-    readNote(noteId) {
-      this.$router.push(`/note/detail/${noteId}`);
+      this.readData();
     },
 
     clickUpdate(event, noteId) {
@@ -130,7 +175,7 @@ export default {
             alert(error.response.data.message);
             window.location.href = '/';
 
-          // NotFoundNoteException
+            // NotFoundNoteException
           } else if (errorStatus === 400) {
             const errorMessage = error.response.data.message;
             alert(errorMessage);
@@ -139,6 +184,18 @@ export default {
         })
       }
     },
+
+    readNote(noteId) {
+      this.$router.push(`/note/detail/${noteId}`);
+    },
+
+    truncateNoteContent(noteContent) {
+      if (noteContent.length > 50) {
+        return noteContent.substring(0, 50) + '...';
+      }
+
+      return noteContent;
+    },
   },
 }
 </script>
@@ -146,7 +203,6 @@ export default {
 <style scoped>
 @import '../assets/CommonStyle.css';
 
-/* Desktop UI */
 .note-list-body {
   display: flex;
   flex-direction: column;
