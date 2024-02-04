@@ -2,7 +2,7 @@ package com.emotionmusicnote.common;
 
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.MappedSuperclass;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import lombok.Getter;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -22,9 +22,9 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 public abstract class BaseTime {
 
   @CreatedDate
-  private LocalDateTime createdDate;
+  private LocalDate createdDate;
 
   @LastModifiedDate
-  private LocalDateTime modifiedDate;
+  private LocalDate modifiedDate;
 
 }
