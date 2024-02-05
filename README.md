@@ -89,6 +89,16 @@
   </div>
   </details>
 
+  </br>
+
+ > 달력으로 일정 기간 내 일기 조회
+  <details>
+  <summary>시작 ~ 끝 기간을 정해 일기를 조회할 수 있습니다.</summary>
+  <div>
+    <img width="200" alt="스크린샷 2024-01-26 오후 2 49 43" src="https://github.com/juni8453/emotion-music-note/assets/79444040/a3602965-e528-4170-a986-b078815d4988">
+  </div>
+  </details>
+
 </br>
 
 > 일기 작성 (데스크탑 UI)
