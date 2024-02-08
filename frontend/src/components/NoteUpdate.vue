@@ -17,6 +17,7 @@ import axios from 'axios';
 
 export default {
   name: "NoteUpdate",
+
   data() {
     return {
       noteId: 0,
@@ -39,14 +40,8 @@ export default {
     }).catch(error => {
       const errorStatus = error.response.data.code;
 
-      // Interceptor preHandler()
-      if (errorStatus === 401) {
-        localStorage.removeItem('vuex');
-        alert(error.response.data.message);
-        window.location.href = '/';
-
       // NotFoundNoteException
-      } else if (errorStatus === 404) {
+      if (errorStatus === 404) {
         const errorMessages = error.response.data.message;
         alert(errorMessages);
         this.$router.push('/');
@@ -65,7 +60,6 @@ export default {
         this.$router.push(`/note/detail/${this.noteId}`);
 
       }).catch(error => {
-        console.log(error.response.data);
         const errorStatus = error.response.data.code;
 
         // Interceptor preHandler()

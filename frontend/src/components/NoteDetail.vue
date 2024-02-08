@@ -57,14 +57,8 @@ export default {
       }).catch(error => {
         const errorStatus = error.response.data.code;
 
-        // Interceptor preHandler()
-        if (errorStatus === 401) {
-          localStorage.removeItem('vuex');
-          alert(error.response.data.message);
-          window.location.href = '/';
-
         // NotFoundNoteException
-        } else if (errorStatus === 404) {
+        if (errorStatus === 404) {
           const errorMessage = error.response.data.message;
           alert(errorMessage);
           this.$router.push('/');
