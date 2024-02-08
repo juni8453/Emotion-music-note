@@ -66,41 +66,41 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  if (to.path === '/' || to.path === '/login' || to.path === '/oauth/kakao' || to.path === '/error') {
+  if (to.path === '/' || to.path === '/login' || to.path === '/logout' || to.path === '/oauth/kakao' || to.path === '/error') {
     next();
-  } else {
-    // 홈, login, 카카오 OAuth 경로 제외 모든 라우터 이동 시 서버 상태 및 vuex 확인
+  }
+
+  else {
     const apiServer = process.env.VUE_APP_API_SERVER;
+    axios.defaults.withCredentials = true;
     axios.get(`${apiServer}/api/check-server-state`)
     .then(response => {
+      // 1. 서버와 통신 가능한 상태
+      console.log('Router 에서 서버 체크')
       console.log(response.data);
 
-      // 서버와 통신을 하고 있으나 사용자가 임의로 Vuex 를 지워버린 경우,
-      if (localStorage.getItem('vuex') === null) {
-        alert('로그인이 필요합니다.');
-        window.location.href = '/';
-      // 서버와 통신을 하고 있고 Vuex 값이 잘 존재하는 경우,
-      } else {
-        next();
-      }
-
-    }).catch((error) => {
-      // 서버와 통신할 수 없는 경우 (서버 다운 등),
-      if (error.code === 'ERR_NETWORK' || error.code === 'ERR_BAD_RESPONSE') {
-        localStorage.removeItem('vuex');
-        router.push('/error');
-
-      // 서버와 통신을 하고 있으나 세션이 만료된 경우,
-      } else {
+      // 2. 세션 체크
+      axios.get(`${apiServer}/api/check-session`)
+      .catch((error => {
         const errorStatus = error.response.data.code;
+
+        // Interceptor preHandler()
         if (errorStatus === 401) {
           localStorage.removeItem('vuex');
           alert(error.response.data.message);
           window.location.href = '/';
         }
-      }
-    });
+      }))
+
+      // 3. 문제 없다면 이동
+      next();
+
+    }).catch(() => {
+      // 2. 서버와 통신이 불가능한 상태
+      // 에러 페이지 출력
+      router.push('/error');
+    })
   }
-});
+})
 
 export default router;

@@ -36,7 +36,7 @@ export default {
         this.$router.push(`/song/save/search`);
 
       }).catch((error) => {
-        const errorStatus = error.response.data.error;
+        const errorStatus = error.response.data.code;
 
         // Interceptor preHandler()
         if (errorStatus === 401) {

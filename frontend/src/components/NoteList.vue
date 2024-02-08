@@ -80,7 +80,7 @@ export default {
   },
 
   methods: {
-    "readData"() {
+    readData() {
       const params = this.loadParams();
       const uri = this.loadUri();
       console.log(`현재 페이지: ${this.currentPage}`);
@@ -103,6 +103,7 @@ export default {
       .catch(error => {
         const errorStatus = error.response.data.code;
 
+        // Interceptor preHandler()
         if (errorStatus === 401) {
           localStorage.removeItem('vuex');
           alert(error.response.data.message);
@@ -111,7 +112,7 @@ export default {
       })
     },
 
-    "loadParams"() {
+    loadParams() {
       return {
         "page": this.currentPage,
         "size": this.defaultPageSize,
@@ -120,46 +121,46 @@ export default {
       };
     },
 
-    "loadUri"() {
+    loadUri() {
       // 날짜 필터링을 적용하고 조회했을때 /api/notes/date 엔드 포인트 사용
       return this.dateFilterSelecting ? '/api/notes/date' : '/api/notes';
     },
 
-    "fetchData"(params, uri) {
+    fetchData(params, uri) {
       axios.defaults.withCredentials = true;
       const apiServer = process.env.VUE_APP_API_SERVER;
 
       return axios.get(`${apiServer}${uri}`, {params});
     },
 
-    "filterSwitch"() {
+    filterSwitch() {
       this.dateFilterSwitch = !this.dateFilterSwitch;
     },
 
     // End-Point 변경을 위해 dateFilterSelecting = true;
     // 어떤 페이지에서든 날짜 필터링 이후 조회 시 1 페이지부터 조회하도록 this.currentPage = 1;
-    "dateFilterSelect"() {
+    dateFilterSelect() {
       this.dateFilterSelecting = true;
       this.currentPage = 1;
       this.readData();
     },
 
-    "readNextPage"() {
+    readNextPage() {
       this.currentPage += 1;
       this.readData();
     },
 
-    "readPrevPage"() {
+    readPrevPage() {
       this.currentPage -= 1;
       this.readData();
     },
 
-    "clickUpdate"(event, noteId) {
+    clickUpdate(event, noteId) {
       event.stopPropagation();
       this.$router.push(`/note/update/${noteId}`);
     },
 
-    "clickDelete"(event, noteId) {
+    clickDelete(event, noteId) {
       event.stopPropagation();
       const result = window.confirm('정말 삭제하시겠습니까 ?');
 
@@ -173,14 +174,13 @@ export default {
 
         }).catch(error => {
           const errorStatus = error.response.data.code;
-
           // Interceptor preHandler()
           if (errorStatus === 401) {
             localStorage.removeItem('vuex');
             alert(error.response.data.message);
             window.location.href = '/';
 
-            // NotFoundNoteException
+          // NotFoundNoteException
           } else if (errorStatus === 400) {
             const errorMessage = error.response.data.message;
             alert(errorMessage);
@@ -190,11 +190,11 @@ export default {
       }
     },
 
-    "readNote"(noteId) {
+    readNote(noteId) {
       this.$router.push(`/note/detail/${noteId}`);
     },
 
-    "truncateNoteContent"(noteContent) {
+    truncateNoteContent(noteContent) {
       if (noteContent.length > 50) {
         return noteContent.substring(0, 50) + '...';
       }
