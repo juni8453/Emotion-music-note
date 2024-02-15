@@ -10,7 +10,6 @@ import com.emotionmusicnote.note.controller.response.NoteWriterResponse;
 import com.emotionmusicnote.note.domain.Note;
 import com.emotionmusicnote.note.domain.NoteRepository;
 import com.emotionmusicnote.song.controller.response.SongSavedInNoteResponse;
-import com.emotionmusicnote.song.domain.SongRepository;
 import com.emotionmusicnote.user.domain.User;
 import jakarta.servlet.http.HttpSession;
 import java.time.LocalDate;
@@ -25,7 +24,6 @@ import org.springframework.transaction.annotation.Transactional;
 public class NoteService {
 
   private final NoteRepository noteRepository;
-  private final SongRepository songRepository;
 
   @Transactional
   public Long save(NoteSaveRequest request, HttpSession session) {
