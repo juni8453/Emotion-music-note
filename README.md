@@ -31,6 +31,10 @@
 
 </br>
 
+## <img height="20px" src="https://user-images.githubusercontent.com/78953393/202724902-5c0e2787-eb17-45e0-9faa-a119d4eeaa5b.png" /> 프로젝트 아키텍처 및 ERD
+<img width="700" alt="스크린샷 2024-02-19 오후 2 04 02" src="https://github.com/juni8453/emotion-music-note/assets/79444040/b748c0c9-2ec3-4fcf-8865-d84f08513ad1">
+<img width="700" alt="스크린샷 2024-02-19 오후 2 10 36" src="https://github.com/juni8453/emotion-music-note/assets/79444040/b2d5bc81-64a2-41ec-ba22-04acd8df1818">
+
 ## <img height="20px" src="https://user-images.githubusercontent.com/78953393/202724902-5c0e2787-eb17-45e0-9faa-a119d4eeaa5b.png" /> 사용 방법
 > 일기 작성 (모바일 UI)
   <details>
